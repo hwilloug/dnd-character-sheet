@@ -1,7 +1,10 @@
 const configureAPI = require('../server/configure'); 
 
 module.exports = {
-  devServer: {
+  "devServer": {
     before: configureAPI,
-  }
-}    
+  },
+  "transpileDependencies": [
+    "vuetify"
+  ]
+}
