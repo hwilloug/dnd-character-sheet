@@ -1,15 +1,15 @@
 <template>
-<div class="info-dropdown">
-  <button class="collapsible">{{ spell.name }}</button> 
-  <div class="content">
-    <p>Level: {{ spell.level }}</p>
-    <p>Casting time: {{ spell.casting_time }}</p>
-    <p>Range: {{ spell.range }}</p>
-    <p>Components: {{ spell.components }}</p>
-    <p>Duration: {{ spell.duration }}</p>
-    <p>Description: {{ spell.description }}</p>
-  </div>
-</div>
+<v-expansion-panel>
+  <v-expansion-panel-header class='spells-panel-header'>{{ spell.name }}</v-expansion-panel-header>
+  <v-expansion-panel-content class='panel-content'>
+    <p><b>Level</b>: {{ spell.level }}</p>
+    <p><b>Casting time</b>: {{ spell.casting_time }}</p>
+    <p><b>Range</b>: {{ spell.range }}</p>
+    <p><b>Components</b>: {{ spell.components }}</p>
+    <p><b>Duration</b>: {{ spell.duration }}</p>
+    <p><b>Description</b>: {{ spell.description }}</p>
+  </v-expansion-panel-content>
+</v-expansion-panel>
 </template>
 
 <script>
@@ -17,30 +17,11 @@ export default {
   name: "SpellInfo",
   props: ['spell'],
   data() { return {
-    
+
   }},
 }
 </script>
 
 <style>
-
-.collapsible {
-  background-color: crimson;
-  color: white;
-  width: 50%;
-  cursor: pointer;
-  border: none;
-  font-size: 15px;
-  outline: none;
-  text-align: left;
-}
-
-.collapsible:hover {
-  background-color: #97050f;
-}
-
-.content {
-  width: 50%;
-}
 
 </style>

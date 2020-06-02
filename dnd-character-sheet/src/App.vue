@@ -1,26 +1,35 @@
 <template>
-  <div id="app">
-    <Spells />
-  </div>
+  <v-app>
+    <v-content>
+      <h2>Spells</h2>
+      <Spells />
+    </v-content>
+  </v-app>
 </template>
 
 <script>
-import Spells from './components/Spells.vue'
+import Spells from './components/Spells';
 
 export default {
   name: 'App',
+
   components: {
-    Spells
-  }
-}
+    Spells,
+  },
+
+  data: () => ({
+    //
+  }),
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  margin-top: 60px;
+.panel-header {
+  font-weight: bold;
+}
+
+.spells-panel-header {
+  background-color: crimson;
+  color: white;
 }
 </style>
