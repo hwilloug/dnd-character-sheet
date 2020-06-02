@@ -1,8 +1,10 @@
 <template>
   <v-app>
     <v-content>
-      <h2>Spells</h2>
-      <Spells />
+      <div id="spells">
+        <h2>Spells</h2>
+        <Spells />
+      </div>
     </v-content>
   </v-app>
 </template>
@@ -24,11 +26,11 @@ export default {
 </script>
 
 <style>
-.panel-header {
-  font-weight: bold;
+#spells {
+  
 }
 
-.spells-panel-header {
+.panel-header {
   background-color: crimson;
   color: white;
 }
