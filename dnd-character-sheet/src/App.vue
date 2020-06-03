@@ -1,23 +1,23 @@
 <template>
   <v-app>
-    <v-system-bar dark color="indigo darken-2">
+    <v-system-bar dark color="red darken-4">
       <span>DND Character Sheet App</span>
       <v-spacer></v-spacer>
-      <img src="./assets/vue_logo.png" height="20px"> 
-      <img src="./assets/vuetify_logo.png" height="20px">
-      <img src="./assets/node_logo.png" height="20px">
+      <span>{{ characterInfo.player_name }}</span>
     </v-system-bar>
     <v-content>
       <CharacterInfo :characterInfo="characterInfo" />
       <Spells :spells="attacks.spells" />
     </v-content>
+    <Footer />
   </v-app>
 </template>
 
 <script>
 import CharacterInfo from './components/CharacterInfo';
 import Spells from './components/Spells';
-import api from '@/services/CharacterSheet'
+import Footer from './components/Footer';
+import api from '@/services/CharacterSheet';
 
 export default {
   name: 'App',
@@ -25,6 +25,7 @@ export default {
   components: {
     CharacterInfo,
     Spells,
+    Footer
   },
 
   data: () => ({
@@ -53,12 +54,11 @@ export default {
 </script>
 
 <style>
-#spells {
-
+#character-info {
+  display: flex;
 }
 
-.panel-header {
-  background-color: crimson;
-  color: white;
+#spells {
+
 }
 </style>
