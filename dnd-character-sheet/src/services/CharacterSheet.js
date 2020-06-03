@@ -9,8 +9,8 @@ export default {
     let url = `/character-sheet?characterName=${characterName}`;
     return Api().get(url);
   },
-  updateCharacterSheet( characterName ) {
+  updateCharacterSheet( characterName, updatedSheet ) {
     let url = `/character-sheet/${characterName}`;
-    return Api().put(url);
+    return Api().put(url, updatedSheet);
   }
 }

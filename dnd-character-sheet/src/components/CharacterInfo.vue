@@ -2,9 +2,42 @@
 <div id="character-info">
   <h1>{{ characterInfo.character_name }} "{{ characterInfo.character_nickname}}" {{ characterInfo.clan_name}}</h1>
   <v-spacer></v-spacer>
-  <p><b>Class</b> {{ characterInfo.class }}</p>
-  <p><b>Background</b> {{ characterInfo.background }}</p>
-  <p><b>Race</b> {{ characterInfo.race }}</p>
+  <p>
+    <span class="header"><b>Class</b></span>
+    <span>{{ characterInfo.class }}</span>
+  </p>
+  <p>
+    <span class="header"><b>Background</b></span>
+    <span>{{ characterInfo.background }}</span>
+  </p>
+  <p>
+    <span class="header"><b>Race</b></span>
+    <span>{{ characterInfo.race }}</span>
+  </p>
+  <p>
+    <span class="header"><b> Level </b></span>
+    <span><v-btn
+      class="mx-2"
+      depressed
+      dark
+      height="15px"
+      width="15px"
+      fab
+      color="red darken-4"
+      @click="emitChange('decrement')"
+    ><v-icon x-small>mdi-minus</v-icon></v-btn>
+    <span>{{ characterInfo.level }}</span>
+    <v-btn
+      class="mx-2"
+      depressed
+      dark
+      height="15px"
+      width="15px"
+      fab
+      color="red darken-4" 
+      @click="emitChange('increment')"
+    ><v-icon x-small>mdi-plus</v-icon></v-btn></span>
+  </p>
 </div>
 </template>
 
@@ -13,18 +46,25 @@ export default {
   name: "characterInfo",
   props: [
     "characterInfo"
-  ]
+  ], //$emit('increment-integer', ['characterInfo.level', 'decrement', characterInfo.level])
+  methods: {
+    emitChange(whichWay) {
+      this.$emit('clicked', [['character_info', 'level'], whichWay, this.characterInfo.level]);
+    }
+  }
 }
 </script>
 
 <style>
 #character-info p {
   display: flex;
-  flex-direction: column;
+  flex-flow: column nowrap;
   padding: 15px;
   text-align: center;
+  align-items: stretch;
 }
-#character-info p b {
+#character-info p .header {
   border-bottom: solid darkred 2px;
 }
+
 </style>

@@ -4,9 +4,13 @@
       <span>DND Character Sheet App</span>
       <v-spacer></v-spacer>
       <span>{{ characterInfo.player_name }}</span>
+      <v-icon
+        style="padding-left: 10px;"
+
+      >{{ loadingIcon }}</v-icon>
     </v-system-bar>
     <v-content>
-      <CharacterInfo :characterInfo="characterInfo" />
+      <CharacterInfo :characterInfo="characterInfo" @clicked="incrementInteger" />
       <Spells :spells="attacks.spells" />
     </v-content>
     <Footer />
@@ -29,6 +33,8 @@ export default {
   },
 
   data: () => ({
+    characterName: 'Nissa',
+    fullSheet: {},
     characterInfo: {},
     stats: {},
     proficiencies: {},
@@ -36,10 +42,12 @@ export default {
     armor: [],
     attacks: {},
     items: {},
-    otherInfo: {}
+    otherInfo: {},
+    loadingIcon: "mdi-check-bold"
   }),
   created() {
-    api.getCharacterSheet("Nissa").then(resp => {
+    api.getCharacterSheet(this.characterName).then(resp => {
+      this.fullSheet = resp.data;
       this.characterInfo = resp.data.character_info;
       this.stats = resp.data.stats;
       this.proficiencies = resp.data.proficiencies;
@@ -49,6 +57,23 @@ export default {
       this.items = resp.data.items;
       this.otherInfo = resp.data.other_character_info;
     })
+  },
+  watch: {
+    fullSheet: {handler: 'updateCharacterSheet', deep: true}
+  },
+  methods: {
+    updateCharacterSheet(val) {
+      api.updateCharacterSheet( this.characterName, val);
+    },
+    incrementInteger(value) {
+      this.loadingIcon = "mdi-loading mdi-spin";
+      const field = value[0];
+      const whichWay = value[1];
+      const currentValue = value[2];
+      let newValue = whichWay == "increment" ? parseInt(currentValue) + 1 : parseInt(currentValue) - 1;
+      this.fullSheet[field[0]][field[1]] = newValue.toString();
+      this.loadingIcon = "mdi-check-bold";
+    }
   }
 };
 </script>
