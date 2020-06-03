@@ -1,6 +1,6 @@
 <template>
 <v-expansion-panel>
-  <v-expansion-panel-header class='panel-header'>({{ spell.level }}) <b>{{ spell.name }}</b></v-expansion-panel-header>
+  <v-expansion-panel-header class='panel-header' color="red darken-4 white--text">({{ spell.level }}) <b>{{ spell.name }}</b></v-expansion-panel-header>
   <v-expansion-panel-content class='panel-content'>
     <p><b>Level</b>: {{ spell.level }}</p>
     <p><b>Casting time</b>: {{ spell.casting_time }}</p>
