@@ -1,5 +1,6 @@
 <template>
 <div id="spells">
+  <h2>Spells</h2>
   <v-expansion-panels
     :multiple=true
     :hover=true
@@ -15,16 +16,18 @@
 
 <script>
 import SpellInfo from './SpellInfo.vue'
-import mySpells from '../../../json/spells.json'
 
 export default {
   name: "Spells",
+  props: [
+    "spells"
+  ],
   components: {
     SpellInfo
   },
-  data () { return {
-    spells: mySpells.data
-  }}
+  data: () => ({
+    //
+  })
 }
 </script>
 

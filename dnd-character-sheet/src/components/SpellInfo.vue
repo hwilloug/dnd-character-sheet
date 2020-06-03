@@ -8,6 +8,7 @@
     <p><b>Components</b>: {{ spell.components }}</p>
     <p><b>Duration</b>: {{ spell.duration }}</p>
     <p><b>Description</b>: {{ spell.description }}</p>
+    <p><a :href="spell.link" target="_blank">More Info</a></p>
   </v-expansion-panel-content>
 </v-expansion-panel>
 </template>

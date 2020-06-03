@@ -1,0 +1,115 @@
+{
+  "character_info": {
+    "character_name": "",
+    "character_nickname": "",
+    "player_name": "",
+    "class": "",
+    "level": "",
+    "background": "",
+    "race": "",
+    "experience": "",
+    "experience_to_next_level": ""
+  },
+  "stats": {
+    "strength": "",
+    "dexterity": "",
+    "constitution": "",
+    "intelligence": "",
+    "wisdom": "",
+    "charisma": "",
+    "max_hp": "",
+    "proficiency_bonus": "",
+    "armor_class": "",
+    "speed": "",
+    "inspiration": "",
+    "ability_save_dc": ""
+  },
+  "proficiencies": {
+    "armor": {
+      "light": "false",
+      "medium": "false",
+      "heavy": "false",
+      "shields": "false"
+    },
+    "weapons": {
+      "simple": "false",
+      "martial": "false",
+      "other": {
+
+      }
+    },
+    "languages": [],
+    "tools": []
+  },
+  "saving_throws": {
+    "strength": "false",
+    "dexterity": "false",
+    "constitution": "false",
+    "intelligence": "false",
+    "wisdom": "false",
+    "charisma": "false",
+    "resistances": [],
+    "saving_throws": []
+  },
+  "armor": {
+
+  },
+  "attacks": {
+    "weapons": [
+      {
+
+      }
+    ],
+    "spells": [
+      {
+        "name": "",
+        "level": "",
+        "casting_time": "",
+        "range": "",
+        "components": "",
+        "duration": "",
+        "to_hit": "",
+        "damage": "",
+        "damage_type": "",
+        "description": "",
+        "link": ""
+      }
+    ]
+  },
+  "items": {
+    "money": {
+      "cp": "0",
+      "sp": "0",
+      "ep": "0",
+      "gp": "0",
+      "pp": "0"
+    },
+    "adventuring_gear": [
+      {
+
+      }
+    ]
+  },
+  "other_character_info": {
+    "age": "",
+    "gender": "",
+    "size": "",
+    "height": "",
+    "weight": "",
+    "alignment": "",
+    "faith": "",
+    "hair": "",
+    "eyes": "",
+    "skin": "",
+    "personality_traits": "",
+    "ideals": "",
+    "bonds": "",
+    "flaws": "",
+    "background_feature": "",
+    "racial_traits": "",
+    "character_history": "",
+    "enemies": "",
+    "allies_organizations": "",
+    "class_features": {}
+  }
+}

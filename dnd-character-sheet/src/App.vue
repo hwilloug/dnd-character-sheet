@@ -1,16 +1,14 @@
 <template>
   <v-app>
     <v-content>
-      <div id="spells">
-        <h2>Spells</h2>
-        <Spells />
-      </div>
+      <Spells :spells="attacks.spells" />
     </v-content>
   </v-app>
 </template>
 
 <script>
 import Spells from './components/Spells';
+import api from '@/services/CharacterSheet'
 
 export default {
   name: 'App',
@@ -20,14 +18,26 @@ export default {
   },
 
   data: () => ({
-    //
+    characterInfo: {},
+    stats: {},
+    proficiencies: {},
+    savingThrows: {},
+    attacks: {},
+    items: {},
+    otherInfo: {}
   }),
+  created() {
+    api.getCharacterSheet("Nissa").then(resp => {
+      console.log(resp.data.attacks.spells)
+      this.attacks = resp.data.attacks;
+    })
+  }
 };
 </script>
 
 <style>
 #spells {
-  
+
 }
 
 .panel-header {
