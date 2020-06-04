@@ -15,7 +15,7 @@
     <span>{{ characterInfo.race }}</span>
   </p>
   <p>
-    <span class="header"><b> Level </b></span>
+    <span class="header"><b>Level</b></span>
     <span><v-btn
       class="mx-2"
       depressed
@@ -34,9 +34,13 @@
       height="15px"
       width="15px"
       fab
-      color="red darken-4" 
+      color="red darken-4"
       @click="emitChange('increment')"
     ><v-icon x-small>mdi-plus</v-icon></v-btn></span>
+  </p>
+  <p>
+    <span class="header"><b>Experience</b></span>
+    <span><input v-model="characterInfo.experience" size="5"></span>
   </p>
 </div>
 </template>
@@ -46,11 +50,24 @@ export default {
   name: "characterInfo",
   props: [
     "characterInfo"
-  ], //$emit('increment-integer', ['characterInfo.level', 'decrement', characterInfo.level])
+  ],
+  data() {return {
+    experience: ""
+  }},
+  created() {
+    this.experience = this.characterInfo.experience;
+  },
   methods: {
     emitChange(whichWay) {
       this.$emit('clicked', [['character_info', 'level'], whichWay, this.characterInfo.level]);
+    },
+    updateText(val) {
+      console.log(val)
+      this.$emit('update-text', [['character_info', 'experience'], val]);
     }
+  },
+  watch: {
+    experience: {handler: 'updateText'}
   }
 }
 </script>
@@ -65,6 +82,9 @@ export default {
 }
 #character-info p .header {
   border-bottom: solid darkred 2px;
+}
+#character-info input {
+  text-align: center;
 }
 
 </style>

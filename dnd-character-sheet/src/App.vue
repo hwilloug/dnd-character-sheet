@@ -10,7 +10,11 @@
       >{{ loadingIcon }}</v-icon>
     </v-system-bar>
     <v-content>
-      <CharacterInfo :characterInfo="characterInfo" @clicked="incrementInteger" />
+      <CharacterInfo
+        :characterInfo="characterInfo"
+        @clicked="incrementInteger"
+        @update-text="updateText"
+      />
       <Spells :spells="attacks.spells" />
     </v-content>
     <Footer />
@@ -64,6 +68,7 @@ export default {
   methods: {
     updateCharacterSheet(val) {
       api.updateCharacterSheet( this.characterName, val);
+      this.loadingIcon = "mdi-check-bold";
     },
     incrementInteger(value) {
       this.loadingIcon = "mdi-loading mdi-spin";
@@ -72,7 +77,12 @@ export default {
       const currentValue = value[2];
       let newValue = whichWay == "increment" ? parseInt(currentValue) + 1 : parseInt(currentValue) - 1;
       this.fullSheet[field[0]][field[1]] = newValue.toString();
-      this.loadingIcon = "mdi-check-bold";
+    },
+    updateText(value) {
+      this.loadingIcon = "mdi-loading mdi-spin";
+      console.log(value)
+      const field = value[0];
+      this.fullSheet[field[0]][field[1]] = value[1].toString();
     }
   }
 };
