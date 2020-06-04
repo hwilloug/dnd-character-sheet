@@ -48,6 +48,10 @@
 </template>
 
 <script>
+/*
+  Ideas for later:
+    - Automatically set level based on experience
+*/
 export default {
   name: "characterInfo",
   props: [
@@ -93,9 +97,9 @@ export default {
 }
 
 #character-info h1 {
-  padding: 15px 30px;
-  background-image: url('../assets/scroll.jpg');
-  background-size: 100%;
+  padding: 20px 50px;
+  background-image: url('../assets/small_scroll_horizontal.png');
+  background-size: 100% 100%;
 }
 
 #character-info p {

@@ -81,7 +81,9 @@ export default {
     updateText(value) {
       this.loadingIcon = "mdi-loading mdi-spin";
       const field = value[0];
-      this.fullSheet[field[0]][field[1]] = value[1].toString();
+      if (value[1]) {
+        this.fullSheet[field[0]][field[1]] = value[1].toString();
+      }
     }
   }
 };
