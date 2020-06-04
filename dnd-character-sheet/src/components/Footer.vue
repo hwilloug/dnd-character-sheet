@@ -1,5 +1,5 @@
 <template>
-  <v-footer absolute color="red darken-4 white--text">
+  <v-footer app color="red darken-4 white--text">
     Poppy.play &copy;{{ new Date().getFullYear() }}
     <img src="../assets/poppy_transparent.gif" height="30px" style="padding-left: 5px;" />
     <v-spacer></v-spacer>

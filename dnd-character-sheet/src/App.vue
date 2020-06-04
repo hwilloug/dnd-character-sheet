@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-system-bar dark color="red darken-4">
+    <v-system-bar fixed dark color="red darken-4">
       <span>DND Character Sheet App</span>
       <v-spacer></v-spacer>
       <span>{{ characterInfo.player_name }}</span>
@@ -15,15 +15,17 @@
         @clicked="incrementInteger"
         @update-text="updateText"
       />
-      <Spells :spells="attacks.spells" />
+      <Stats :stats="stats"/>
+      <!--<Spells :spells="attacks.spells" />-->
+      <Footer />
     </v-content>
-    <Footer />
   </v-app>
 </template>
 
 <script>
 import CharacterInfo from './components/CharacterInfo';
-import Spells from './components/Spells';
+import Stats from './components/Stats';
+//import Spells from './components/Spells';
 import Footer from './components/Footer';
 import api from '@/services/CharacterSheet';
 
@@ -32,7 +34,8 @@ export default {
 
   components: {
     CharacterInfo,
-    Spells,
+    Stats,
+    //Spells,
     Footer
   },
 
@@ -66,6 +69,7 @@ export default {
     fullSheet: {handler: 'updateCharacterSheet', deep: true}
   },
   methods: {
+    // Update these to be more specific
     updateCharacterSheet(val) {
       api.updateCharacterSheet( this.characterName, val);
       this.loadingIcon = "mdi-check-bold";
@@ -94,7 +98,15 @@ export default {
   display: flex;
 }
 
-#spells {
+#stats {
+  display: flex;
+  flex-direction: column;
+  float: left;
+  padding: 5px;
+  margin: 10px;
+}
 
+#spells {
+  padding: 10px;
 }
 </style>

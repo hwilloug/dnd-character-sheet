@@ -94,6 +94,7 @@ export default {
 <style>
 #character-info {
   padding: 10px;
+  padding-top: 30px;
 }
 
 #character-info h1 {
