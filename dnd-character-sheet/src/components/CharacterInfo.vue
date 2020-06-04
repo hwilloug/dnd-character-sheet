@@ -26,7 +26,9 @@
       color="red darken-4"
       @click="emitChange('decrement')"
     ><v-icon x-small>mdi-minus</v-icon></v-btn>
-    <span>{{ characterInfo.level }}</span>
+    <span class="tooltip">{{ characterInfo.level }}
+      <span class="tooltiptext">XP to level up: {{ levelUpAtExperience() }}</span>
+    </span>
     <v-btn
       class="mx-2"
       depressed
@@ -52,9 +54,9 @@ export default {
     "characterInfo"
   ],
   data() {return {
-    experience: ""
+    experience: "",
   }},
-  created() {
+  mounted() {
     this.experience = this.characterInfo.experience;
   },
   methods: {
@@ -62,8 +64,21 @@ export default {
       this.$emit('clicked', [['character_info', 'level'], whichWay, this.characterInfo.level]);
     },
     updateText(val) {
-      console.log(val)
       this.$emit('update-text', [['character_info', 'experience'], val]);
+    },
+    levelUpAtExperience() {
+      const levelUpAtExperience = {
+        "1": 300,
+        "2": 900,
+        "3": 2700,
+        "4": 6500,
+        "5": 14000,
+        "6": 23000,
+        "7": 34000,
+        "8": 48000,
+        "9": 64000
+      };
+      return levelUpAtExperience[this.characterInfo.level]
     }
   },
   watch: {
@@ -73,18 +88,56 @@ export default {
 </script>
 
 <style>
+#character-info {
+  padding: 10px;
+}
+
+#character-info h1 {
+  padding: 15px 30px;
+  background-image: url('../assets/scroll.jpg');
+  background-size: 100%;
+}
+
 #character-info p {
   display: flex;
   flex-flow: column nowrap;
   padding: 15px;
   text-align: center;
   align-items: stretch;
+  background-image: url('../assets/small_scroll.png');
+  background-size: 100% 100%;
 }
 #character-info p .header {
   border-bottom: solid darkred 2px;
 }
 #character-info input {
   text-align: center;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }
 
 </style>
