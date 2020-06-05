@@ -27,7 +27,7 @@
       @click="emitChange('decrement')"
     ><v-icon x-small>mdi-minus</v-icon></v-btn>
     <span class="tooltip">{{ characterInfo.level }}
-      <span class="tooltiptext">XP to level up: {{ levelUpAtExperience() }}</span>
+      <span class="tooltiptext tooltipshort">XP to level up: {{ levelUpAtExperience() }}</span>
     </span>
     <v-btn
       class="mx-2"
@@ -107,42 +107,19 @@ export default {
   display: flex;
   flex-flow: column nowrap;
   padding: 15px;
+  width: 8rem;
+  height: 5.5rem;
   text-align: center;
   align-items: stretch;
   background-image: url('../assets/small_scroll.png');
   background-size: 100% 100%;
+  margin: 0px 20px;
 }
 #character-info p .header {
   border-bottom: solid darkred 2px;
 }
 #character-info input {
   text-align: center;
-}
-
-.tooltip {
-  position: relative;
-  display: inline-block;
-}
-
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 120px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  padding: 5px 0;
-  border-radius: 6px;
-
-  /* Position the tooltip text - see examples below! */
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  z-index: 1;
-}
-
-/* Show the tooltip text when you mouse over the tooltip container */
-.tooltip:hover .tooltiptext {
-  visibility: visible;
 }
 
 </style>

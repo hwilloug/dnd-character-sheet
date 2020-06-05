@@ -16,6 +16,7 @@
         @update-text="updateText"
       />
       <Stats :stats="stats"/>
+      <Skills :stats="stats" :proficiencies="proficiencies.skills" />
       <!--<Spells :spells="attacks.spells" />-->
       <Footer />
     </v-content>
@@ -25,6 +26,7 @@
 <script>
 import CharacterInfo from './components/CharacterInfo';
 import Stats from './components/Stats';
+import Skills from './components/Skills';
 //import Spells from './components/Spells';
 import Footer from './components/Footer';
 import api from '@/services/CharacterSheet';
@@ -35,6 +37,7 @@ export default {
   components: {
     CharacterInfo,
     Stats,
+    Skills,
     //Spells,
     Footer
   },
@@ -63,6 +66,7 @@ export default {
       this.attacks = resp.data.attacks;
       this.items = resp.data.items;
       this.otherInfo = resp.data.other_character_info;
+      console.log(this.proficiencies)
     })
   },
   watch: {
@@ -106,7 +110,45 @@ export default {
   margin: 10px;
 }
 
+#skills {
+  float: left;
+  margin: 20px;
+  padding: 10px;
+}
+
 #spells {
   padding: 10px;
+}
+
+
+/* Hover boxes stuff */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  background-color: black;
+  color: #fff;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  z-index: 1;
+}
+
+.tooltip .tooltipshort{
+  width: 120px;
+}
+
+.tooltip .tooltiplong {
+  width: 500px;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }
 </style>
