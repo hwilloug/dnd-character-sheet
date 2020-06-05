@@ -16,7 +16,8 @@
         @update-text="updateText"
       />
       <Stats :stats="stats"/>
-      <Skills :stats="stats" :proficiencies="proficiencies.skills" />
+      <Skills :stats="stats" :proficiencies="proficiencies.skills" :expertise="proficiencies.expertise" />
+      <Proficiencies :proficiencies="proficiencies" />
       <!--<Spells :spells="attacks.spells" />-->
       <Footer />
     </v-content>
@@ -27,6 +28,7 @@
 import CharacterInfo from './components/CharacterInfo';
 import Stats from './components/Stats';
 import Skills from './components/Skills';
+import Proficiencies from './components/Proficiencies';
 //import Spells from './components/Spells';
 import Footer from './components/Footer';
 import api from '@/services/CharacterSheet';
@@ -38,6 +40,7 @@ export default {
     CharacterInfo,
     Stats,
     Skills,
+    Proficiencies,
     //Spells,
     Footer
   },
@@ -115,6 +118,10 @@ export default {
   margin: 10px;
 }
 
+#proficiencies {
+  float: left;
+}
+
 #spells {
   padding: 10px;
 }
@@ -130,7 +137,7 @@ export default {
   visibility: hidden;
   background-color: black;
   color: #fff;
-  padding: 5px 0;
+  padding: 5px;
   border-radius: 6px;
 
   position: absolute;

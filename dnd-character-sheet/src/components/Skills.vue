@@ -8,6 +8,7 @@
     :skillType="skill.skillType"
     :skillModifier="calculateModifier(stats[skill.skillType.toLowerCase()])"
     :skillProficiency="proficiencies[skill.skillName]"
+    :skillExpertise="expertise[skill.skillName]"
     :skillDescription="skill.skillDescription"
   />
 </div>
@@ -22,7 +23,7 @@ import Modifiers from './json/modifiers.json'
 
 export default {
   name: "Skills",
-  props: ["stats", "proficiencies"],
+  props: ["stats", "proficiencies", "expertise"],
   components: {SkillRow},
   data() {return {
     skillsArray: SkillInfo.data
