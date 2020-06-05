@@ -12,7 +12,7 @@
 
 <script>
   // idea: change stat modifier background color based on its value
-  import StatBlock from './StatBlock'
+  import StatBlock from './subcomponents/StatBlock'
   import Modifiers from './json/modifiers.json'
 
   export default {

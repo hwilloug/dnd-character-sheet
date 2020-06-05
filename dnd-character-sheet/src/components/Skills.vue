@@ -16,7 +16,7 @@
 <script>
 // idea: change modifier background color based on its value
 
-import SkillRow from './SkillRow'
+import SkillRow from './subcomponents/SkillRow'
 import SkillInfo from './json/skillInformation.json'
 import Modifiers from './json/modifiers.json'
 

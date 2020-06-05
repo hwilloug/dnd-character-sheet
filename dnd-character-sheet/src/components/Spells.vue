@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import SpellInfo from './SpellInfo.vue'
+import SpellInfo from './subcomponents/SpellInfo.vue'
 
 export default {
   name: "Spells",
