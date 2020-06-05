@@ -112,8 +112,7 @@ export default {
 
 #skills {
   float: left;
-  margin: 20px;
-  padding: 10px;
+  margin: 10px;
 }
 
 #spells {

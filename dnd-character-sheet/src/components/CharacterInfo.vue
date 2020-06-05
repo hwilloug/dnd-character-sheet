@@ -98,8 +98,8 @@ export default {
 }
 
 #character-info h1 {
-  padding: 20px 50px;
-  background-image: url('../assets/small_scroll_horizontal.png');
+  padding: 30px 50px;
+  background-image: url('../assets/flat_scroll.jpg');
   background-size: 100% 100%;
 }
 

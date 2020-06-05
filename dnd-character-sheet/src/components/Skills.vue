@@ -14,6 +14,8 @@
 </template>
 
 <script>
+// idea: change modifier background color based on its value
+
 import SkillRow from './SkillRow'
 import SkillInfo from './json/skillInformation.json'
 import Modifiers from './json/modifiers.json'
@@ -36,8 +38,11 @@ export default {
 <style>
   #skills {
     /* find a better background for this */
-    border: black 2px solid;
+    /*border: black 2px solid;*/
+    background-image: url('../assets/text_box_rope.png');
+    background-size: 100% 100%;
     border-radius: 5px;
+    padding: 50px;
   }
 
   #skills .skill-row {
