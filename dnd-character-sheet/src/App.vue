@@ -17,6 +17,7 @@
       />
       <Stats :stats="stats"/>
       <Skills :stats="stats" :proficiencies="proficiencies.skills" :expertise="proficiencies.expertise" />
+      <SavingThrows :savingThrows="savingThrows" :stats="stats" />
       <Proficiencies :proficiencies="proficiencies" />
       <!--<Spells :spells="attacks.spells" />-->
       <Footer />
@@ -28,6 +29,7 @@
 import CharacterInfo from './components/CharacterInfo';
 import Stats from './components/Stats';
 import Skills from './components/Skills';
+import SavingThrows from './components/SavingThrows';
 import Proficiencies from './components/Proficiencies';
 //import Spells from './components/Spells';
 import Footer from './components/Footer';
@@ -40,6 +42,7 @@ export default {
     CharacterInfo,
     Stats,
     Skills,
+    SavingThrows,
     Proficiencies,
     //Spells,
     Footer
@@ -69,7 +72,6 @@ export default {
       this.attacks = resp.data.attacks;
       this.items = resp.data.items;
       this.otherInfo = resp.data.other_character_info;
-      console.log(this.proficiencies)
     })
   },
   watch: {
@@ -120,6 +122,12 @@ export default {
 
 #proficiencies {
   float: left;
+  margin: 10px;
+}
+
+#saving-throws-component {
+  float: left;
+  margin: 10px;
 }
 
 #spells {
@@ -135,15 +143,41 @@ export default {
 
 .tooltip .tooltiptext {
   visibility: hidden;
-  background-color: black;
-  color: #fff;
+  background-color: burlywood;
+  color: darkslategrey;
   padding: 5px;
+  border: 2px solid dimgrey;
   border-radius: 6px;
+  box-shadow: 5px 5px darkslategrey;
 
   position: absolute;
+  width: 120px;
   top: 100%;
   left: 50%;
+  margin-left: -60px;
   z-index: 1;
+}
+
+.tooltip .tooltiplong::after {
+ content: " ";
+ position: absolute;
+ bottom: 100%;  /* At the top of the tooltip */
+ left: 5%;
+ margin-left: -5px;
+ border-width: 5px;
+ border-style: solid;
+ border-color: transparent transparent dimgrey transparent;
+}
+
+.tooltip .tooltipshort::after {
+ content: " ";
+ position: absolute;
+ bottom: 100%;  /* At the top of the tooltip */
+ left: 50%;
+ margin-left: -5px;
+ border-width: 5px;
+ border-style: solid;
+ border-color: transparent transparent dimgrey transparent;
 }
 
 .tooltip .tooltipshort{

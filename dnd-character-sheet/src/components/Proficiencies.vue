@@ -2,14 +2,14 @@
 <div id="proficiencies">
 <h5>Proficiencies</h5>
 <div id="proficiencies-container">
-<p class="armor proficiency-item"><b>Armor:</b>
+<p class="armor proficiency-item"><i>Armor:</i>
   <span class="proficiency" :class="{ proficient: proficiencies.armor.light }">Light</span>
   <span class="proficiency" :class="{ proficient: proficiencies.armor.medium }">Medium</span>
   <span class="proficiency" :class="{ proficient: proficiencies.armor.heavy }">Heavy</span>
   <span class="proficiency" :class="{ proficient: proficiencies.armor.shields }">Shields</span>
 </p>
 
-<p class="weapons proficiency-item"><b>Weapons:</b>
+<p class="weapons proficiency-item"><i>Weapons:</i>
 <span class="proficiency" :class="{ proficient: proficiencies.weapons.simple }">Simple</span>
 <span class="proficiency" :class="{ proficient: proficiencies.weapons.martial }">Martial</span>
 <span class="proficiency weapons-other" v-if="proficiencies.weapons.other.length">
@@ -21,7 +21,7 @@
 </span>
 </p>
 
-<p class="languages proficiency-item"><b>Languages:</b>
+<p class="languages proficiency-item"><i>Languages:</i>
 <span
   v-for="language in proficiencies.languages"
   :key="language"
@@ -29,7 +29,7 @@
 >{{ language }}</span>
 </p>
 
-<p class="tools proficiency-item"><b>Tools and Others:</b>
+<p class="tools proficiency-item"><i>Tools and Others:</i>
 <span
   v-for="tool in proficiencies.tools"
   :key="tool"
@@ -42,6 +42,7 @@
 
 
 <script>
+  // Replace bolding stuff with just putting what is proficient, and if nothing, none.
 export default {
   name: "Proficiencies",
   props: ["proficiencies"]
@@ -65,13 +66,13 @@ export default {
 }
 
 .proficiency-item {
-  margin: 5px;
-  padding: 2px;
+  margin: 2px;
+  padding: 2px 2px 5px 2px;
   display: flex;
   flex-wrap: wrap;
 }
 
-.proficiency-item b {
+.armor, .languages, .weapons {
   border-bottom: 2px solid darkred;
 }
 

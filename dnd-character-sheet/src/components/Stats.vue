@@ -13,7 +13,7 @@
 <script>
   // idea: change stat modifier background color based on its value
   import StatBlock from './subcomponents/StatBlock'
-  import Modifiers from './json/modifiers.json'
+  import Methods from './methods.js'
 
   export default {
     name: "Stats",
@@ -32,9 +32,7 @@
       ]
     }},
     methods: {
-      calculateModifier(value) {
-        return Modifiers[value]
-      }
+      calculateModifier: Methods.calculateModifier
     }
   }
 </script>

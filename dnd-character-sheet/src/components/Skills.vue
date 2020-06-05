@@ -6,7 +6,7 @@
     :key='skill.skillName'
     :skillName="skill.skillName"
     :skillType="skill.skillType"
-    :skillModifier="calculateModifier(stats[skill.skillType.toLowerCase()])"
+    :skillModifier="calculateModifier(stats[skill.skillType.toLowerCase()], proficiencies[skill.skillName], stats.proficiency_bonus)"
     :skillProficiency="proficiencies[skill.skillName]"
     :skillExpertise="expertise[skill.skillName]"
     :skillDescription="skill.skillDescription"
@@ -16,10 +16,9 @@
 
 <script>
 // idea: change modifier background color based on its value
-
 import SkillRow from './subcomponents/SkillRow'
 import SkillInfo from './json/skillInformation.json'
-import Modifiers from './json/modifiers.json'
+import Methods from './methods.js'
 
 export default {
   name: "Skills",
@@ -29,9 +28,7 @@ export default {
     skillsArray: SkillInfo.data
   }},
   methods: {
-    calculateModifier(value) {
-      return Modifiers[value]
-    }
+    calculateModifier: Methods.calculateModifier
   }
 }
 </script>
