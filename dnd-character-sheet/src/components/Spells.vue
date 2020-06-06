@@ -18,7 +18,6 @@
 // Rework this to:
 //  - Pull spell info from a different json <fieldset>
 //  - Don't use a sub-component
-</fieldset>
 import SpellInfo from './subcomponents/SpellInfo.vue'
 
 export default {
@@ -29,9 +28,6 @@ export default {
   components: {
     SpellInfo
   },
-  data: () => ({
-    //
-  })
 }
 </script>
 

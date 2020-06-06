@@ -16,33 +16,13 @@
   </p>
   <p>
     <span class="header"><b>Level</b></span>
-    <span><v-btn
-      class="mx-2"
-      depressed
-      dark
-      height="15px"
-      width="15px"
-      fab
-      color="red darken-4"
-      @click="emitChange('decrement')"
-    ><v-icon x-small>mdi-minus</v-icon></v-btn>
     <span class="tooltip">{{ characterInfo.level }}
       <span class="tooltiptext tooltipshort">XP to level up: {{ levelUpAtExperience() }}</span>
     </span>
-    <v-btn
-      class="mx-2"
-      depressed
-      dark
-      height="15px"
-      width="15px"
-      fab
-      color="red darken-4"
-      @click="emitChange('increment')"
-    ><v-icon x-small>mdi-plus</v-icon></v-btn></span>
   </p>
   <p>
     <span class="header"><b>Experience</b></span>
-    <span><input v-model="characterInfo.experience" size="5"></span>
+    <span><input v-model="characterInfo.experience" size="5" @keyup="updateText"></span>
   </p>
 </div>
 </template>
@@ -57,18 +37,9 @@ export default {
   props: [
     "characterInfo"
   ],
-  data() {return {
-    experience: "",
-  }},
-  mounted() {
-    this.experience = this.characterInfo.experience;
-  },
   methods: {
-    emitChange(whichWay) {
-      this.$emit('clicked', [['character_info', 'level'], whichWay, this.characterInfo.level]);
-    },
-    updateText(val) {
-      this.$emit('update-text', [['character_info', 'experience'], val]);
+    updateText() {
+      this.$emit('update-text', [['character_info', 'experience'], this.characterInfo.experience]);
     },
     levelUpAtExperience() {
       const levelUpAtExperience = {

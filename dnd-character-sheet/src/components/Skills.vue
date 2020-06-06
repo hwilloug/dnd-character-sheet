@@ -1,6 +1,5 @@
 <template>
-<div id="skills">
-  <SkillRow
+<div id="skills"><SkillRow
     class='skill-row'
     v-for='skill in skillsArray'
     :key='skill.skillName'
