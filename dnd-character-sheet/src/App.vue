@@ -16,7 +16,8 @@
         <SavingThrows :savingThrows="savingThrows" :stats="stats" />
         <Skills :stats="stats" :proficiencies="proficiencies.skills" :expertise="proficiencies.expertise" />
         <Session :session="session" :stats="stats" :armor="armor"
-          @update-sheet="updateInt"
+          @update-hp="updateInt"
+          @update-deathsave="updateDeathSave"
           @reset-session="resetSession"
         />
         <Proficiencies :proficiencies="proficiencies" />
@@ -124,6 +125,10 @@ export default {
       const updateFields = val[0];
       const newVal = val[1].toString();
       this.fullSheet[updateFields[0]][updateFields[1]] = newVal;
+      this.updateCharacterSheet();
+    },
+    updateDeathSave(val) {
+      this.fullSheet.session.death_saves[val[0]][val[1]] = val[2];
       this.updateCharacterSheet();
     },
     resetSession() {

@@ -39,11 +39,11 @@
     </tr>
     <tr>
       <td><b>Death Saves</b><br>
-        <v-icon>{{ getDeathSave("success", "1") }}</v-icon>-<v-icon>{{ getDeathSave("success", "2") }}</v-icon>-<v-icon>{{ getDeathSave("success", "3") }}</v-icon><br>
-        <v-icon>{{ getDeathSave("failure", "1") }}</v-icon>-<v-icon>{{ getDeathSave("failure", "2") }}</v-icon>-<v-icon>{{ getDeathSave("failure", "3") }}</v-icon>
+        <v-icon @click="toggleDeathSave('success', '1')">{{ getDeathSave("success", "1") }}</v-icon>-<v-icon @click="toggleDeathSave('success', '2')">{{ getDeathSave("success", "2") }}</v-icon>-<v-icon @click="toggleDeathSave('success', '3')">{{ getDeathSave("success", "3") }}</v-icon><br>
+        <v-icon @click="toggleDeathSave('failure', '1')">{{ getDeathSave("failure", "1") }}</v-icon>-<v-icon @click="toggleDeathSave('failure', '2')">{{ getDeathSave("failure", "2") }}</v-icon>-<v-icon @click="toggleDeathSave('failure', '3')">{{ getDeathSave("failure", "3") }}</v-icon>
       </td>
       <td><b>Hit Dice</b></td>
-      <td><button class="button" @click="resetSession">RESET</button></td>
+      <td><button class="button reset-button" @click="resetSession">RESET</button></td>
     </tr>
   </table>
 
@@ -63,12 +63,15 @@ export default {
     },
     emitChange(whichWay) {
       let newValue = whichWay == "increment" ? parseInt(this.session.hp) + 1 : parseInt(this.session.hp) - 1;
-      this.$emit('update-sheet', [['session', 'hp'], newValue]);
+      this.$emit('update-hp', [['session', 'hp'], newValue]);
     },
     getDeathSave(successOrFailure, number) {
       if (this.session.death_saves) {
         return this.session.death_saves[successOrFailure][number] ? "mdi-alpha-s-circle" : "mdi-alpha-s-circle-outline";
       }
+    },
+    toggleDeathSave(successOrFailure, number) {
+      this.$emit('update-deathsave', [successOrFailure, number, !this.session.death_saves[successOrFailure][number]])
     }
   }
 }
@@ -100,13 +103,13 @@ export default {
   padding: 0px 5px;
 }
 
-#session button {
+#session button.reset-button {
   border: 2px solid darkred;
   border-radius: 5px;
   padding: 5px;
 }
 
-#session button:hover {
+#session button.reset-button:hover {
   background-color: darkred;
   color: white;
 }
