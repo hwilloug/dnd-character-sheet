@@ -69,7 +69,7 @@ export default {
 }
 
 #character-info h1 {
-  padding: 30px 50px;
+  padding: 30px 50px 20px 50px;
   background-image: url('../assets/flat_scroll.png');
   background-size: 100% 100%;
 }
@@ -77,7 +77,7 @@ export default {
 #character-info p {
   display: flex;
   flex-flow: column nowrap;
-  padding: 15px;
+  padding: 20px 15px 15px 15px;
   width: 8rem;
   height: 5.5rem;
   text-align: center;

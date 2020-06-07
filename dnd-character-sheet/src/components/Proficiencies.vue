@@ -67,7 +67,7 @@ export default {
 #proficiencies {
   background-image: url('../assets/text_frame_3.png');
   background-size: 100% 100%;
-  width: 18rem;
+  width: 21rem;
 }
 
 #proficiencies h5 {

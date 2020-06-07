@@ -2,7 +2,7 @@
 <div id="session">
   <table>
     <tr>
-      <td colspan="2">
+      <td colspan="2" class="hp-cell-td">
         <b>HP</b><span class="hp-cell"><span class="current-hp-row">
         <span class="inc-btn" v-if="parseInt(session.hp) > 0"><v-btn
           class="mx-2"
@@ -114,16 +114,22 @@ export default {
 }
 
 #session td {
-  padding: 10px;
+  padding: 12px 15px;
 }
 
 td.border {
-  background-image: url('../assets/frame.png');
+  background-image: url('../assets/simple_frame.png');
   background-size: 100% 100%;
 }
 
 #session b {
   font-size: 11px;
+}
+
+#session .hp-cell-td {
+  background-image: url('../assets/frame.png');
+  background-size: 100% 100%;
+  padding: 10px 30px 20px 30px;
 }
 
 #session .hp-cell {

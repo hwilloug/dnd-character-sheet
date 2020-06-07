@@ -1,6 +1,6 @@
 <template>
   <v-app id="app">
-    <v-system-bar fixed dark color="red darken-4">
+    <v-system-bar fixed dark color="red darken-4 white--text">
       <span>DND Character Sheet App</span>
       <v-spacer></v-spacer>
       <span>{{ characterInfo.player_name }}</span>
