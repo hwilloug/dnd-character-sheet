@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app id="app">
     <v-system-bar fixed dark color="red darken-4">
       <span>DND Character Sheet App</span>
       <v-spacer></v-spacer>
@@ -15,6 +15,10 @@
         <Stats :stats="stats"/>
         <SavingThrows :savingThrows="savingThrows" :stats="stats" />
         <Skills :stats="stats" :proficiencies="proficiencies.skills" :expertise="proficiencies.expertise" />
+        <Session :session="session" :stats="stats" :armor="armor"
+          @update-sheet="updateInt"
+          @reset-session="resetSession"
+        />
         <Proficiencies :proficiencies="proficiencies" />
       </div>
       <!--<Spells :spells="attacks.spells" />-->
@@ -30,6 +34,7 @@ import Stats from './components/Stats';
 import Skills from './components/Skills';
 import SavingThrows from './components/SavingThrows';
 import Proficiencies from './components/Proficiencies';
+import Session from './components/Session'
 //import Spells from './components/Spells';
 import Footer from './components/Footer';
 // API
@@ -46,6 +51,7 @@ export default {
     Skills,
     SavingThrows,
     Proficiencies,
+    Session,
     //Spells,
     Footer
   },
@@ -57,10 +63,11 @@ export default {
     stats: {},
     proficiencies: {},
     savingThrows: {},
-    armor: [],
+    armor: {},
     attacks: {},
     items: {},
     otherInfo: {},
+    session: {},
     loadingIcon: "mdi-check-bold"
   }),
   created() {this.loadCharacterSheet()},
@@ -78,11 +85,12 @@ export default {
         this.attacks = resp.data.attacks;
         this.items = resp.data.items;
         this.otherInfo = resp.data.other_character_info;
+        this.session = resp.data.session;
       })
     },
-    updateCharacterSheet(val) {
-      if (Object.keys(val).length) {
-        api.updateCharacterSheet( this.characterName, val);
+    updateCharacterSheet() {
+      if (Object.keys(this.fullSheet).length) {
+        api.updateCharacterSheet( this.characterName, this.fullSheet);
         this.loadingIcon = "mdi-check-bold";
       }
     },
@@ -93,7 +101,7 @@ export default {
         this.fullSheet[field[0]][field[1]] = value[1].toString();
         this.updateLevelInfo(value[1]);
       }
-      this.updateCharacterSheet(this.fullSheet);
+      this.updateCharacterSheet();
     },
     updateLevelInfo(exp) {
       // Need to fix for level 20
@@ -111,17 +119,36 @@ export default {
           break;
         }
       }
+    },
+    updateInt(val) {
+      const updateFields = val[0];
+      const newVal = val[1].toString();
+      this.fullSheet[updateFields[0]][updateFields[1]] = newVal;
+      this.updateCharacterSheet();
+    },
+    resetSession() {
+      this.fullSheet.session.hp = this.stats.max_hp;
+      this.fullSheet.session.death_saves.success["1"] = false;
+      this.fullSheet.session.death_saves.success["2"] = false;
+      this.fullSheet.session.death_saves.success["3"] = false;
+      this.fullSheet.session.death_saves.failure["1"] = false;
+      this.fullSheet.session.death_saves.failure["2"] = false;
+      this.fullSheet.session.death_saves.failure["3"] = false;
+      this.updateCharacterSheet();
     }
   }
 };
 </script>
 
 <style>
+#app {
+  background-color: oldlace;
+}
+
 #outer-container {
   display: flex;
   flex-flow: column wrap;
   align-content: flex-start;
-  justify-content: center;
   align-items: center;
   max-height: 60rem;
 }
@@ -133,23 +160,19 @@ export default {
 #stats {
   display: flex;
   flex-direction: column;
-  float: left;
   padding: 5px;
   margin: 10px;
 }
 
 #skills {
-  float: left;
   margin: 10px;
 }
 
 #proficiencies {
-  float: left;
   margin: 10px;
 }
 
 #saving-throws-component {
-  float: left;
   margin: 10px;
 }
 

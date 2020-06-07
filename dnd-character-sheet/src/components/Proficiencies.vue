@@ -3,16 +3,16 @@
 <h5>Proficiencies</h5>
 <div id="proficiencies-container">
 <p class="armor proficiency-item"><i>Armor:</i>
-  <span class="proficiency" :class="{ proficient: proficiencies.armor.light }">Light</span>
-  <span class="proficiency" :class="{ proficient: proficiencies.armor.medium }">Medium</span>
-  <span class="proficiency" :class="{ proficient: proficiencies.armor.heavy }">Heavy</span>
-  <span class="proficiency" :class="{ proficient: proficiencies.armor.shields }">Shields</span>
+  <span class="proficiency" :class="{ proficient: getProficiency('armor', 'light') }">Light</span>
+  <span class="proficiency" :class="{ proficient: getProficiency('armor', 'medium') }">Medium</span>
+  <span class="proficiency" :class="{ proficient: getProficiency('armor', 'heavy') }">Heavy</span>
+  <span class="proficiency" :class="{ proficient: getProficiency('armor', 'shields') }">Shields</span>
 </p>
 
 <p class="weapons proficiency-item"><i>Weapons:</i>
-<span class="proficiency" :class="{ proficient: proficiencies.weapons.simple }">Simple</span>
-<span class="proficiency" :class="{ proficient: proficiencies.weapons.martial }">Martial</span>
-<span class="proficiency weapons-other" v-if="proficiencies.weapons.other.length">
+<span class="proficiency" :class="{ proficient: getProficiency('weapons', 'simple') }">Simple</span>
+<span class="proficiency" :class="{ proficient: getProficiency('weapons', 'martial') }">Martial</span>
+<span class="proficiency weapons-other" v-if="otherWeaponsLength">
   <span
     v-for="weapon in proficiencies.weapons.other"
     :key="weapon"
@@ -45,13 +45,27 @@
   // Replace bolding stuff with just putting what is proficient, and if nothing, none.
 export default {
   name: "Proficiencies",
-  props: ["proficiencies"]
+  props: ["proficiencies"],
+  computed: {
+    otherWeaponsLength: function() {
+      if (this.proficiencies.weapons) {
+        return this.proficiencies.weapons.other.length
+      } else return ""
+    }
+  },
+  methods: {
+    getProficiency(object, item) {
+      if (this.proficiencies[object]) {
+        return this.proficiencies[object][item]
+      } else return ""
+    }
+  }
 }
 </script>
 
 <style>
 #proficiencies {
-  background-image: url('../assets/text_frame_3.jpg');
+  background-image: url('../assets/text_frame_3.png');
   background-size: 100% 100%;
   width: 18rem;
 }

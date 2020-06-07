@@ -70,7 +70,7 @@ export default {
 
 #character-info h1 {
   padding: 30px 50px;
-  background-image: url('../assets/flat_scroll.jpg');
+  background-image: url('../assets/flat_scroll.png');
   background-size: 100% 100%;
 }
 

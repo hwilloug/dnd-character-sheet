@@ -5,9 +5,9 @@
     :key='skill.skillName'
     :skillName="skill.skillName"
     :skillType="skill.skillType"
-    :skillModifier="calculateModifier(stats[skill.skillType.toLowerCase()], proficiencies[skill.skillName], stats.proficiency_bonus)"
-    :skillProficiency="proficiencies[skill.skillName]"
-    :skillExpertise="expertise[skill.skillName]"
+    :skillModifier="calculateModifier(stats[skill.skillType.toLowerCase()], skillProficiency(skill), stats.proficiency_bonus)"
+    :skillProficiency="skillProficiency(skill)"
+    :skillExpertise="skillExpertise(skill)"
     :skillDescription="skill.skillDescription"
   />
 </div>
@@ -27,7 +27,22 @@ export default {
     skillsArray: SkillInfo.data
   }},
   methods: {
-    calculateModifier: Methods.calculateModifier
+    calculateModifier: Methods.calculateModifier,
+    skillProficiency(skillDict) {
+      if (this.proficiencies) {
+        return this.proficiencies[skillDict.skillName];
+      }
+      else return ""
+    },
+    skillExpertise(skillDict) {
+      if (this.expertise) {
+        return this.expertise[skillDict.skillName];
+      }
+      else return ""
+    }
+  },
+  computed: {
+
   }
 }
 </script>

@@ -21,9 +21,11 @@
       >{{ item }}</li>
     </ul>
   </div>
-  <div class="resistances" v-if="savingThrows.resistances.length">
+  <div class="resistances" v-if="resistancesLength">
     <h5>Resistances</h5>
-    <span v-for="resistance in savingThrows.resistances" :key="resistance">{{ resistance }}</span>
+    <div class="resistance-items">
+      <span class="resistance" v-for="resistance in savingThrows.resistances" :key="resistance">{{ resistance }}</span>
+    </div>
   </div>
   <div class="resistances" v-else>
     <h5>Resistances</h5>
@@ -40,6 +42,14 @@ export default {
   props:["savingThrows", "stats"],
   methods: {
     calculateModifier: Methods.calculateModifier
+  },
+  computed: {
+    resistancesLength: function () {
+      if (this.savingThrows.resistances) {
+        return this.savingThrows.resistances.length
+      }
+      else return false
+    }
   }
 }
 </script>
@@ -49,6 +59,7 @@ export default {
   border: 1px black dashed;
   border-radius: 3px;
   padding: 5px;
+  background-color: white;
 }
 
 #saving-throws-component .statST {
@@ -74,5 +85,15 @@ export default {
 
 .saving-throws-list {
   list-style-type: circle;
+}
+
+.resistance-items {
+  display: flex;
+  max-width: 250px;
+  flex-wrap: wrap;
+}
+
+.resistance {
+  padding: 5px;
 }
 </style>

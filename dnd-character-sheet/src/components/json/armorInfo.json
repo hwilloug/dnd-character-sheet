@@ -1,0 +1,191 @@
+{
+  "armor": {
+    "Padded": {
+      "category": "light",
+      "description": "Quilted layers of cloth and batting",
+      "cost": "5 gp",
+      "ac": {
+        "base": "11",
+        "modifier": "dexterity",
+        "max": ""
+      },
+      "strength": "",
+      "stealth": "disadvantage",
+      "weight": "8 lb"
+    },
+    "Leather": {
+      "category": "light",
+      "description": "",
+      "cost": "10 gp",
+      "ac": {
+        "base": "11",
+        "modifier": "dexterity",
+        "max": ""
+      },
+      "strength": "",
+      "stealth": "",
+      "weight": "10 lb"
+    },
+    "Studded leather": {
+      "category": "light",
+      "description": "",
+      "cost": "45 gp",
+      "ac": {
+        "base": "12",
+        "modifier": "dexterity",
+        "max": ""
+      },
+      "strength": "",
+      "stealth": "",
+      "weight": "13 lb"
+    },
+    "Hide": {
+      "category": "medium",
+      "description": "",
+      "cost": "10 gp",
+      "ac": {
+        "base": "12",
+        "modifier": "dexterity",
+        "max": "2"
+      },
+      "strength": "",
+      "stealth": "",
+      "weight": "12 lb"
+    },
+    "Chain shirt": {
+      "category": "medium",
+      "description": "",
+      "cost": "50 gp",
+      "ac": {
+        "base": "13",
+        "modifier": "dexterity",
+        "max": "2"
+      },
+      "strength": "",
+      "stealth": "",
+      "weight": "20 lb"
+    },
+    "Scale mail": {
+      "category": "medium",
+      "description": "",
+      "cost": "50 gp",
+      "ac": {
+        "base": "14",
+        "modifier": "dexterity",
+        "max": "2"
+      },
+      "strength": "",
+      "stealth": "disadvantage",
+      "weight": "45 lb"
+    },
+    "Breastplate": {
+      "category": "medium",
+      "description": "",
+      "cost": "400 gp",
+      "ac": {
+        "base": "14",
+        "modifier": "dexterity",
+        "max": "2"
+      },
+      "strength": "",
+      "stealth": "",
+      "weight": "20 lb"
+    },
+    "Half plate": {
+      "category": "medium",
+      "description": "",
+      "cost": "750 gp",
+      "ac": {
+        "base": "15",
+        "modifier": "dexterity",
+        "max": "2"
+      },
+      "strength": "",
+      "stealth": "disadvantage",
+      "weight": "40 lb"
+    },
+    "Ring mail": {
+      "category": "heavy",
+      "description": "",
+      "cost": "30 gp",
+      "ac": {
+        "base": "14",
+        "modifier": "",
+        "max": ""
+      },
+      "strength": "",
+      "stealth": "disadvantage",
+      "weight": "40 lb"
+    },
+    "Chain mail": {
+      "category": "heavy",
+      "description": "",
+      "cost": "75 gp",
+      "ac": {
+        "base": "16",
+        "modifier": "",
+        "max": ""
+      },
+      "strength": "13",
+      "stealth": "disadvantage",
+      "weight": "55 lb"
+    },
+    "Splint": {
+      "category": "heavy",
+      "description": "",
+      "cost": "200 gp",
+      "ac": {
+        "base": "17",
+        "modifier": "",
+        "max": ""
+      },
+      "strength": "15",
+      "stealth": "disadvantage",
+      "weight": "60 lb"
+    },
+    "Plate": {
+      "category": "heavy",
+      "description": "",
+      "cost": "1,500 gp",
+      "ac": {
+        "base": "18",
+        "modifier": "",
+        "max": ""
+      },
+      "strength": "15",
+      "stealth": "disadvantage",
+      "weight": "65 lb"
+    },
+    "Shield": {
+      "category": "shield",
+      "description": "",
+      "cost": "10 gp",
+      "ac": {
+        "base": "2",
+        "modifier": "",
+        "max": ""
+      },
+      "strength": "",
+      "stealth": "",
+      "weight": "6 lb"
+    }
+  },
+  "don_doff": {
+    "light": {
+      "don": "1 minute",
+      "doff": "1 minute"
+    },
+    "medium": {
+      "don": "5 minutes",
+      "doff": "1 minute"
+    },
+    "heavy": {
+      "don": "10 minutes",
+      "doff": "5 minutes"
+    },
+    "shield": {
+      "don": "1 action",
+      "doff": "1 action"
+    }
+  }
+}
