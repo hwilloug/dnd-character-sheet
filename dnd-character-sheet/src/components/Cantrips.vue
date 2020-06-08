@@ -11,14 +11,13 @@
     >
       <v-expansion-panel-header
         class='panel-header'
-        color="red darken-4 white--text"
+        color="grey darken-2 white--text"
       >
         <b>{{ cantrip }}</b>
         <span v-if="getSpellInfo(cantrip, 'to_hit')">To hit: {{ getSpellInfo(cantrip, 'to_hit')}}</span>
         <span v-if="getSpellInfo(cantrip, 'damage')">Damage: {{ getSpellInfo(cantrip, 'damage')}} {{ getSpellInfo(cantrip, 'damage_type')}}</span>
       </v-expansion-panel-header>
       <v-expansion-panel-content class='panel-content'>
-        <p><b>Level</b>: {{ getSpellInfo(cantrip, 'level') }}</p>
         <p><b>Casting time</b>: {{ getSpellInfo(cantrip, 'casting_time') }}</p>
         <p><b>Range</b>: {{ getSpellInfo(cantrip, 'range') }}</p>
         <p><b>Components</b>: {{ getSpellInfo(cantrip, 'components') }}</p>
@@ -51,9 +50,11 @@ export default {
 
 <style>
 #cantrips {
+  background-color: white;
+  border: 1px black solid;
+  border-radius: 5px;
   padding: 10px;
-  width: 50%;
-  float: left;
+  max-width: 48%;
 }
 
 </style>

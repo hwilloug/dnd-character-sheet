@@ -11,7 +11,7 @@
         :characterInfo="characterInfo"
         @update-text="updateText"
       />
-      <div id="outer-container">
+      <div id="sheet-container">
         <Stats :stats="stats"/>
         <SavingThrows :savingThrows="savingThrows" :stats="stats" />
         <Skills :stats="stats" :proficiencies="proficiencies.skills" :expertise="proficiencies.expertise" />
@@ -22,9 +22,12 @@
         />
         <Proficiencies :proficiencies="proficiencies" />
       </div>
-      <Cantrips :cantrips="attacks.cantrips" :level="characterInfo.level" />
-      <Spells :spells="attacks.spells" />
-      <Weapons :weapons="attacks.weapons" />
+      <div id="attacks-container">
+        <Cantrips :cantrips="attacks.cantrips" :level="characterInfo.level" />
+        <Spells :spells="attacks.spells" />
+        <Weapons :weapons="attacks.weapons" />
+        <Items :items="items" />
+      </div>
       <Footer />
     </v-content>
   </v-app>
@@ -37,10 +40,11 @@ import Stats from './components/Stats';
 import Skills from './components/Skills';
 import SavingThrows from './components/SavingThrows';
 import Proficiencies from './components/Proficiencies';
-import Session from './components/Session'
-import Cantrips from './components/Cantrips'
+import Session from './components/Session';
+import Cantrips from './components/Cantrips';
 import Spells from './components/Spells';
 import Weapons from './components/Weapons';
+import Items from './components/Items';
 import Footer from './components/Footer';
 // API
 import api from '@/services/CharacterSheet';
@@ -60,6 +64,7 @@ export default {
     Cantrips,
     Spells,
     Weapons,
+    Items,
     Footer
   },
 
@@ -156,12 +161,16 @@ export default {
   background-color: oldlace;
 }
 
-#outer-container {
+#sheet-container {
   display: flex;
   flex-flow: column wrap;
   align-content: flex-start;
   align-items: center;
   max-height: 60rem;
+}
+
+#attacks-container {
+
 }
 
 #character-info {
@@ -188,9 +197,28 @@ export default {
 }
 
 #spells {
-
+  margin: 10px;
+  float: left;
 }
 
+#cantrips {
+  margin: 10px;
+  float: left;
+}
+
+#weapons {
+  margin: 10px;
+  float: right;
+}
+
+#items {
+  margin: 10px;
+  float: right;
+}
+
+h2 {
+  color: darkred;
+}
 
 /* Hover boxes stuff */
 .tooltip {

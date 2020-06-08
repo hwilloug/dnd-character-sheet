@@ -11,16 +11,16 @@
     >
       <v-expansion-panel-header
         class='panel-header'
-        color="red darken-4 white--text"
+        color="grey darken-3 white--text"
       >
         <b>{{ weapon }}</b>
         <span>Damage: {{ getWeaponInfo(weapon, 'damage')}} {{ getWeaponInfo(weapon, 'damage_type')}}</span>
         <span>Range: {{ getWeaponInfo(weapon, 'range')}}</span>
       </v-expansion-panel-header>
       <v-expansion-panel-content class='panel-content'>
-        <p><b>Weapon type</b>: {{ getWeaponInfo(weapon, 'type') }} <i>{{ getWeaponInfo(weapon, 'subtype')}}</i></p>
+        <p><b>Weapon type</b>: {{ getWeaponInfo(weapon, 'type') }} (<i>{{ formatList(weapon, 'subtype') }}</i>)</p>
         <p><b>Rarity</b>: {{ getWeaponInfo(weapon, 'rarity') }}</p>
-        <p><b>Properties</b>: {{ getWeaponInfo(weapon, 'properties')}}</p>
+        <p><b>Properties</b>: {{ formatList(weapon, 'properties')}}</p>
       </v-expansion-panel-content>
     </v-expansion-panel>
   </v-expansion-panels>
@@ -35,20 +35,28 @@ export default {
   name: "Weapons",
   props: ["weapons"],
   methods: {
-    getWeaponInfo(weapon, info) {
+    getWeaponInfo(weapon, item) {
       if (weapon) {
-        return Weapons[weapon][info];
+        return Weapons[weapon][item];
+      } else return ""
+    },
+    formatList(weapon, item) {
+      let array = this.getWeaponInfo(weapon, item);
+      if (array) {
+        return array.join(', ')
       } else return ""
     }
-  }
+  },
 }
 </script>
 
 <style>
 #weapons {
   padding: 10px;
-  width: 50%;
-  float: left;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  max-width: 48%;
 }
 
 </style>
