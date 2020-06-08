@@ -1,0 +1,66 @@
+{
+   "Light Crossbow":{
+      "damage":"1d8",
+      "damage_type":"Piercing",
+      "type":"Ranged Weapon",
+      "rarity":"Standard",
+      "range":"80/320",
+      "subtype":[
+         "Simple",
+         "Crossbow"
+      ],
+      "properties":[
+         "Loading",
+         "Range",
+         "Two-Handed"
+      ],
+      "weight":"5"
+   },
+   "Sling":{
+      "damage":"1d4",
+      "damage_type":"Bludgeoning",
+      "type":"Ranged Weapon",
+      "rarity":"Standard",
+      "range":"30/120",
+      "subtype":[
+         "Simple",
+         "Sling"
+      ],
+      "properties":[
+         "Range"
+      ],
+      "weight":"0"
+   },
+   "Dagger":{
+      "damage":"1d4",
+      "damage_type":"Piercing",
+      "type":"Melee Weapon",
+      "rarity":"Standard",
+      "range":"20/60",
+      "subtype":[
+         "Simple",
+         "Dagger"
+      ],
+      "properties":[
+         "Finesse",
+         "Light",
+         "Range",
+         "Thrown"
+      ],
+      "weight":"1"
+   },
+   "":{
+      "damage":"",
+      "damage_type":"",
+      "type":"",
+      "rarity":"",
+      "range":"",
+      "subtype":[
+
+      ],
+      "properties":[
+
+      ],
+      "weight":""
+   }
+}

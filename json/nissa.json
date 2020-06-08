@@ -48,7 +48,7 @@
       "One more"
     ],
     "tools": [
-      "One musical instrument"
+      "Pan Flute"
     ],
     "skills": {
       "Acrobatics": false,
@@ -98,13 +98,7 @@
     "intelligence": false,
     "wisdom": false,
     "charisma": true,
-    "resistances": [
-      "Fire",
-      "Poison",
-      "Water",
-      "Electricity",
-      "Psychic"
-    ],
+    "resistances": [],
     "saving_throws": []
   },
   "armor": {
@@ -113,87 +107,24 @@
   },
   "attacks": {
     "weapons": [
-      {}
+      "Light Crossbow",
+      "Dagger",
+      "Dagger",
+      "Sling"
+    ],
+    "cantrips": [
+      "Poison Spray",
+      "Fire Bolt",
+      "Light",
+      "Minor Illusion"
     ],
     "spells": [
-      {
-        "name": "Shield",
-        "level": "1",
-        "casting_time": "1 reaction",
-        "range": "Self",
-        "components": "V S",
-        "duration": "1 round",
-        "to_hit": "",
-        "damage": "",
-        "damage_type": "",
-        "description": "An invisible barrier of magical force appears and protects you. Until the start of your next turn, you have a +5 bonus to AC, including against the triggering attack, and you take no damage from magic missile.",
-        "link": "https://www.dnd-spells.com/spell/shield"
-      },
-      {
-        "name": "Expeditous Retreat",
-        "level": "1",
-        "casting_time": "1 bonus reaction",
-        "range": "Self",
-        "components": "V S",
-        "duration": "Concentration, up to 10 minutes",
-        "to_hit": "",
-        "damage": "",
-        "damage_type": "",
-        "description": "This spell allows you to move at an incredible pace. When you cast this spell, and then as a bonus action on each of your turns until the spell ends, you can take the Dash action. ",
-        "link": "https://www.dnd-spells.com/spell/expeditious-retreat"
-      },
-      {
-        "name": "Chromatic Orb",
-        "level": "1",
-        "casting_time": "1 action",
-        "range": "90 feet",
-        "components": "V S M (a diamond worth at least 50gp)",
-        "duration": "Instantaneous",
-        "to_hit": "",
-        "damage": "",
-        "damage_type": "",
-        "description": "You hurl a 4-inch-diameter sphere of energy at a creature that you can see within range. You choose acid, cold, fire, lightning, poison, or thunder for the type of orb you create, and then make a ranged spell attack against the target. If the attack hits, the creature takes 3d8 damage of the type you chose.",
-        "link": "https://www.dnd-spells.com/spell/chromatic-orb"
-      },
-      {
-        "name": "Disguise Self",
-        "level": "1",
-        "casting_time": "1 action",
-        "range": "Self",
-        "components": "V S",
-        "duration": "1 hour",
-        "to_hit": "",
-        "damage": "",
-        "damage_type": "",
-        "description": "You make yourself – including your clothing, armor, weapons, and other belongings on your person – look different until the spell ends or until you use your action to dismiss it. You can seem 1 foot shorter or taller and can appear thin, fat, or in between. You can’t change your body type, so you must adopt a form that has the same basic arrangement of limbs. Otherwise, the extent of the illusion is up to you. The changes wrought by this spell fail to hold up to physical inspection. For example, if you use this spell to add a hat to your outfit, objects pass through the hat, and anyone who touches it would feel nothing or would feel your head and hair. If you use this spell to appear thinner than you are, the hand of som eone who reaches out to touch you would bump into you while it was seemingly still in midair. To discern that you are disguised, a creature can use its action to inspect your appearance and must succeed on an Intelligence (Investigation) check against your spell save DC.",
-        "link": "https://www.dnd-spells.com/spell/disguise-self"
-      },
-      {
-        "name": "Suggestion",
-        "level": "2",
-        "casting_time": "1 action",
-        "range": "30 feet",
-        "components": "V M (a snake’s tongue and either a bit of honeycomb or a drop of sweet oil)",
-        "duration": "Concentration, up to 8 hours",
-        "to_hit": "",
-        "damage": "",
-        "damage_type": "",
-        "description": "You suggest a course of activity (limited to a sentence or two) and magically influence a creature you can see within range that can hear and understand you. Creatures that can’t be charmed are immune to this effect. The suggestion must be worded in such a manner as to make the course of action sound reasonable. Asking the creature to stab itself, throw itself onto a spear, immolate itself, or do some other obviously harmful act ends the spell.<br>The target must make a Wisdom saving throw. On a failed save, it purses the course of action you described to the best of its ability. The suggested course of action can continue for the entire duration. If the suggested activity can be completed in a shorter time, the spell ends when the subject finishes what it was asked to do.<br>You can also specify conditions that will trigger a special activity during the duration. For example, you might suggest that a knight give her warhorse to the first beggar she meets. If the condition isn’t met before the spell expires, the activity isn’t preformed.<br>If you or any of your companions damage the target, the spell ends.",
-        "link": "https://www.dnd-spells.com/spell/suggestion"
-      },
-      {
-        "name": "Crown of Madness",
-        "level": "2",
-        "casting_time": "1 action",
-        "range": "120 feet",
-        "components": "V S",
-        "duration": "Concentration, up to 1 minute",
-        "to_hit": "",
-        "damage": "",
-        "damage_type": "",
-        "description": "One humanoid of your choice that you can see within range must succeed on a Wisdom saving throw or become charmed by you for the duration. While the target is charmed in this way, a twisted crown of jagged iron appears on its head, and a madness glows in its eyes. The charmed target must use its action before moving on each of its turns to make a melee attack against a creature other than itself that you mentally choose. The target can act normally on its turn if you choose no creature or if none are within its reach. On your subsequent turns, you must use your action to maintain control over the target, or the spell ends. Also, the target can make a Wisdom saving throw at the end of each of its turns. On a success, the spell ends.",
-        "link": "https://www.dnd-spells.com/spell/crown-of-madness"
-      }
+      "Shield",
+      "Expeditous Retreat",
+      "Chromatic Orb",
+      "Disguise Self",
+      "Suggestion",
+      "Crown of Madness"
     ]
   },
   "items": {
@@ -201,30 +132,47 @@
       "cp": "0",
       "sp": "0",
       "ep": "0",
-      "gp": "0",
+      "gp": "159",
       "pp": "0"
     },
     "adventuring_gear": [
-      {}
+      "Bag of Holding",
+      "Decanter of Endless Water",
+      "Programmable Matter",
+      "Dragon Scale",
+      "Hunting Trap",
+      "Animal Trophy",
+      "Traveler's Clothes",
+      "Disguise Kit",
+      "Waterskin",
+      "10 days of rations",
+      "10 torches",
+      "Tinderbox",
+      "Mess Kit",
+      "Bedroll",
+      "Backpack",
+      "Ruby",
+      "Ruby",
+      "Diamond"
     ]
   },
   "other_character_info": {
     "class_features": "",
-    "age": "",
-    "gender": "",
-    "size": "",
-    "height": "",
-    "weight": "",
-    "alignment": "",
+    "age": "20",
+    "gender": "F",
+    "size": "Small",
+    "height": "3 ft. 1 in.",
+    "weight": "40 lb",
+    "alignment": "Chaotic Good",
     "faith": "",
     "hair": "",
     "eyes": "",
     "skin": "",
-    "personality_traits": "",
-    "ideals": "",
-    "bonds": "",
-    "flaws": "",
-    "background_feature": "",
+    "personality_traits": "I'm always picking things up, absently fiddling with them, and sometimes accidentally breaking them.",
+    "ideals": "Change: The low is lifted up, and the high and mighty are brought down. Change is the nature of things.",
+    "bonds": "I suffer awful visions of a coming disaster and will do anything to prevent it.",
+    "flaws": "There's no room for caution in a life lived to the fullest.",
+    "background_feature": "Wanderer",
     "racial_traits": "",
     "character_history": "",
     "enemies": "",

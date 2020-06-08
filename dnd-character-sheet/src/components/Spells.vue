@@ -5,32 +5,53 @@
     :multiple=true
     :hover=true
   >
-    <SpellInfo
+    <v-expansion-panel
       v-for="spell in spells"
-      :key="spell.name"
-      :spell="spell"
-    />
+      :key="spell"
+    >
+      <v-expansion-panel-header
+        class='panel-header'
+        color="red darken-4 white--text"
+      >
+        <b>{{ spell }}</b>
+        <span v-if="getSpellInfo(spell, 'to_hit')">To hit: {{ getSpellInfo(spell, 'to_hit')}}</span>
+        <span v-if="getSpellInfo(spell, 'damage')">Damage: {{ getSpellInfo(spell, 'damage')}} {{ getSpellInfo(spell, 'damage_type')}}</span>
+      </v-expansion-panel-header>
+      <v-expansion-panel-content class='panel-content'>
+        <p><b>Level</b>: {{ getSpellInfo(spell, 'level') }}</p>
+        <p><b>Casting time</b>: {{ getSpellInfo(spell, 'casting_time') }}</p>
+        <p><b>Range</b>: {{ getSpellInfo(spell, 'range') }}</p>
+        <p><b>Components</b>: {{ getSpellInfo(spell, 'components') }}</p>
+        <p><b>Duration</b>: {{ getSpellInfo(spell, 'duration') }}</p>
+        <p><b>Description</b>: {{ getSpellInfo(spell, 'description') }}</p>
+        <p><a :href="getSpellInfo(spell, 'link')" target="_blank">More Info</a></p>
+      </v-expansion-panel-content>
+    </v-expansion-panel>
   </v-expansion-panels>
 </div>
 </template>
 
 <script>
-// Rework this to:
-//  - Pull spell info from a different json <fieldset>
-//  - Don't use a sub-component
-import SpellInfo from './subcomponents/SpellInfo.vue'
+import Spells from './json/spells.json'
 
 export default {
   name: "Spells",
-  props: [
-    "spells"
-  ],
-  components: {
-    SpellInfo
-  },
+  props: ["spells"],
+  methods: {
+    getSpellInfo(spell, info) {
+      if (spell) {
+        return Spells[spell][info];
+      } else return ""
+    }
+  }
 }
 </script>
 
 <style>
+#spells {
+  padding: 10px;
+  width: 50%;
+  float: right;
+}
 
 </style>

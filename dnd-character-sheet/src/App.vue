@@ -22,7 +22,9 @@
         />
         <Proficiencies :proficiencies="proficiencies" />
       </div>
-      <!--<Spells :spells="attacks.spells" />-->
+      <Cantrips :cantrips="attacks.cantrips" :level="characterInfo.level" />
+      <Spells :spells="attacks.spells" />
+      <Weapons :weapons="attacks.weapons" />
       <Footer />
     </v-content>
   </v-app>
@@ -36,7 +38,9 @@ import Skills from './components/Skills';
 import SavingThrows from './components/SavingThrows';
 import Proficiencies from './components/Proficiencies';
 import Session from './components/Session'
-//import Spells from './components/Spells';
+import Cantrips from './components/Cantrips'
+import Spells from './components/Spells';
+import Weapons from './components/Weapons';
 import Footer from './components/Footer';
 // API
 import api from '@/services/CharacterSheet';
@@ -53,7 +57,9 @@ export default {
     SavingThrows,
     Proficiencies,
     Session,
-    //Spells,
+    Cantrips,
+    Spells,
+    Weapons,
     Footer
   },
 
@@ -182,7 +188,7 @@ export default {
 }
 
 #spells {
-  padding: 10px;
+
 }
 
 
