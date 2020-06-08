@@ -190,15 +190,22 @@
         "3": false
       }
     },
-    "limited_features": [
-      {
-        "feature": "Spell Lvl 1",
-        "max_number": "4"
+    "limited_features": {
+      "Sorcery Points": {
+        "1": false,
+        "2": false,
+        "3": false
       },
-      {
-        "feature": "Spell Lvl 2",
-        "max_number": "2"
+      "Spell Lvl 1": {
+        "1": false,
+        "2": false,
+        "3": false,
+        "4": false
+      },
+      "Spell Lvl 2": {
+        "1": false,
+        "2": false
       }
-    ]
+    }
   }
 }

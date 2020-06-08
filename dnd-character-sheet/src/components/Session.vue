@@ -41,6 +41,16 @@
         <v-icon class="death-save" @click="toggleDeathSave('failure', '1')">{{ getDeathSave("failure", "1") }}</v-icon>-<v-icon class="death-save" @click="toggleDeathSave('failure', '2')">{{ getDeathSave("failure", "2") }}</v-icon>-<v-icon class="death-save" @click="toggleDeathSave('failure', '3')">{{ getDeathSave("failure", "3") }}</v-icon>
       </td>
     </tr>
+    <tr v-if="getLimitedFeaturesLength">
+      <td colspan="3" class="limited-features">
+        <span v-for="feature in Object.keys(session.limited_features)"
+          :key="feature"
+        ><p>
+          <b class="feature-name">{{ feature }}: </b>
+          <v-icon v-for="slot in getLimitedFeatureSlotNumber(feature)" :key="slot" class="limited-feature-icon" @click="toggleLimitedFeature(feature, slot)">{{ getLimitedFeatureSlot(feature, slot) }}</v-icon>
+        </p></span>
+      </td>
+    </tr>
     <tr>
       <td class="border"><b>Proficiency Bonus</b><br>{{ stats.proficiency_bonus}}</td>
       <td class="ac"><b>Armor Class</b><br>{{ calculateAC(armor, stats.dexterity) }}</td>
@@ -80,7 +90,25 @@ export default {
     },
     toggleDeathSave(successOrFailure, number) {
       this.$emit('update-deathsave', [successOrFailure, number, !this.session.death_saves[successOrFailure][number]])
-    }
+    },
+    getNumberSlots(featureDict) {
+      if (featureDict) {
+        return Object.keys(featureDict.slots).length
+      } else return 0
+    },
+    getLimitedFeatureSlotNumber(feature) {
+      if (this.session.limited_features[feature]) {
+        return Object.keys(this.session.limited_features[feature]).length
+      } else return 0
+    },
+    getLimitedFeatureSlot(feature, slotNumber) {
+      if (this.session.limited_features[feature]) {
+        return this.session.limited_features[feature][slotNumber] === true ? "mdi-close-circle" : "mdi-circle-outline";
+      } else return 0
+    },
+    toggleLimitedFeature(feature, slotNumber) {
+      this.$emit('update-limitedfeature', [feature, slotNumber, !this.session.limited_features[feature][slotNumber]])
+    },
   },
   computed: {
     hpPercentage: function() {
@@ -94,6 +122,11 @@ export default {
         if (hpPercentage<25) return "red darken-4";
         else return "green lighten-3"
       } else return "green lighten-3"
+    },
+    getLimitedFeaturesLength: function() {
+      if (this.session.limited_features) {
+        return Object.keys(this.session.limited_features).length
+      } else return false
     }
   }
 }
@@ -101,11 +134,10 @@ export default {
 
 <style>
 #session {
-  padding: 5px;
   font-size: 20px;
   background-image: url('../assets/fancy_frame.png');
   background-size: 100% 100%;
-  padding: 50px 30px;
+  padding: 70px 30px;
 }
 
 #session table {
@@ -183,5 +215,20 @@ td.border {
   padding: 0px 5px;
   margin: 0px;
   text-align: left;
+}
+
+#session td.limited-features {
+  text-align: left;
+  border: 3px double black;
+  border-radius: 10px;
+  padding: 0px 0px 0px 5px;
+}
+
+#session .limited-features p {
+  margin: 0px;
+}
+
+.limited-feature-icon {
+  margin-left: 5px;
 }
 </style>

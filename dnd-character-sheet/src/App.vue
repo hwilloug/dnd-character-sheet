@@ -18,6 +18,7 @@
         <Session :session="session" :stats="stats" :armor="armor"
           @update-hp="updateInt"
           @update-deathsave="updateDeathSave"
+          @update-limitedfeature="updateLimitedFeature"
           @reset-session="resetSession"
         />
         <Proficiencies :proficiencies="proficiencies" />
@@ -142,6 +143,10 @@ export default {
       this.fullSheet.session.death_saves[val[0]][val[1]] = val[2];
       this.updateCharacterSheet();
     },
+    updateLimitedFeature(val) {
+      this.fullSheet.session.limited_features[val[0]][val[1]] = val[2];
+      this.updateCharacterSheet();
+    },
     resetSession() {
       this.fullSheet.session.hp = this.stats.max_hp;
       this.fullSheet.session.death_saves.success["1"] = false;
@@ -150,6 +155,13 @@ export default {
       this.fullSheet.session.death_saves.failure["1"] = false;
       this.fullSheet.session.death_saves.failure["2"] = false;
       this.fullSheet.session.death_saves.failure["3"] = false;
+      const features = Object.keys(this.fullSheet.session.limited_features);
+      for (var f in features) {
+        const slots = Object.keys(this.fullSheet.session.limited_features[features[f]]);
+        for (var s in slots) {
+          this.fullSheet.session.limited_features[features[f]][slots[s]] = false;
+        }
+      }
       this.updateCharacterSheet();
     }
   }
