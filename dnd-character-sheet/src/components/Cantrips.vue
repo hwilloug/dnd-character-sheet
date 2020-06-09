@@ -11,7 +11,7 @@
     >
       <v-expansion-panel-header
         class='panel-header'
-        color="grey darken-2 white--text"
+        color="grey white--text"
       >
         <b>{{ cantrip }}</b>
         <span v-if="getSpellInfo(cantrip, 'to_hit')">To hit: {{ getSpellInfo(cantrip, 'to_hit')}}</span>
@@ -54,7 +54,6 @@ export default {
   border: 1px black solid;
   border-radius: 5px;
   padding: 10px;
-  max-width: 48%;
 }
 
 </style>

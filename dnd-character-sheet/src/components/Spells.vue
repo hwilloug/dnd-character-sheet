@@ -11,7 +11,7 @@
     >
       <v-expansion-panel-header
         class='panel-header'
-        color="grey white--text"
+        color="grey darken-2 white--text"
       >
         <b>{{ spell }}</b>
         <span v-if="getSpellInfo(spell, 'to_hit')">To hit: {{ getSpellInfo(spell, 'to_hit')}}</span>
@@ -53,7 +53,6 @@ export default {
   background-color: white;
   border-radius: 5px;
   padding: 10px;
-  max-width: 48%;
 }
 
 </style>

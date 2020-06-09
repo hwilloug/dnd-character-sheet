@@ -2,7 +2,7 @@
   "character_info": {
     "character_name": "Nissa",
     "character_nickname": "Fnipper",
-    "clan_name": "Himori",
+    "clan_name": "Nackle",
     "player_name": "Hannah Willoughby",
     "class": "Sorcerer",
     "level": "3",
@@ -45,7 +45,7 @@
     "languages": [
       "Common",
       "Gnomish",
-      "One more"
+      "Sylvan"
     ],
     "tools": [
       "Pan Flute"
@@ -113,10 +113,11 @@
       "Sling"
     ],
     "cantrips": [
+      "Minor Illusion",
       "Poison Spray",
       "Fire Bolt",
-      "Light",
-      "Minor Illusion"
+      "Shape Water",
+      "Shocking Grasp"
     ],
     "spells": [
       "Shield",
@@ -154,23 +155,42 @@
       "Diamond"
     ]
   },
+  "features": {
+    "Darkvision": "Accustomed to life underground, I have superior vision in dark and dim conditions. I can see in dim light within 60 feet of me as if it were bright light, and in darkness as if it were dim light. I can't descern color in darkness, only shades of grey.",
+    "Gnome Cunning": "I have advantage on all Intelligence, Wisom, and Charisma saving throws against magic.",
+    "Speak with Small Beasts": "Through sounds and gestures, I can communicate simple ideas with small or smaller beasts. I love animals and often keep squirrels, badgers, rabbits, moles, woodpeckers, and other creatures as beloved pets.",
+    "Spellcasting": "An event in your past, or in the life of a parent or ancestor, left an indelible mark on you, infusing you with arcane magic. This font of magic, whatever its origin, fuels your spells.",
+    "Sorcerous Origin: Wild Magic": "Your innate magic comes from the wild forces of chaos that underlie the order of creation. It was a fluke of your birth, with no apparent cause or reason. This chaotic magic churns within, waiting for any outlet.",
+    "Font of Magic": {
+      "description": "You tap into a deep wellspring of magic within yourself. The wellspring is represented by sorcery points, which allow you to create a variety of magical effects.",
+      "Creating Spell Slots": "You can transform unexpended sorcery points into one spell slot as a bonus action on your turn. (1st -> 2 sorcery points; 2nd -> 3; 3rd -> 5; 4th -> 6; 5th -> 7)",
+      "Converting a Spell Slot to Sorcery Points": "As a bonus actino on your turn, you can expend one spell slot and gain a number of sorcery points equal to the slot's level."
+    },
+    "Metamagic": {
+      "description": "You have the ability to twist your spells to suit your needs. You can use only one Metamagic optoin on a spell when you cast it, unless otherwise noted.",
+      "Twinned Spell": "When you cast a spell that targets one creature and that doesn't have a range of self, you can spend a number of sorcery points equal ot the spell's level to target a second creature in range with the same spell (1 sorcery point if the spell is a cantrip).",
+      "Distant Spell": "When you cast a spell with a range of 5 feet or greater, you can spend 1 sorcery point to double the range of the spell. When you cast a spell that has a range of touch, you can spend 1 sorcery point to make the range of the spell 30 feet."
+    },
+    "Wild Magic Surge": "Your spellcasting can unleash surges of untamed magic. Immediately after you cas a sorcer spell of 1st level or higher, the DM can have you roll a d20. If you roll a 1, roll on the Wild Magic Surge table to create a random magical effect.",
+    "Tides of Chaos": "You can manipulate the forces of chance and chaos to gain advantage on one attack roll, ability check, or saving throw. Once you do so, you must finish a long rest before you can use this feature again.<br>Any time before you regain the use of this feature, the DM can have you roll on the Wild Magic Surge table immediatly after you cast a sorcerer spell of 1st level or higher. You then regain the use of this feature.",
+    "Bend Luck": "Starting at 6th level, you have the ability to twist fate using your wild magic. When another creature you can see makes an attack roll, an ability check, or a saving throw, you can use your reaction and spend 2 sorcery points to roll a 1d4 and apply the number rolled as a bonus or penalty (your choice) to the creature's roll. You can do so after the creature rolls but before any effects of the roll occur.",
+    "Wanderer": "You have an excellent memory for maps and geography, and you can always recall the general layout of terrain, settlements, and other features around you. In addition, you can find food and fresh water for yourself and up to five other people each day, provided that the land offers berries, small game, water, and so forth."
+  },
   "other_character_info": {
-    "class_features": "",
-    "age": "20",
+    "age": "40",
     "gender": "F",
     "size": "Small",
     "height": "3 ft. 1 in.",
     "weight": "40 lb",
     "alignment": "Chaotic Good",
     "faith": "",
-    "hair": "",
-    "eyes": "",
-    "skin": "",
+    "hair": "Mossy Green",
+    "eyes": "Aquamarine",
+    "skin": "Brown",
     "personality_traits": "I'm always picking things up, absently fiddling with them, and sometimes accidentally breaking them.",
     "ideals": "Change: The low is lifted up, and the high and mighty are brought down. Change is the nature of things.",
     "bonds": "I suffer awful visions of a coming disaster and will do anything to prevent it.",
     "flaws": "There's no room for caution in a life lived to the fullest.",
-    "background_feature": "Wanderer",
     "racial_traits": "",
     "character_history": "",
     "enemies": "",

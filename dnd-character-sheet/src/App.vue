@@ -23,11 +23,16 @@
         />
         <Proficiencies :proficiencies="proficiencies" />
       </div>
-      <div id="attacks-container">
-        <Cantrips :cantrips="attacks.cantrips" :level="characterInfo.level" />
-        <Spells :spells="attacks.spells" />
-        <Weapons :weapons="attacks.weapons" />
-        <Items :items="items" />
+      <div id="second-container">
+        <div id="attacks-container">
+          <Cantrips :cantrips="attacks.cantrips" :level="characterInfo.level" />
+          <Spells :spells="attacks.spells" />
+          <Weapons :weapons="attacks.weapons" />
+          <Items :items="items" />
+        </div>
+        <div id="features-container">
+          <Features :features="features" />
+        </div>
       </div>
       <Footer />
     </v-content>
@@ -46,6 +51,7 @@ import Cantrips from './components/Cantrips';
 import Spells from './components/Spells';
 import Weapons from './components/Weapons';
 import Items from './components/Items';
+import Features from './components/Features';
 import Footer from './components/Footer';
 // API
 import api from '@/services/CharacterSheet';
@@ -66,6 +72,7 @@ export default {
     Spells,
     Weapons,
     Items,
+    Features,
     Footer
   },
 
@@ -79,6 +86,7 @@ export default {
     armor: {},
     attacks: {},
     items: {},
+    features: {},
     otherInfo: {},
     session: {},
     loadingIcon: "mdi-check-bold"
@@ -97,6 +105,7 @@ export default {
         this.armor = resp.data.armor;
         this.attacks = resp.data.attacks;
         this.items = resp.data.items;
+        this.features = resp.data.features;
         this.otherInfo = resp.data.other_character_info;
         this.session = resp.data.session;
       })
@@ -181,8 +190,17 @@ export default {
   max-height: 60rem;
 }
 
-#attacks-container {
+#second-container {
+  display: flex;
+  margin: 10px 10%;
+}
 
+#attacks-container {
+  flex: 0 0 50%;
+}
+
+#features-container {
+  flex: 1;
 }
 
 #character-info {
@@ -210,22 +228,22 @@ export default {
 
 #spells {
   margin: 10px;
-  float: left;
 }
 
 #cantrips {
   margin: 10px;
-  float: left;
 }
 
 #weapons {
   margin: 10px;
-  float: right;
 }
 
 #items {
   margin: 10px;
-  float: right;
+}
+
+#features {
+  margin: 10px;
 }
 
 h2 {

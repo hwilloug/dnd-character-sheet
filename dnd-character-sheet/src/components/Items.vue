@@ -11,7 +11,7 @@ Items<template>
     >
       <v-expansion-panel-header
         class='panel-header'
-        color="grey darken-3 white--text"
+        color="black white--text"
       ><b>{{ item }}</b></v-expansion-panel-header>
       <v-expansion-panel-content class='panel-content'>
         <textarea name="note">Notes will go here</textarea>
@@ -24,7 +24,7 @@ Items<template>
 <script>
 
 export default {
-  // Need to check proficiencies
+  // Have notes section on all items, but fill out from items.json if possible
   name: "Items",
   props: ["items"],
   methods: {
@@ -38,7 +38,6 @@ export default {
   background-color: white;
   border: 1px solid black;
   border-radius: 5px;
-  max-width: 48%;
 }
 
 </style>

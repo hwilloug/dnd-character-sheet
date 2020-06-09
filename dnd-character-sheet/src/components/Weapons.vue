@@ -56,7 +56,6 @@ export default {
   background-color: white;
   border: 1px solid black;
   border-radius: 5px;
-  max-width: 48%;
 }
 
 </style>
