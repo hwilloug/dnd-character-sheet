@@ -134,26 +134,70 @@
       "gp": "159",
       "pp": "0"
     },
-    "adventuring_gear": [
-      "Bag of Holding",
-      "Decanter of Endless Water",
-      "Programmable Matter",
-      "Dragon Scale",
-      "Hunting Trap",
-      "Animal Trophy",
-      "Traveler's Clothes",
-      "Disguise Kit",
-      "Waterskin",
-      "10 days of rations",
-      "10 torches",
-      "Tinderbox",
-      "Mess Kit",
-      "Bedroll",
-      "Backpack",
-      "Ruby",
-      "Ruby",
-      "Diamond"
-    ]
+    "adventuring_gear": {
+      "Bag of Holding": {
+        "notes": "Received from Korintha after we beat the wisp apparitions.\n",
+        "favorite": false
+      },
+      "Decanter of Endless Water": {
+        "notes": "Received from Korintha after we beat the wisp apparitions.",
+        "favorite": true
+      },
+      "Programmable Matter": {
+        "notes": "A blob that you can make into stuff.. eventually.\nReceived from Pop before setting out from Stonehearth.\nUse count: 4",
+        "favorite": true
+      },
+      "Dragon Scale": {
+        "notes": "Size: Baby\nFound in the Baby Poison Dragon's cave.",
+        "favorite": false
+      },
+      "Hunting Trap": {
+        "notes": "",
+        "favorite": false
+      },
+      "Animal Trophy": {
+        "favorite": false,
+        "notes": ""
+      },
+      "Traveler's Clothes": {
+        "favorite": false
+      },
+      "Disguise Kit": {
+        "favorite": true,
+        "notes": "Maybe I'll turn myself caramel colored..."
+      },
+      "Waterskin": {
+        "favorite": false
+      },
+      "Rations": {
+        "notes": "10 days' worth",
+        "favorite": false
+      },
+      "Torches": {
+        "number": "10",
+        "favorite": false
+      },
+      "Tinderbox": {
+        "favorite": false
+      },
+      "Mess Kit": {
+        "favorite": false
+      },
+      "Bedroll": {
+        "favorite": false
+      },
+      "Backpack": {
+        "favorite": false
+      },
+      "Ruby": {
+        "number": "2",
+        "favorite": false
+      },
+      "Diamond": {
+        "notes": "Bought from a sketchy guy in the Druid part of Artimetros\nWorth 50g",
+        "favorite": false
+      }
+    }
   },
   "features": {
     "Darkvision": "Accustomed to life underground, I have superior vision in dark and dim conditions. I can see in dim light within 60 feet of me as if it were bright light, and in darkness as if it were dim light. I can't descern color in darkness, only shades of grey.",
@@ -227,5 +271,6 @@
         "2": false
       }
     }
-  }
+  },
+  "notes": ""
 }

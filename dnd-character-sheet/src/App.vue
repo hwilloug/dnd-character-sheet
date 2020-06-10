@@ -25,14 +25,17 @@
       </div>
       <div id="second-container">
         <div id="attacks-container">
-          <Cantrips :cantrips="attacks.cantrips" :level="characterInfo.level" />
-          <Spells :spells="attacks.spells" />
-          <Weapons :weapons="attacks.weapons" />
-          <Items :items="items" />
+          <Cantrips :cantrips="attacks.cantrips" :level="characterInfo.level" v-if="checkLength(attacks.cantrips)"/>
+          <Spells :spells="attacks.spells" v-if="checkLength(attacks.spells)"/>
+          <Weapons :weapons="attacks.weapons" v-if="checkLength(attacks.weapons)"/>
+          <Items :items="items" @update-notes="updateItemNotes"/>
         </div>
         <div id="features-container">
           <Features :features="features" />
         </div>
+      </div>
+      <div>
+        <OtherCharacterInfo :otherInfo="otherInfo" />
       </div>
       <Footer />
     </v-content>
@@ -52,6 +55,7 @@ import Spells from './components/Spells';
 import Weapons from './components/Weapons';
 import Items from './components/Items';
 import Features from './components/Features';
+import OtherCharacterInfo from './components/OtherCharacterInfo';
 import Footer from './components/Footer';
 // API
 import api from '@/services/CharacterSheet';
@@ -73,6 +77,7 @@ export default {
     Weapons,
     Items,
     Features,
+    OtherCharacterInfo,
     Footer
   },
 
@@ -172,6 +177,15 @@ export default {
         }
       }
       this.updateCharacterSheet();
+    },
+    updateItemNotes(val) {
+      this.fullSheet.items.adventuring_gear[val[0]]['notes'] = val[1];
+      this.updateCharacterSheet();
+    },
+    checkLength(field) {
+      if (field) {
+        return field.length > 0
+      } else return false
     }
   }
 };
@@ -244,6 +258,11 @@ export default {
 
 #features {
   margin: 10px;
+}
+
+#other-character-info {
+  margin: 10px auto;
+  max-width: 50%
 }
 
 h2 {

@@ -23,7 +23,12 @@
         <p><b>Range</b>: {{ getSpellInfo(spell, 'range') }}</p>
         <p><b>Components</b>: {{ getSpellInfo(spell, 'components') }}</p>
         <p><b>Duration</b>: {{ getSpellInfo(spell, 'duration') }}</p>
-        <p><b>Description</b>: {{ getSpellInfo(spell, 'description') }}</p>
+        <p><b>Description</b>:<br>
+          <div>
+            <p v-for="paragraph in breakJsonText(getSpellInfo(spell, 'description'))" :key="paragraph">
+              {{ paragraph }}
+            </p>
+          </div><br>
         <p><a :href="getSpellInfo(spell, 'link')" target="_blank">More Info</a></p>
       </v-expansion-panel-content>
     </v-expansion-panel>
@@ -33,6 +38,7 @@
 
 <script>
 import Spells from './json/spells.json'
+import Methods from './methods.js'
 
 export default {
   name: "Spells",
@@ -42,7 +48,8 @@ export default {
       if (spell) {
         return Spells[spell][info];
       } else return ""
-    }
+    },
+    breakJsonText: Methods.breakJsonText
   }
 }
 </script>

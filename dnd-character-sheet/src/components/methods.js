@@ -28,5 +28,10 @@ export default {
       }
       return ac.toString()
     } else return "0"
+  },
+  breakJsonText(text) {
+    if (text) {
+      return text.split("<br>")
+    } else return [""]
   }
 }

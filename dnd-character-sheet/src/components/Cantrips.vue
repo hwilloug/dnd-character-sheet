@@ -22,7 +22,12 @@
         <p><b>Range</b>: {{ getSpellInfo(cantrip, 'range') }}</p>
         <p><b>Components</b>: {{ getSpellInfo(cantrip, 'components') }}</p>
         <p><b>Duration</b>: {{ getSpellInfo(cantrip, 'duration') }}</p>
-        <p><b>Description</b>: {{ getSpellInfo(cantrip, 'description') }}</p>
+        <p><b>Description</b>:
+          <div>
+            <p v-for="paragraph in breakJsonText(getSpellInfo(cantrip, 'description'))" :key="paragraph">
+              {{ paragraph }}
+            </p>
+          </div><br>
         <p><a :href="getSpellInfo(cantrip, 'link')" target="_blank">More Info</a></p>
       </v-expansion-panel-content>
     </v-expansion-panel>
@@ -32,6 +37,7 @@
 
 <script>
 import Spells from './json/spells.json'
+import Methods from './methods.js'
 
 export default {
   name: "Cantrips",
@@ -43,7 +49,8 @@ export default {
           return Spells[spell][info][this.level];
         } else return Spells[spell][info];
       } else return ""
-    }
+    },
+    breakJsonText: Methods.breakJsonText
   }
 }
 </script>
