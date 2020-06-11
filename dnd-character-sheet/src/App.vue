@@ -28,7 +28,10 @@
           <Cantrips :cantrips="attacks.cantrips" :level="characterInfo.level" v-if="checkLength(attacks.cantrips)"/>
           <Spells :spells="attacks.spells" v-if="checkLength(attacks.spells)"/>
           <Weapons :weapons="attacks.weapons" v-if="checkLength(attacks.weapons)"/>
-          <Items :items="items" @update-notes="updateItemNotes"/>
+          <Items :items="items"
+            @update-notes="updateItemNotes"
+            @toggle-favorite="toggleFavorite"
+          />
         </div>
         <div id="features-container">
           <Features :features="features" />
@@ -186,6 +189,12 @@ export default {
       if (field) {
         return field.length > 0
       } else return false
+    },
+    toggleFavorite(val) {
+      if (this.fullSheet.items.adventuring_gear) {
+        this.fullSheet.items.adventuring_gear[val[0]]['favorite'] = val[1]
+        this.updateCharacterSheet();
+      }
     }
   }
 };

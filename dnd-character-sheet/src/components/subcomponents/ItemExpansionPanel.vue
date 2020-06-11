@@ -5,10 +5,18 @@
     :key="item"
   >
     <v-expansion-panel-header
-      v-if="items.adventuring_gear[item]['favorite'] === favorite"
-      class='panel-header'
-      color="black white--text"
-    ><b>{{ item }}</b><v-spacer></v-spacer>{{ items.adventuring_gear[item]['number'] }}</v-expansion-panel-header>
+      v-if="checkIfFavorite(item) === favorite"
+      id='panel-header'
+      color="white"
+    >
+      <v-icon
+        id="favorite-star"
+        @click="toggleFavorite(item)"
+      >{{ checkIfFavorite(item) ? "mdi-star" : "mdi-star-outline" }}</v-icon>
+      <b id="item-name">{{ item }}</b>
+      <v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer>
+      {{ items.adventuring_gear[item]['number'] }}<v-spacer></v-spacer>
+    </v-expansion-panel-header>
     <v-expansion-panel-content class='panel-content'>
       <div v-if="getItemInfo(item)">
         <p><b>Type:</b> {{ getItemInfo(item).subtype }}</p>
@@ -39,7 +47,17 @@ export default {
         return Items[item]
       } else return {}
     },
-    breakJsonText: Methods.breakJsonText
+    breakJsonText: Methods.breakJsonText,
+    checkIfFavorite(item) {
+      if (this.items.adventuring_gear) {
+        return this.items.adventuring_gear[item]['favorite'] === true
+      } else return false
+    },
+    toggleFavorite(item) {
+      if (this.items.adventuring_gear){
+        this.$emit('toggle-favorite', [item, !this.items.adventuring_gear[item]['favorite']])
+      }
+    }
   },
   computed: {
     getItems: function() {
