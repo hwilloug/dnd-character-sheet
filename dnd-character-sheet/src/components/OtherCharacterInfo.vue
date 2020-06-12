@@ -51,7 +51,7 @@ export default {
 }
 
 .other-info {
-  padding: 15px 30px;
+  margin: 15px;
 }
 
 .other-info b {

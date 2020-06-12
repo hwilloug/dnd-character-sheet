@@ -56,7 +56,7 @@ export default {
 
 <style>
 #saving-throws-component {
-  border: 1px black dashed;
+  border: 2px black dashed;
   border-radius: 3px;
   padding: 5px;
   background-color: white;

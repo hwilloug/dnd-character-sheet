@@ -1,9 +1,8 @@
 <template>
 <div id="cantrips">
   <h2>Cantrips</h2>
-  <v-expansion-panels
-    :multiple=true
-    :hover=true
+  <v-expansion-panels focusable accordion
+    hover=true
   >
     <v-expansion-panel
       v-for="cantrip in cantrips"
@@ -15,7 +14,7 @@
       >
         <b>{{ cantrip }}</b>
         <span v-if="getSpellInfo(cantrip, 'to_hit')">To hit: {{ getSpellInfo(cantrip, 'to_hit')}}</span>
-        <span v-if="getSpellInfo(cantrip, 'damage')">Damage: {{ getSpellInfo(cantrip, 'damage')}} {{ getSpellInfo(cantrip, 'damage_type')}}</span>
+        <span v-if="getSpellInfo(cantrip, 'damage')">{{ getSpellInfo(cantrip, 'damage')}} {{ getSpellInfo(cantrip, 'damage_type')}}</span>
       </v-expansion-panel-header>
       <v-expansion-panel-content class='panel-content'>
         <p><b>Casting time</b>: {{ getSpellInfo(cantrip, 'casting_time') }}</p>
@@ -57,10 +56,10 @@ export default {
 
 <style>
 #cantrips {
-  background-color: white;
-  border: 1px black solid;
-  border-radius: 5px;
-  padding: 10px;
+  background-image: url('../assets/text_frame_4_extended.png');
+  background-size: 100% 100%;
+  padding: 30px;
 }
+
 
 </style>

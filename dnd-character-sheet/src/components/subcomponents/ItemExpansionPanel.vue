@@ -7,13 +7,13 @@
     <v-expansion-panel-header
       v-if="checkIfFavorite(item) === favorite"
       id='panel-header'
-      color="white"
+      :color="headerColor"
     >
       <v-icon
         id="favorite-star"
         @click="toggleFavorite(item)"
       >{{ checkIfFavorite(item) ? "mdi-star" : "mdi-star-outline" }}</v-icon>
-      <b id="item-name">{{ item }}</b>
+      {{ item }}
       <v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer>
       {{ items.adventuring_gear[item]['number'] }}<v-spacer></v-spacer>
     </v-expansion-panel-header>
@@ -37,7 +37,7 @@ import Methods from '../methods.js'
 
 export default {
   name: "ItemExpansionPanel",
-  props: ["items", "favorite"],
+  props: ["items", "favorite", "headerColor"],
   methods: {
     updateNotes(item) {
       this.$emit('update-notes-inner', [item, this.items.adventuring_gear[item].notes])

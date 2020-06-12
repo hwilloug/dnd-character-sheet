@@ -2,8 +2,8 @@
 <div id="spells">
   <h2>Spells</h2>
   <v-expansion-panels
-    :multiple=true
-    :hover=true
+    focusable accordion
+    hover=true
   >
     <v-expansion-panel
       v-for="spell in spells"
@@ -15,7 +15,7 @@
       >
         <b>{{ spell }}</b>
         <span v-if="getSpellInfo(spell, 'to_hit')">To hit: {{ getSpellInfo(spell, 'to_hit')}}</span>
-        <span v-if="getSpellInfo(spell, 'damage')">Damage: {{ getSpellInfo(spell, 'damage')}} {{ getSpellInfo(spell, 'damage_type')}}</span>
+        <span v-if="getSpellInfo(spell, 'damage')">{{ getSpellInfo(spell, 'damage')}} {{ getSpellInfo(spell, 'damage_type')}}</span>
       </v-expansion-panel-header>
       <v-expansion-panel-content class='panel-content'>
         <p><b>Level</b>: {{ getSpellInfo(spell, 'level') }}</p>
@@ -56,10 +56,9 @@ export default {
 
 <style>
 #spells {
-  border: 1px solid black;
-  background-color: white;
-  border-radius: 5px;
-  padding: 10px;
+  background-image: url('../assets/text_frame_4_extended.png');
+  background-size: 100% 100%;
+  padding: 30px;
 }
 
 </style>

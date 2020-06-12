@@ -28,17 +28,21 @@
           <Cantrips :cantrips="attacks.cantrips" :level="characterInfo.level" v-if="checkLength(attacks.cantrips)"/>
           <Spells :spells="attacks.spells" v-if="checkLength(attacks.spells)"/>
           <Weapons :weapons="attacks.weapons" v-if="checkLength(attacks.weapons)"/>
+        </div>
+        <div id="items-container">
           <Items :items="items"
             @update-notes="updateItemNotes"
             @toggle-favorite="toggleFavorite"
           />
         </div>
-        <div id="features-container">
+      </div>
+      <div id="third-container">
+        <div id="left-third">
           <Features :features="features" />
         </div>
-      </div>
-      <div>
-        <OtherCharacterInfo :otherInfo="otherInfo" />
+        <div id="right-third">
+          <OtherCharacterInfo :otherInfo="otherInfo" />
+        </div>
       </div>
       <Footer />
     </v-content>
@@ -218,11 +222,16 @@ export default {
   margin: 10px 10%;
 }
 
+#third-container {
+  display: flex;
+  margin: 10px 10%;
+}
+
 #attacks-container {
   flex: 0 0 50%;
 }
 
-#features-container {
+#items-container {
   flex: 1;
 }
 
@@ -265,13 +274,14 @@ export default {
   margin: 10px;
 }
 
-#features {
-  margin: 10px;
+#left-third {
+  flex: 0 0 50%;
+  padding: 10px;
 }
 
-#other-character-info {
-  margin: 10px auto;
-  max-width: 50%
+#right-third {
+  flex: 1;
+  padding: 10px;
 }
 
 h2 {

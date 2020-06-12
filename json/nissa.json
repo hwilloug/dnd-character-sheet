@@ -187,7 +187,8 @@
         "favorite": false
       },
       "Backpack": {
-        "favorite": false
+        "favorite": false,
+        "notes": ""
       },
       "Ruby": {
         "number": "2",

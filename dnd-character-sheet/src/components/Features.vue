@@ -1,20 +1,35 @@
 <template>
 <div id="features">
   <h2>Features</h2>
-  <div class="feature" v-for="feature in getFeatures" :key="feature">
-    <div v-if="getFeatureType(feature) === 'string'">
-      <b>{{ feature }}</b><br>
-      {{ features[feature] }}
-    </div>
-    <div class="feature" v-if="getFeatureType(feature) === 'object'">
-      <b>{{ feature }}</b><br>
-      {{ features[feature].description }}
-      <div class="subfeature" v-for="subfeature in getSubfeatures(feature)" :key="subfeature">
-        <b>{{ subfeature }}</b><br>
-        {{ features[feature][subfeature] }}
-      </div>
-    </div>
-  </div>
+  <v-expansion-panels
+    focusable accordion inset
+    :hover=true
+    :multiple=false
+    dark
+  >
+    <v-expansion-panel v-for="feature in getFeatures" :key="feature">
+      <v-expansion-panel-header
+        class='panel-header'
+        color="red darken-4 white--text"
+      >
+        <b>{{ feature }}</b>
+      </v-expansion-panel-header>
+      <v-expansion-panel-content
+        color="grey lighten-4 black--text"
+      >
+        <div v-if="getFeatureType(feature) === 'string'" class="feature">
+          {{ features[feature] }}
+        </div>
+        <div class="feature" v-if="getFeatureType(feature) === 'object'">
+          {{ features[feature].description }}
+          <div class="subfeature" v-for="subfeature in getSubfeatures(feature)" :key="subfeature">
+            <b>{{ subfeature }}</b><br>
+            {{ features[feature][subfeature] }}
+          </div>
+        </div>
+      </v-expansion-panel-content>
+    </v-expansion-panel>
+  </v-expansion-panels>
 </div>
 </template>
 
@@ -49,14 +64,14 @@ export default {
 
 <style>
 #features {
-  border: 1px solid black;
+  border: 5px ridge black;
   border-radius: 10px;
   background-color: white;
   padding: 10px;
 }
 
 .feature {
-  margin: 30px 10px;
+  margin: 10px 10px;
 }
 
 .subfeature {

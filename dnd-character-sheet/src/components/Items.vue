@@ -4,14 +4,14 @@ Items<template>
 
   <h3>Adventuring Gear</h3>
   <v-expansion-panels
-    :multiple=true
-    :hover=true
-    id="item-expansion-panel"
+    focusable
+    hover=true
   >
     Favorites
     <ItemExpansionPanel
       :items="items"
       :favorite="true"
+      :headerColor="'red darken-4 white--text'"
       @update-notes-inner="updateNotes"
       @toggle-favorite="toggleFavorite"
     ></ItemExpansionPanel>
@@ -19,6 +19,7 @@ Items<template>
     <ItemExpansionPanel
       :items="items"
       :favorite="false"
+      :headerColor="white"
       @update-notes-inner="updateNotes"
       @toggle-favorite="toggleFavorite"
     ></ItemExpansionPanel>
@@ -50,7 +51,7 @@ export default {
 #items {
   padding: 10px;
   background-color: white;
-  border: 1px solid black;
+  border: 5px double black;
   border-radius: 5px;
 }
 
@@ -58,7 +59,7 @@ export default {
   padding-top: 10px;
   width: 100%;
   height: 100px;
-  border: 1px dashed darkred;
+  border-top: 1px solid darkred;
   resize: none;
 }
 
@@ -69,15 +70,24 @@ export default {
 .v-expansion-panel-header {
   min-height: 30px;
   padding: 10px 15px;
-  justify-content: flex-start;
 }
 
 #favorite-star.v-icon.v-icon {
-  display: inline;
-  max-width: 40px;
+  max-width: 20px;
+  max-height: 20px;
+  color: lightgrey;
+  margin: 0px 20px 0px 10px;
 }
 
-#favorite-star:hover {
-  color: darkred;
+#favorite-star.v-icon.v-icon:hover {
+  color: mediumseagreen;
+}
+
+.v-expansion-panel::before {
+   box-shadow: none !important;
+}
+
+.v-expansion-panel-content {
+  border: 1px solid darkgrey;
 }
 </style>

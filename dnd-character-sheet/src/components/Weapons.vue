@@ -2,8 +2,8 @@
 <div id="weapons">
   <h2>Weapons</h2>
   <v-expansion-panels
-    :multiple=true
-    :hover=true
+    focusable accordion
+    hover=true
   >
     <v-expansion-panel
       v-for="weapon in weapons"
@@ -14,8 +14,8 @@
         color="grey darken-3 white--text"
       >
         <b>{{ weapon }}</b>
-        <span>Damage: {{ getWeaponInfo(weapon, 'damage')}} {{ getWeaponInfo(weapon, 'damage_type')}}</span>
         <span>Range: {{ getWeaponInfo(weapon, 'range')}}</span>
+        <span>{{ getWeaponInfo(weapon, 'damage')}} {{ getWeaponInfo(weapon, 'damage_type')}}</span>
       </v-expansion-panel-header>
       <v-expansion-panel-content class='panel-content'>
         <p><b>Weapon type</b>: {{ getWeaponInfo(weapon, 'type') }} (<i>{{ formatList(weapon, 'subtype') }}</i>)</p>
@@ -52,10 +52,9 @@ export default {
 
 <style>
 #weapons {
-  padding: 10px;
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 5px;
+  padding: 30px;
+  background-image: url('../assets/text_frame_4.png');
+  background-size: 100% 100%;
 }
 
 </style>
