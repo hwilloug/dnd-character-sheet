@@ -3,7 +3,7 @@
   <h2>Spells</h2>
   <v-expansion-panels
     focusable accordion
-    hover=true
+    :hover=true
   >
     <v-expansion-panel
       v-for="spell in spells"
@@ -11,7 +11,7 @@
     >
       <v-expansion-panel-header
         class='panel-header'
-        color="grey darken-2 white--text"
+        color="grey white--text"
       >
         <b>{{ spell }}</b>
         <span v-if="getSpellInfo(spell, 'to_hit')">To hit: {{ getSpellInfo(spell, 'to_hit')}}</span>
@@ -24,7 +24,7 @@
         <p><b>Components</b>: {{ getSpellInfo(spell, 'components') }}</p>
         <p><b>Duration</b>: {{ getSpellInfo(spell, 'duration') }}</p>
         <p><b>Description</b>:<br>
-          <div>
+          <div class="description">
             <p v-for="paragraph in breakJsonText(getSpellInfo(spell, 'description'))" :key="paragraph">
               {{ paragraph }}
             </p>
@@ -60,5 +60,11 @@ export default {
   background-size: 100% 100%;
   padding: 30px;
 }
+
+.description {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
 
 </style>

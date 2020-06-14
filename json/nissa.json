@@ -112,6 +112,9 @@
       "Dagger",
       "Sling"
     ],
+    "ammunition": {
+      "Bolts": "20"
+    },
     "cantrips": [
       "Minor Illusion",
       "Poison Spray",

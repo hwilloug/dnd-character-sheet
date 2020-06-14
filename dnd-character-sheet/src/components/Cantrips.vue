@@ -2,7 +2,7 @@
 <div id="cantrips">
   <h2>Cantrips</h2>
   <v-expansion-panels focusable accordion
-    hover=true
+    :hover=true
   >
     <v-expansion-panel
       v-for="cantrip in cantrips"
@@ -22,7 +22,7 @@
         <p><b>Components</b>: {{ getSpellInfo(cantrip, 'components') }}</p>
         <p><b>Duration</b>: {{ getSpellInfo(cantrip, 'duration') }}</p>
         <p><b>Description</b>:
-          <div>
+          <div class="description">
             <p v-for="paragraph in breakJsonText(getSpellInfo(cantrip, 'description'))" :key="paragraph">
               {{ paragraph }}
             </p>

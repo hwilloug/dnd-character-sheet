@@ -5,7 +5,7 @@ Items<template>
   <h3>Adventuring Gear</h3>
   <v-expansion-panels
     focusable
-    hover=true
+    :hover=true
   >
     Favorites
     <ItemExpansionPanel
@@ -19,7 +19,7 @@ Items<template>
     <ItemExpansionPanel
       :items="items"
       :favorite="false"
-      :headerColor="white"
+      :headerColor="'white'"
       @update-notes-inner="updateNotes"
       @toggle-favorite="toggleFavorite"
     ></ItemExpansionPanel>

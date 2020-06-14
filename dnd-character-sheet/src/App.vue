@@ -27,7 +27,12 @@
         <div id="attacks-container">
           <Cantrips :cantrips="attacks.cantrips" :level="characterInfo.level" v-if="checkLength(attacks.cantrips)"/>
           <Spells :spells="attacks.spells" v-if="checkLength(attacks.spells)"/>
-          <Weapons :weapons="attacks.weapons" v-if="checkLength(attacks.weapons)"/>
+          <Weapons
+            v-if="checkLength(attacks.weapons)"
+            :weapons="attacks.weapons"
+            :ammunition="attacks.ammunition"
+            @update-ammo="updateAmmo"
+          />
         </div>
         <div id="items-container">
           <Items :items="items"
@@ -199,7 +204,11 @@ export default {
         this.fullSheet.items.adventuring_gear[val[0]]['favorite'] = val[1]
         this.updateCharacterSheet();
       }
-    }
+    },
+    updateAmmo(val) {
+      this.fullSheet.attacks.ammunition[val[0]] = val[1];
+      this.updateCharacterSheet();
+    },
   }
 };
 </script>
