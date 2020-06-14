@@ -1,13 +1,20 @@
 Items<template>
 <div id="items">
   <h2>Items</h2>
-
-  <h3>Adventuring Gear</h3>
+  <div class="currencies">
+    <div v-for="coin in getCurrencies" :key="coin" class="coin" :class="coin">
+      <b>{{ coin }}</b><br>
+      <input
+        v-model="items.money[coin]"
+        class="coin-amount"
+        @keyup="updateCoinAmount(coin)"
+      />
+    </div>
+  </div>
   <v-expansion-panels
-    focusable
+    focusable accordion
     :hover=true
   >
-    Favorites
     <ItemExpansionPanel
       :items="items"
       :favorite="true"
@@ -15,7 +22,6 @@ Items<template>
       @update-notes-inner="updateNotes"
       @toggle-favorite="toggleFavorite"
     ></ItemExpansionPanel>
-    Other
     <ItemExpansionPanel
       :items="items"
       :favorite="false"
@@ -42,6 +48,16 @@ export default {
     },
     toggleFavorite(val) {
       this.$emit('toggle-favorite', val)
+    },
+    updateCoinAmount(coin) {
+      this.$emit('update-coin-amount', [coin, this.items.money[coin]])
+    }
+  },
+  computed: {
+    getCurrencies: function() {
+      if (this.items.money) {
+        return Object.keys(this.items.money)
+      } else return []
     }
   }
 }
@@ -51,7 +67,7 @@ export default {
 #items {
   padding: 10px;
   background-color: white;
-  border: 5px double black;
+  border: 7px double black;
   border-radius: 5px;
 }
 
@@ -90,4 +106,49 @@ export default {
 .v-expansion-panel-content {
   border: 1px solid darkgrey;
 }
+
+.currencies {
+  display: flex;
+  justify-content: center;
+}
+
+.coin {
+  border-width: 3px;
+  border-style: groove;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+.coin-amount {
+  width: 35px;
+  text-align: center;
+}
+
+.cp {
+  border-color: darkgoldenrod;
+  color: darkgoldenrod;
+}
+
+.sp {
+  border-color: silver;
+  color: silver;
+}
+
+.ep {
+  border-color: darkgrey;
+  color: darkgrey;
+}
+
+.gp {
+  border-color: gold;
+  color: gold;
+}
+
+.pp {
+  border-color: gainsboro;
+  color: gainsboro;
+}
+
 </style>

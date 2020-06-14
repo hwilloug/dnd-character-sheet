@@ -38,6 +38,7 @@
           <Items :items="items"
             @update-notes="updateItemNotes"
             @toggle-favorite="toggleFavorite"
+            @update-coin-amount="updateCoinAmount"
           />
         </div>
       </div>
@@ -209,6 +210,10 @@ export default {
       this.fullSheet.attacks.ammunition[val[0]] = val[1];
       this.updateCharacterSheet();
     },
+    updateCoinAmount(val) {
+      this.fullSheet.items.money[val[0]] = val[1];
+      this.updateCharacterSheet();
+    }
   }
 };
 </script>

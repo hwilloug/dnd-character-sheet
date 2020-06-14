@@ -22,7 +22,7 @@
         <p><b>Type:</b> {{ getItemInfo(item).subtype }}</p>
         <p><b>Rarity:</b> {{ getItemInfo(item).rarity }}</p>
         <p><b>Weight:</b> {{ getItemInfo(item).weight }}</p>
-        <p><b>Description:</b> <p v-for="paragraph in breakJsonText(getItemInfo(item).description)" :key="paragraph">{{ paragraph }}</p>
+        <p><b>Description:</b><div class="description"><p v-for="paragraph in breakJsonText(getItemInfo(item).description)" :key="paragraph">{{ paragraph }}</p></div>
       </div>
       Notes:<br>
       <textarea name="note" v-model="items.adventuring_gear[item]['notes']" @keyup="updateNotes(item)"></textarea>
