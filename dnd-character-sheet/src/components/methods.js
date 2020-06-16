@@ -21,7 +21,7 @@ export default {
     if (thisArmorInfo){
       let ac = parseInt(thisArmorInfo.ac.base);
       if (armorDict.shield) {
-        ac += parseInt(ArmorInfo.armor.shield.ac.base);
+        ac += parseInt(ArmorInfo.armor.Shield.ac.base);
       }
       if (thisArmorInfo.ac.modifier === "dexterity") {
         ac += parseInt(calculateModifier(dex));

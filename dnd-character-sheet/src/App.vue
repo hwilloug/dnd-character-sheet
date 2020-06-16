@@ -22,6 +22,11 @@
           @reset-session="resetSession"
         />
         <Proficiencies :proficiencies="proficiencies" />
+        <Armor
+          :armor="armor"
+          :stats="stats"
+          :proficiencies="proficiencies.armor"
+        />
       </div>
       <div id="second-container">
         <div id="attacks-container">
@@ -63,6 +68,7 @@ import Skills from './components/Skills';
 import SavingThrows from './components/SavingThrows';
 import Proficiencies from './components/Proficiencies';
 import Session from './components/Session';
+import Armor from './components/Armor';
 import Cantrips from './components/Cantrips';
 import Spells from './components/Spells';
 import Weapons from './components/Weapons';
@@ -85,6 +91,7 @@ export default {
     SavingThrows,
     Proficiencies,
     Session,
+    Armor,
     Cantrips,
     Spells,
     Weapons,
@@ -269,6 +276,10 @@ export default {
 }
 
 #saving-throws-component {
+  margin: 10px;
+}
+
+#armor {
   margin: 10px;
 }
 

@@ -1,7 +1,7 @@
 {
   "armor": {
     "Padded": {
-      "category": "light",
+      "category": "Light",
       "description": "Quilted layers of cloth and batting",
       "cost": "5 gp",
       "ac": {
@@ -14,8 +14,8 @@
       "weight": "8 lb"
     },
     "Leather": {
-      "category": "light",
-      "description": "",
+      "category": "Light",
+      "description": "The Breastplate and shoulder protectors of this armor are made of leather that has been stiffened by being boiled in oil. The rest of the armor is made of softer and more flexible materials.",
       "cost": "10 gp",
       "ac": {
         "base": "11",
@@ -27,8 +27,8 @@
       "weight": "10 lb"
     },
     "Studded leather": {
-      "category": "light",
-      "description": "",
+      "category": "Light",
+      "description": "Made from tough but flexible leather, studded leather is reinforced with close-set rivets or spikes.",
       "cost": "45 gp",
       "ac": {
         "base": "12",
@@ -40,8 +40,8 @@
       "weight": "13 lb"
     },
     "Hide": {
-      "category": "medium",
-      "description": "",
+      "category": "Medium",
+      "description": "This crude armor consists of thick furs and pelts. It is commonly worn by Barbarian tribes, evil Humanoids, and other folk who lack access to the tools and materials needed to create better armor.",
       "cost": "10 gp",
       "ac": {
         "base": "12",
@@ -53,8 +53,8 @@
       "weight": "12 lb"
     },
     "Chain shirt": {
-      "category": "medium",
-      "description": "",
+      "category": "Medium",
+      "description": "Made of interlocking metal rings, a Chain Shirt is worn between layers of clothing or leather. This armor offers modest Protection to the wearer’s upper body and allows the sound of the rings rubbing against one another to be muffled by outer layers.",
       "cost": "50 gp",
       "ac": {
         "base": "13",
@@ -66,8 +66,8 @@
       "weight": "20 lb"
     },
     "Scale mail": {
-      "category": "medium",
-      "description": "",
+      "category": "Medium",
+      "description": "A coat and leggings (and perhaps a separate skirt) of leather covered with overlapping pieces of metal, much like the scales of a fish. The suit includes gauntlets.",
       "cost": "50 gp",
       "ac": {
         "base": "14",
@@ -79,8 +79,8 @@
       "weight": "45 lb"
     },
     "Breastplate": {
-      "category": "medium",
-      "description": "",
+      "category": "Medium",
+      "description": "A fitted metal chest piece worn with supple leather. Although it leaves the legs and arms relatively unprotected, this armor provides good Protection for the wearer’s vital organs while leaving the wearer relatively unencumbered.",
       "cost": "400 gp",
       "ac": {
         "base": "14",
@@ -92,8 +92,8 @@
       "weight": "20 lb"
     },
     "Half plate": {
-      "category": "medium",
-      "description": "",
+      "category": "Medium",
+      "description": "Shaped metal plates that cover most of the wearer’s body. It does not include leg Protection beyond simple greaves that are attached with leather straps.",
       "cost": "750 gp",
       "ac": {
         "base": "15",
@@ -105,8 +105,8 @@
       "weight": "40 lb"
     },
     "Ring mail": {
-      "category": "heavy",
-      "description": "",
+      "category": "Heavy",
+      "description": "This armor is Leather Armor with heavy rings sewn into it. The rings help reinforce the armor against blows from Swords and axes. Ring Mail is inferior to Chain Mail, and it's usually worn only by those who can’t afford better armor.",
       "cost": "30 gp",
       "ac": {
         "base": "14",
@@ -118,8 +118,8 @@
       "weight": "40 lb"
     },
     "Chain mail": {
-      "category": "heavy",
-      "description": "",
+      "category": "Heavy",
+      "description": "Made of interlocking metal rings, Chain Mail includes a layer of quilted fabric worn underneath the mail to prevent chafing and to cushion the impact of blows. The suit includes gauntlets.",
       "cost": "75 gp",
       "ac": {
         "base": "16",
@@ -131,8 +131,8 @@
       "weight": "55 lb"
     },
     "Splint": {
-      "category": "heavy",
-      "description": "",
+      "category": "Heavy",
+      "description": "Narrow vertical strips of metal riveted to a backing of leather that is worn over cloth padding. Flexible Chain Mail protects the joints.",
       "cost": "200 gp",
       "ac": {
         "base": "17",
@@ -144,8 +144,8 @@
       "weight": "60 lb"
     },
     "Plate": {
-      "category": "heavy",
-      "description": "",
+      "category": "Heavy",
+      "description": "Shaped, interlocking metal plates that cover the entire body. A suit of plate includes gauntlets, heavy leather boots, a visored helmet, and thick layers of padding underneath the armor. Buckles and straps distribute the weight over the body.",
       "cost": "1,500 gp",
       "ac": {
         "base": "18",
@@ -158,7 +158,7 @@
     },
     "Shield": {
       "category": "shield",
-      "description": "",
+      "description": "Made from wood or metal and is carried in one hand. You can benefit from only one Shield at a time.",
       "cost": "10 gp",
       "ac": {
         "base": "2",
@@ -171,15 +171,15 @@
     }
   },
   "don_doff": {
-    "light": {
+    "Light": {
       "don": "1 minute",
       "doff": "1 minute"
     },
-    "medium": {
+    "Medium": {
       "don": "5 minutes",
       "doff": "1 minute"
     },
-    "heavy": {
+    "Heavy": {
       "don": "10 minutes",
       "doff": "5 minutes"
     },

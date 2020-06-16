@@ -3,7 +3,7 @@
   <h2>Weapons</h2>
   <div v-if="getAmmunitionTypes.length" id="allAmmo">
     <div v-for="ammo in getAmmunitionTypes" :key="ammo" class="ammo">
-      {{ ammo }}<br>
+      {{ ammo }}
       <v-btn
         class="mx-2"
         depressed
@@ -25,7 +25,6 @@
         color="red darken-4"
         @click="emitChange(ammo, 'increment')"
       ><v-icon x-small class="increment-button">mdi-plus</v-icon></v-btn>
-      <br>
       <span v-for="i in getAmmunitionAmount(ammo)" :key="i">
         <v-icon class="bullet">mdi-bullet</v-icon>
       </span>
@@ -109,9 +108,8 @@ export default {
 }
 
 .ammo {
-  border: 1px solid black;
+  border: 2px groove black;
   border-radius: 10px;
-  width: 87px;
   padding: 10px;
   margin: 10px;
   text-align: center;
