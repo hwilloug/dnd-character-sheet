@@ -52,9 +52,15 @@
           <Features :features="features" />
         </div>
         <div id="right-third">
-          <OtherCharacterInfo :otherInfo="otherInfo" />
+          <h2>Notes</h2>
+          <textarea
+            id="notes"
+            v-model="notes"
+            @keyup="updateNotes"
+          ></textarea>
         </div>
       </div>
+      <OtherCharacterInfo :otherInfo="otherInfo" />
       <Footer />
     </v-content>
   </v-app>
@@ -114,6 +120,7 @@ export default {
     features: {},
     otherInfo: {},
     session: {},
+    notes: {},
     loadingIcon: "mdi-check-bold"
   }),
   created() {this.loadCharacterSheet()},
@@ -132,6 +139,7 @@ export default {
         this.items = resp.data.items;
         this.features = resp.data.features;
         this.otherInfo = resp.data.other_character_info;
+        this.notes = resp.data.notes;
         this.session = resp.data.session;
       })
     },
@@ -220,6 +228,10 @@ export default {
     updateCoinAmount(val) {
       this.fullSheet.items.money[val[0]] = val[1];
       this.updateCharacterSheet();
+    },
+    updateNotes() {
+      this.fullSheet.notes = this.notes;
+      this.updateCharacterSheet();
     }
   }
 };
@@ -306,7 +318,19 @@ export default {
 
 #right-third {
   flex: 1;
+  margin: 10px;
   padding: 10px;
+  border: black 5px ridge;
+  background-color: white;
+  border-radius: 10px;
+}
+
+#notes {
+  border-top: 2px solid darkred;
+  padding: 10px;
+  resize: none;
+  width: 100%;
+  height: 90%;
 }
 
 h2 {

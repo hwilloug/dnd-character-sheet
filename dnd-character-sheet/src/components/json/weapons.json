@@ -49,6 +49,21 @@
       ],
       "weight":"1"
    },
+   "Quarterstaff":{
+      "damage":"1d6",
+      "damage_type":"Bludgeoning",
+      "type":"Melee Weapon",
+      "rarity":"Standard",
+      "range":"",
+      "subtype":[
+        "Simple",
+        "Staff"
+      ],
+      "properties":[
+        "Versatile"
+      ],
+      "weight":"4"
+   },
    "":{
       "damage":"",
       "damage_type":"",

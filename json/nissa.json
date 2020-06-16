@@ -8,7 +8,7 @@
     "level": "3",
     "background": "Outlander",
     "race": "Gnome",
-    "experience": "1500"
+    "experience": "1800"
   },
   "stats": {
     "strength": "12",
@@ -110,7 +110,8 @@
       "Light Crossbow",
       "Dagger",
       "Dagger",
-      "Sling"
+      "Sling",
+      "Quarterstaff"
     ],
     "ammunition": {
       "Bolts": "20"
@@ -134,7 +135,7 @@
       "cp": "0",
       "sp": "0",
       "ep": "0",
-      "gp": "159",
+      "gp": "135",
       "pp": "0"
     },
     "adventuring_gear": {
@@ -147,7 +148,7 @@
         "favorite": true
       },
       "Programmable Matter": {
-        "notes": "A blob that you can make into stuff.. eventually.\nReceived from Pop before setting out from Stonehearth.\nUse count: 4",
+        "notes": "A blob that you can make into stuff.. eventually.\nReceived from Pop before setting out from Stonehearth.\nUse count: 5\n\nCan use minor conjuration when I get proficiency with this use 10",
         "favorite": true
       },
       "Dragon Scale": {
@@ -200,6 +201,11 @@
       "Diamond": {
         "notes": "Bought from a sketchy guy in the Druid part of Artimetros\nWorth 50g",
         "favorite": false
+      },
+      "Jolly Beans": {
+        "notes": "These do some crazy random stuff if taken... Could be useful for later",
+        "favorite": false,
+        "number": "3"
       }
     }
   },
@@ -276,5 +282,5 @@
       }
     }
   },
-  "notes": ""
+  "notes": "Korintha is evil, and we need to keep away from Cranston.\n\nRight now we are working with \"___\" to figure out what to do about Korintha being evil.\n\n10 temporary hit points"
 }
