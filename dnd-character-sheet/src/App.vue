@@ -60,7 +60,10 @@
           ></textarea>
         </div>
       </div>
-      <OtherCharacterInfo :otherInfo="otherInfo" />
+      <OtherCharacterInfo
+        :otherInfo="otherInfo"
+        @update-character-history="updateCharacterHistory"
+      />
       <Footer />
     </v-content>
   </v-app>
@@ -233,6 +236,10 @@ export default {
     updateNotes() {
       this.fullSheet.notes = this.notes;
       this.updateCharacterSheet();
+    },
+    updateCharacterHistory(val) {
+      this.fullSheet.other_character_info.character_history = val;
+      this.updateCharacterSheet();
     }
   }
 };
@@ -294,6 +301,10 @@ export default {
 
 #armor {
   margin: 10px;
+}
+
+#other-character-info {
+  margin: 10px 50px;
 }
 
 #spells {
