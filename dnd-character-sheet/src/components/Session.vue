@@ -12,7 +12,7 @@
           width="10px"
           fab
           color="red darken-4"
-          @click="emitChange('decrement')"
+          @click="emitChange('hp', 'decrement')"
         ><v-icon x-small>mdi-minus</v-icon></v-btn></span>
         <span v-else><v-icon height="10px" width="10px" style="padding-right: 2px;" fab>mdi-blank</v-icon></span>
         <span class="hp current-hp">{{ session.hp }}</span>
@@ -24,15 +24,46 @@
           width="10px"
           fab
           color="red darken-4"
-          @click="emitChange('increment')"
+          @click="emitChange('hp', 'increment')"
         ><v-icon x-small>mdi-plus</v-icon></v-btn></span>
         <span v-else><v-icon height="10px" width="10px" style="padding-left: 2px;" fab>mdi-blank</v-icon></span></span>
         <span class="hp">{{ stats.max_hp }}</span></span>
         <span class="hp-bar"><v-progress-linear
           height="15px"
           :color="hpPercentageColor"
-          :value="hpPercentage"
+          :value="hpPercentage('hp')"
         ></v-progress-linear></span>
+        <span class="hp-bar"><v-progress-linear
+          striped
+          height="10px"
+          color="purple"
+          background-opacity="0"
+          :value="hpPercentage('temporary_hp')"
+        ></v-progress-linear></span>
+        <span><b>Temporary</b><span class="temporary-hp-row">
+        <span class="inc-btn" v-if="parseInt(session.temporary_hp) > 0"><v-btn
+          class="mx-2"
+          depressed
+          dark
+          height="10px"
+          width="10px"
+          fab
+          color="red darken-4"
+          @click="emitChange('temporary_hp', 'decrement')"
+        ><v-icon x-small>mdi-minus</v-icon></v-btn></span>
+        <span v-else><v-icon height="10px" width="10px" style="padding-right: 2px;" fab>mdi-blank</v-icon></span>
+        <span class="hp temp-hp">{{ session.temporary_hp }}</span>
+        <span class="inc-btn"><v-btn
+          class="mx-2"
+          depressed
+          dark
+          height="10px"
+          width="10px"
+          fab
+          color="red darken-4"
+          @click="emitChange('temporary_hp', 'increment')"
+        ><v-icon x-small>mdi-plus</v-icon></v-btn></span>
+        </span></span>
       </td>
       <td class="border"><b>Death Saves</b><br>
         <p class="mini-header">Successes</p>
@@ -77,9 +108,9 @@ export default {
     resetSession() {
       this.$emit('reset-session')
     },
-    emitChange(whichWay) {
-      let newValue = whichWay == "increment" ? parseInt(this.session.hp) + 1 : parseInt(this.session.hp) - 1;
-      this.$emit('update-hp', [['session', 'hp'], newValue]);
+    emitChange(category, whichWay) {
+      let newValue = whichWay == "increment" ? parseInt(this.session[category]) + 1 : parseInt(this.session[category]) - 1;
+      this.$emit('update-hp', [['session', category], newValue]);
     },
     getDeathSave(successOrFailure, number) {
       if (this.session.death_saves) {
@@ -109,13 +140,13 @@ export default {
     toggleLimitedFeature(feature, slotNumber) {
       this.$emit('update-limitedfeature', [feature, slotNumber, !this.session.limited_features[feature][slotNumber]])
     },
-  },
-  computed: {
-    hpPercentage: function() {
+    hpPercentage(category) {
       if (this.stats.max_hp) {
-        return parseInt(this.session.hp)/parseInt(this.stats.max_hp)*100
+        return parseInt(this.session[category])/parseInt(this.stats.max_hp)*100
       } else return 0
     },
+  },
+  computed: {
     hpPercentageColor: function() {
       if (this.stats.max_hp) {
         const hpPercentage = parseInt(this.session.hp)/parseInt(this.stats.max_hp)*100;
@@ -181,6 +212,9 @@ td.border {
 #session .current-hp {
   border-bottom: 1px black solid;
   padding: 0px 5px;
+}
+
+#session .temp-hp {
 }
 
 #session .hp {

@@ -16,7 +16,7 @@
         <SavingThrows :savingThrows="savingThrows" :stats="stats" />
         <Skills :stats="stats" :proficiencies="proficiencies.skills" :expertise="proficiencies.expertise" />
         <Session :session="session" :stats="stats" :armor="armor"
-          @update-hp="updateInt"
+          @update-hp="updateHp"
           @update-deathsave="updateDeathSave"
           @update-limitedfeature="updateLimitedFeature"
           @reset-session="resetSession"
@@ -175,7 +175,7 @@ export default {
         }
       }
     },
-    updateInt(val) {
+    updateHp(val) {
       const updateFields = val[0];
       const newVal = val[1].toString();
       this.fullSheet[updateFields[0]][updateFields[1]] = newVal;
@@ -191,6 +191,7 @@ export default {
     },
     resetSession() {
       this.fullSheet.session.hp = this.stats.max_hp;
+      this.fullSheet.session.temporary_hp = 0;
       this.fullSheet.session.death_saves.success["1"] = false;
       this.fullSheet.session.death_saves.success["2"] = false;
       this.fullSheet.session.death_saves.success["3"] = false;

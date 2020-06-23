@@ -252,6 +252,7 @@
   },
   "session": {
     "hp": "10",
+    "temporary_hp": "10",
     "death_saves": {
       "success": {
         "1": false,
