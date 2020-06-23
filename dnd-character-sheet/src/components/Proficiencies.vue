@@ -3,15 +3,16 @@
 <h5>Proficiencies</h5>
 <div id="proficiencies-container">
 <p class="armor proficiency-item"><i>Armor:</i>
-  <span class="proficiency" :class="{ proficient: getProficiency('armor', 'light') }">Light</span>
-  <span class="proficiency" :class="{ proficient: getProficiency('armor', 'medium') }">Medium</span>
-  <span class="proficiency" :class="{ proficient: getProficiency('armor', 'heavy') }">Heavy</span>
-  <span class="proficiency" :class="{ proficient: getProficiency('armor', 'shields') }">Shields</span>
+  <span class="proficiency" v-if="getProficiency('armor', 'light')">Light</span>
+  <span class="proficiency" v-if="getProficiency('armor', 'medium') ">Medium</span>
+  <span class="proficiency" v-if="getProficiency('armor', 'heavy')">Heavy</span>
+  <span class="proficiency" v-if="getProficiency('armor', 'shields')">Shields</span>
+  <span class="proficiency" v-if="!checkAllProficiencies('armor')">None</span>
 </p>
 
 <p class="weapons proficiency-item"><i>Weapons:</i>
-<span class="proficiency" :class="{ proficient: getProficiency('weapons', 'simple') }">Simple</span>
-<span class="proficiency" :class="{ proficient: getProficiency('weapons', 'martial') }">Martial</span>
+<span class="proficiency" :class="{ proficient: getProficiency('weapons', 'simple') }" v-if="getProficiency('weapons', 'simple')">Simple</span>
+<span class="proficiency" :class="{ proficient: getProficiency('weapons', 'martial') }" v-if="getProficiency('weapons', 'martial')">Martial</span>
 <span class="proficiency weapons-other" v-if="otherWeaponsLength">
   <span
     v-for="weapon in proficiencies.weapons.other"
@@ -35,6 +36,7 @@
   :key="tool"
   class="proficiency proficient"
 >{{ tool }}</span>
+<span class="proficiency" v-if="!checkAllProficiencies('tools')">None</span>
 </p>
 </div>
 </div>
@@ -58,6 +60,21 @@ export default {
       if (this.proficiencies[object]) {
         return this.proficiencies[object][item]
       } else return ""
+    },
+    checkAllProficiencies(category) {
+      if (this.proficiencies[category]) {
+        if (Array.isArray(this.proficiencies[category])) {
+          if (this.proficiencies[category].length > 0) return true
+          else return false
+        } else {
+          let prof = false;
+          const proficiencyItems = Object.keys(this.proficiencies[category]);
+          for (let p in proficiencyItems) {
+            if (this.proficiencies[category][proficiencyItems[p]]) prof = true;
+          }
+          return prof
+        }
+      }
     }
   }
 }
@@ -102,9 +119,8 @@ export default {
 }
 
 .proficient {
-  font-weight: bold;
+  font-weight: medium;
   color: darkred;
-  border: 1px darkred dotted;
   padding: 2px;
 }
 </style>
