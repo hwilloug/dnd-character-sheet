@@ -237,7 +237,7 @@
     "height": "3 ft. 1 in.",
     "weight": "40 lb",
     "alignment": "Chaotic Good",
-    "faith": "",
+    "faith": "Unknown",
     "hair": "Mossy Green",
     "eyes": "Aquamarine",
     "skin": "Brown",
@@ -247,8 +247,8 @@
     "flaws": "There's no room for caution in a life lived to the fullest.",
     "racial_traits": "",
     "character_history": "I grew up in the forests of \"_____\"\n\nI have a good relationship with my family",
-    "enemies": "",
-    "allies_organizations": ""
+    "enemies": [],
+    "allies_organizations": []
   },
   "session": {
     "hp": "10",

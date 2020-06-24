@@ -13,20 +13,43 @@
     <span><p><b>Skin</b></p><p>{{ otherInfo['skin'] }}</p></span>
   </div>
   <div class="mid-section">
+    <div class="right-section">
+      Character image?<br>
+      Racial Traits?
+    </div>
+    <div class="middle-section">
+      <div class="enemies-allies">
+        <div class="enemies">
+          <i>Enemies</i>
+          <ul>
+            <li v-for="enemy in otherInfo.enemies" :key="enemy">{{ enemy }}</li>
+          </ul>
+          <span v-if="otherInfo.enemies.length === 0">None</span>
+        </div>
+        <div class="allies">
+          <i>Allies and Organizations</i>
+          <ul>
+            <li v-for="ally in otherInfo.allies_organizations" :key="ally">{{ ally }}</li>
+          </ul>
+          <span v-if="otherInfo.allies_organizations.length === 0">None</span>
+        </div>
+      </div>
+      <div class="history">
+        <b>Character History</b>
+        <textarea
+          class="character-history"
+          v-model="otherInfo.character_history"
+          @keyup="updateCharacterHistory()"
+        ></textarea>
+      </div>
+    </div>
     <div class="personality">
       <span><p><b>Alignment</b></p><p>{{ otherInfo['alignment'] }}</p></span>
+      <span><p><b>Faith</b></p><p>{{ otherInfo['faith'] }}</p></span>
       <span><p><b>Personality Traits</b></p><p>{{ otherInfo['personality_traits'] }}</p></span>
       <span><p><b>Ideals</b></p><p>{{ otherInfo['ideals'] }}</p></span>
       <span><p><b>Bonds</b></p><p>{{ otherInfo['bonds'] }}</p></span>
       <span><p><b>Flaws</b></p><p>{{ otherInfo['flaws'] }}</p></span>
-    </div>
-    <div class="history">
-      Character History
-      <textarea
-        class="character-history"
-        v-model="otherInfo.character_history"
-        @keyup="updateCharacterHistory()"
-      ></textarea>
     </div>
   </div>
 </div>
@@ -103,13 +126,31 @@ export default {
 
 .personality {
   text-align: center;
+  flex: 0 0 30%;
+  margin: 10px;
+}
+
+.middle-section {
+  flex: 0 0 40%;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.right-section {
+  flex: 1;
   background-color: white;
-  flex: 0 0 50%;
+  border: 1px solid black;
   margin: 10px;
 }
 
 .personality span {
+  display: inline-block;
   margin: 4px;
+  background-image: url('../assets/basic_frame.png');
+  background-size: 100% 100%;
+  padding: 10px;
+  width: 100%;
 }
 
 .personality b {
@@ -121,15 +162,17 @@ export default {
   margin-bottom: 2px !important;
 }
 
-.history {
-  flex: 1;
-  margin: 10px;
-  background-color: white;
-  padding: 10px;
-}
-
 .mid-section {
   display: flex;
+}
+
+.history {
+  flex: 1;
+  margin-top: 10px;
+  background-color: white;
+  padding: 10px;
+  border: 3px inset black;
+  border-radius: 10px;
 }
 
 .character-history {
@@ -139,5 +182,29 @@ export default {
   width: 100%;
   height: 90%;
 }
+
+.enemies-allies {
+  display: flex;
+  flex-direction: row;
+}
+
+.enemies {
+  flex: 0 0 49%;
+  padding: 10px;
+  margin: 0px 10px 10px 0px;
+  background-color: white;
+  border: 4px ridge black;
+  border-radius: 10px;
+}
+
+.allies {
+  flex: 1;
+  padding: 10px;
+  margin: 0px 0px 10px 10px;
+  background-color: white;
+  border: 4px ridge black;
+  border-radius: 10px;
+}
+
 
 </style>
