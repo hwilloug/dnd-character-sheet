@@ -61,6 +61,7 @@
         </div>
       </div>
       <OtherCharacterInfo
+        :characterInfo="characterInfo"
         :otherInfo="otherInfo"
         @update-character-history="updateCharacterHistory"
       />

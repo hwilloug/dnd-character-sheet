@@ -1,21 +1,25 @@
 <template>
 <div id="other-character-info">
   <h2>More Character Information</h2>
-  <div>
   <div class="appearance">
-    <span><p><b>Age</b></p><p>{{ otherInfo['age'] }}</p></span>
-    <span><p><b>Gender</b></p><p>{{ otherInfo['gender'] }}</p></span>
-    <span><p><b>Size</b></p><p>{{ otherInfo['size'] }}</p></span>
-    <span><p><b>Height</b></p><p>{{ otherInfo['height'] }}</p></span>
-    <span><p><b>Weight</b></p><p>{{ otherInfo['weight'] }}</p></span>
-    <span><p><b>Hair</b></p><p>{{ otherInfo['hair'] }}</p></span>
-    <span><p><b>Eyes</b></p><p>{{ otherInfo['eyes'] }}</p></span>
-    <span><p><b>Skin</b></p><p>{{ otherInfo['skin'] }}</p></span>
+    <span><p><b>Age</b></p><p>{{ otherInfo.age }}</p></span>
+    <span><p><b>Gender</b></p><p>{{ otherInfo.gender }}</p></span>
+    <span><p><b>Size</b></p><p>{{ otherInfo.size }}</p></span>
+    <span><p><b>Height</b></p><p>{{ otherInfo.height }}</p></span>
+    <span><p><b>Weight</b></p><p>{{ otherInfo.weight }}</p></span>
+    <span><p><b>Hair</b></p><p>{{ otherInfo.hair }}</p></span>
+    <span><p><b>Eyes</b></p><p>{{ otherInfo.eyes }}</p></span>
+    <span><p><b>Skin</b></p><p>{{ otherInfo.skin }}</p></span>
   </div>
   <div class="mid-section">
     <div class="right-section">
-      Character image?<br>
-      Racial Traits?
+      <div :style="getCharacterImage" class="character-image">
+      </div>
+      <div class="race-info">
+        <h3>{{ characterInfo.race }} Information</h3>
+        <p>{{ getRaceInfo.description }}</p>
+        <p class="more-info"><a :href="getRaceInfo.more_info" target="_blank">More Info</a></p>
+      </div>
     </div>
     <div class="middle-section">
       <div class="enemies-allies">
@@ -47,24 +51,41 @@
       <span><p><b>Alignment</b></p><p>{{ otherInfo['alignment'] }}</p></span>
       <span><p><b>Faith</b></p><p>{{ otherInfo['faith'] }}</p></span>
       <span><p><b>Personality Traits</b></p><p>{{ otherInfo['personality_traits'] }}</p></span>
-      <span><p><b>Ideals</b></p><p>{{ otherInfo['ideals'] }}</p></span>
-      <span><p><b>Bonds</b></p><p>{{ otherInfo['bonds'] }}</p></span>
-      <span><p><b>Flaws</b></p><p>{{ otherInfo['flaws'] }}</p></span>
+      <span><p><b>Ideals</b></p><p>{{ otherInfo.ideals }}</p></span>
+      <span><p><b>Bonds</b></p><p>{{ otherInfo.bonds }}</p></span>
+      <span><p><b>Flaws</b></p><p>{{ otherInfo.flaws }}</p></span>
     </div>
   </div>
-</div>
 </div>
 </template>
 
 <script>
+import Races from './json/races.json'
+
 export default {
   name: "OtherCharacterInfo",
-  props: ["otherInfo"],
+  props: ["characterInfo", "otherInfo"],
   computed: {
-    getOtherInfo: function() {
+    getOtherInfo() {
       if (this.otherInfo) {
-        return Object.keys(this.otherInfo)
+        return Object.keys(this.otherInfo);
       } else return []
+    },
+    getRaceInfo() {
+      if (this.characterInfo) {
+        return Races[this.characterInfo.race]
+      } else return ""
+    },
+    getCharacterImage() {
+      if (this.otherInfo.image) {
+        //const imgPath = `../assets/${this.otherInfo.image}`;
+        const image = require(`../assets/${this.otherInfo.image}`);
+        return {
+          "background-image": `url(${image})`,
+          "background-size": "auto 100%",
+          "background-position": "center"
+        };
+      } else return ""
     }
   },
   methods: {
@@ -131,17 +152,37 @@ export default {
 }
 
 .middle-section {
-  flex: 0 0 40%;
+  flex: 1;
   margin: 10px;
   display: flex;
   flex-direction: column;
 }
 
 .right-section {
-  flex: 1;
-  background-color: white;
-  border: 1px solid black;
+  flex: 0 0 25%;
   margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.race-info {
+  padding: 20px;
+  background-image: url('../assets/text_frame_5.png');
+  background-size: 100% 100%;
+  flex-shrink: 0;
+}
+
+.race-info h3 {
+  text-align: center;
+  padding: 5px;
+}
+
+.race-info .more-info {
+  text-align: center;
+}
+
+.character-image {
+  height: 15rem;
 }
 
 .personality span {
@@ -164,6 +205,7 @@ export default {
 
 .mid-section {
   display: flex;
+  align-items: stretch;
 }
 
 .history {
@@ -190,21 +232,18 @@ export default {
 
 .enemies {
   flex: 0 0 49%;
-  padding: 10px;
+  padding: 20px;
   margin: 0px 10px 10px 0px;
-  background-color: white;
-  border: 4px ridge black;
-  border-radius: 10px;
+  background-image: url('../assets/text_frame_2.png');
+  background-size: 100% 100%;
 }
 
 .allies {
   flex: 1;
-  padding: 10px;
+  padding: 20px;
   margin: 0px 0px 10px 10px;
-  background-color: white;
-  border: 4px ridge black;
-  border-radius: 10px;
+  background-image: url('../assets/text_frame_2.png');
+  background-size: 100% 100%;
 }
-
 
 </style>

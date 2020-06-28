@@ -8,6 +8,7 @@
     "level": "3",
     "background": "Outlander",
     "race": "Gnome",
+    "subrace": "Forest Gnome",
     "experience": "1800"
   },
   "stats": {
@@ -248,7 +249,8 @@
     "racial_traits": "",
     "character_history": "I grew up in the forests of \"_____\"\n\nI have a good relationship with my family",
     "enemies": [],
-    "allies_organizations": []
+    "allies_organizations": [],
+    "image": "forest_gnome.png"
   },
   "session": {
     "hp": "10",
