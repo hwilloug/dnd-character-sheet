@@ -65,6 +65,10 @@
         :otherInfo="otherInfo"
         @update-character-history="updateCharacterHistory"
       />
+      <SessionNotes
+        :sessionNotes="sessionNotes"
+        @update-session-notes="updateSessionNotes"
+      />
       <Footer />
     </v-content>
   </v-app>
@@ -85,6 +89,7 @@ import Weapons from './components/Weapons';
 import Items from './components/Items';
 import Features from './components/Features';
 import OtherCharacterInfo from './components/OtherCharacterInfo';
+import SessionNotes from './components/SessionNotes';
 import Footer from './components/Footer';
 // API
 import api from '@/services/CharacterSheet';
@@ -93,7 +98,6 @@ import LevelUpInfo from '@/components/json/levelUpInfo.json'
 
 export default {
   name: 'App',
-
   components: {
     CharacterInfo,
     Stats,
@@ -108,6 +112,7 @@ export default {
     Items,
     Features,
     OtherCharacterInfo,
+    SessionNotes,
     Footer
   },
 
@@ -125,11 +130,13 @@ export default {
     otherInfo: {},
     session: {},
     notes: {},
+    sessionNotes: {},
     loadingIcon: "mdi-check-bold"
   }),
   created() {this.loadCharacterSheet()},
   methods: {
-    // Update these to be more specific
+    // Update these to be more general
+    // THIS IS BAD
     loadCharacterSheet() {
       api.getCharacterSheet(this.characterName).then(resp => {
         this.fullSheet = resp.data;
@@ -145,6 +152,7 @@ export default {
         this.otherInfo = resp.data.other_character_info;
         this.notes = resp.data.notes;
         this.session = resp.data.session;
+        this.sessionNotes = resp.data.session_notes;
       })
     },
     updateCharacterSheet() {
@@ -241,6 +249,10 @@ export default {
     updateCharacterHistory(val) {
       this.fullSheet.other_character_info.character_history = val;
       this.updateCharacterSheet();
+    },
+    updateSessionNotes(val) {
+      this.fullSheet.session_notes = val;
+      this.updateCharacterSheet();
     }
   }
 };
@@ -266,7 +278,7 @@ export default {
 
 #third-container {
   display: flex;
-  margin: 10px 10%;
+  margin: 10px 50px;
 }
 
 #attacks-container {
@@ -325,7 +337,7 @@ export default {
 }
 
 #left-third {
-  flex: 0 0 50%;
+  flex: 0 0 20%;
   padding: 10px;
 }
 

@@ -285,5 +285,22 @@
       }
     }
   },
-  "notes": "Korintha is evil, and we need to keep away from Cranston.\n\nRight now we are working with \"___\" to figure out what to do about Korintha being evil."
+  "notes": "Korintha is evil, and we need to keep away from Cranston.\n\nRight now we are working with \"___\" to figure out what to do about Korintha being evil.\n\n",
+  "session_notes": [
+    {
+      "date": "2020-06-08",
+      "title": "Looking around Atimetros",
+      "notes": "I bought a diamond from the diamond store"
+    },
+    {
+      "date": "2020-06-02",
+      "title": "Super fun sesh",
+      "notes": "Insert session notes here!"
+    },
+    {
+      "date": "2020-06-29",
+      "title": "aasdflk Session",
+      "notes": "all this cool stuff happened"
+    }
+  ]
 }
