@@ -16,7 +16,7 @@
         <SavingThrows :savingThrows="savingThrows" :stats="stats" />
         <Skills :stats="stats" :proficiencies="proficiencies.skills" :expertise="proficiencies.expertise" />
         <Session :session="session" :stats="stats" :armor="armor"
-          @update-hp="updateHp"
+          @update-sheet="updateSheetField"
           @update-deathsave="updateDeathSave"
           @update-limitedfeature="updateLimitedFeature"
           @reset-session="resetSession"
@@ -27,6 +27,7 @@
           :stats="stats"
           :proficiencies="proficiencies.armor"
         />
+        <Inspiration :stats="stats" @update-sheet="updateSheetField"/>
       </div>
       <div id="second-container">
         <div id="attacks-container">
@@ -36,7 +37,7 @@
             v-if="checkLength(attacks.weapons)"
             :weapons="attacks.weapons"
             :ammunition="attacks.ammunition"
-            @update-ammo="updateAmmo"
+            @update-sheet="updateSheetField"
           />
         </div>
         <div id="items-container">
@@ -90,6 +91,7 @@ import Items from './components/Items';
 import Features from './components/Features';
 import OtherCharacterInfo from './components/OtherCharacterInfo';
 import SessionNotes from './components/SessionNotes';
+import Inspiration from './components/Inspiration';
 import Footer from './components/Footer';
 // API
 import api from '@/services/CharacterSheet';
@@ -106,6 +108,7 @@ export default {
     Proficiencies,
     Session,
     Armor,
+    Inspiration,
     Cantrips,
     Spells,
     Weapons,
@@ -253,6 +256,26 @@ export default {
     updateSessionNotes(val) {
       this.fullSheet.session_notes = val;
       this.updateCharacterSheet();
+    },
+    updateSheetField(val) {
+      const fieldArray = val[0];
+      const newValue = val[1];
+
+      switch (fieldArray.length) {
+        case 1:
+          this.fullSheet[fieldArray[0]] = newValue;
+          break;
+        case 2:
+          this.fullSheet[fieldArray[0]][fieldArray[1]] = newValue;
+          break;
+        case 3:
+          this.fullSheet[fieldArray[0]][fieldArray[1]][fieldArray[2]] = newValue;
+          break;
+        case 4:
+          this.fullSheet[fieldArray[0]][fieldArray[1]][fieldArray[3]][fieldArray[4]] = newValue;
+          break;
+      }
+      this.updateCharacterSheet();
     }
   }
 };
@@ -313,6 +336,10 @@ export default {
 }
 
 #armor {
+  margin: 10px;
+}
+
+#inspiration {
   margin: 10px;
 }
 

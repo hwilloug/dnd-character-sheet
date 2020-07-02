@@ -4,28 +4,18 @@
     <tr>
       <td colspan="2" class="hp-cell-td">
         <b>HP</b><span class="hp-cell"><span class="current-hp-row">
-        <span class="inc-btn" v-if="parseInt(session.hp) > 0"><v-btn
-          class="mx-2"
-          depressed
-          dark
-          height="10px"
-          width="10px"
-          fab
-          color="red darken-4"
-          @click="emitChange('hp', 'decrement')"
-        ><v-icon x-small>mdi-minus</v-icon></v-btn></span>
+        <IncreaseButton
+          :whichWay="'decrease'"
+          @incremental-change="emitChange('decrease', 'hp')"
+          v-if="parseInt(session.hp) > 0"
+          style="margin-top: 5px;" />
         <span v-else><v-icon height="10px" width="10px" style="padding-right: 2px;" fab>mdi-blank</v-icon></span>
         <span class="hp current-hp">{{ session.hp }}</span>
-        <span class="inc-btn" v-if="parseInt(session.hp) < parseInt(stats.max_hp)"><v-btn
-          class="mx-2"
-          depressed
-          dark
-          height="10px"
-          width="10px"
-          fab
-          color="red darken-4"
-          @click="emitChange('hp', 'increment')"
-        ><v-icon x-small>mdi-plus</v-icon></v-btn></span>
+        <IncreaseButton
+          :whichWay="'increase'"
+          @incremental-change="emitChange('increase', 'hp')"
+          v-if="parseInt(session.hp) < parseInt(stats.max_hp)"
+          style="margin-top: 5px;"  />
         <span v-else><v-icon height="10px" width="10px" style="padding-left: 2px;" fab>mdi-blank</v-icon></span></span>
         <span class="hp">{{ stats.max_hp }}</span></span>
         <span class="hp-bar"><v-progress-linear
@@ -36,33 +26,20 @@
         <span class="hp-bar"><v-progress-linear
           striped
           height="10px"
-          color="purple"
+          color="purple lighten-3"
           background-opacity="0"
           :value="hpPercentage('temporary_hp')"
         ></v-progress-linear></span>
         <span><b>Temporary</b><span class="temporary-hp-row">
-        <span class="inc-btn" v-if="parseInt(session.temporary_hp) > 0"><v-btn
-          class="mx-2"
-          depressed
-          dark
-          height="10px"
-          width="10px"
-          fab
-          color="red darken-4"
-          @click="emitChange('temporary_hp', 'decrement')"
-        ><v-icon x-small>mdi-minus</v-icon></v-btn></span>
+        <IncreaseButton
+            :whichWay="'decrease'"
+            @incremental-change="emitChange('decrease', 'temporary_hp')"
+            v-if="parseInt(session.temporary_hp) > 0"/>
         <span v-else><v-icon height="10px" width="10px" style="padding-right: 2px;" fab>mdi-blank</v-icon></span>
         <span class="hp temp-hp">{{ session.temporary_hp }}</span>
-        <span class="inc-btn"><v-btn
-          class="mx-2"
-          depressed
-          dark
-          height="10px"
-          width="10px"
-          fab
-          color="red darken-4"
-          @click="emitChange('temporary_hp', 'increment')"
-        ><v-icon x-small>mdi-plus</v-icon></v-btn></span>
+        <IncreaseButton
+          :whichWay="'increase'"
+          @incremental-change="emitChange('increase', 'temporary_hp')" />
         </span></span>
       </td>
       <td class="border"><b>Death Saves</b><br>
@@ -99,18 +76,22 @@
 
 <script>
 import Methods from './methods.js'
+import IncreaseButton from './subcomponents/IncreaseButton';
 
 export default {
   name: "Session",
   props: ["session", "stats", "armor"],
+  components: {
+    IncreaseButton
+  },
   methods: {
     calculateAC: Methods.calculateAC,
     resetSession() {
       this.$emit('reset-session')
     },
-    emitChange(category, whichWay) {
-      let newValue = whichWay == "increment" ? parseInt(this.session[category]) + 1 : parseInt(this.session[category]) - 1;
-      this.$emit('update-hp', [['session', category], newValue]);
+    emitChange(whichWay, category) {
+      const newValue = Methods.increaseOrDecrease(this.session[category], whichWay)
+      this.$emit('update-sheet', [['session', category], newValue]);
     },
     getDeathSave(successOrFailure, number) {
       if (this.session.death_saves) {
@@ -212,6 +193,10 @@ td.border {
 #session .current-hp {
   border-bottom: 1px black solid;
   padding: 0px 5px;
+}
+
+#session .inc-button {
+
 }
 
 #session .temp-hp {

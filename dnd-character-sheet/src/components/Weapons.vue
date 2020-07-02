@@ -4,27 +4,9 @@
   <div v-if="getAmmunitionTypes.length" id="allAmmo">
     <div v-for="ammo in getAmmunitionTypes" :key="ammo" class="ammo">
       {{ ammo }}
-      <v-btn
-        class="mx-2"
-        depressed
-        dark
-        height="10px"
-        width="10px"
-        fab
-        color="red darken-4"
-        @click="emitChange(ammo, 'decrement')"
-      ><v-icon x-small class="increment-button">mdi-minus</v-icon></v-btn>
+      <IncreaseButton :whichWay="'decrease'" @incremental-change="emitChange('decrease', ammo)" />
       <span class="ammo-amount">{{ ammunition[ammo] }}</span>
-      <v-btn
-        class="mx-2"
-        depressed
-        dark
-        height="10px"
-        width="10px"
-        fab
-        color="red darken-4"
-        @click="emitChange(ammo, 'increment')"
-      ><v-icon x-small class="increment-button">mdi-plus</v-icon></v-btn>
+      <IncreaseButton :whichWay="'increase'" @incremental-change="emitChange('increase', ammo)" />
       <span v-for="i in getAmmunitionAmount(ammo)" :key="i">
         <v-icon class="bullet">mdi-bullet</v-icon>
       </span>
@@ -58,11 +40,16 @@
 
 <script>
 import Weapons from './json/weapons.json'
+import Methods from './methods.js'
+import IncreaseButton from './subcomponents/IncreaseButton'
 
 export default {
   // Need to check proficiencies
   name: "Weapons",
   props: ["weapons", "ammunition"],
+  components: {
+    IncreaseButton
+  },
   methods: {
     getWeaponInfo(weapon, item) {
       if (weapon) {
@@ -80,10 +67,9 @@ export default {
         return parseInt(this.ammunition[ammunition])
       } else return 0
     },
-    emitChange(ammunition, whichWay) {
-      let newValue = whichWay == "increment" ? parseInt(this.ammunition[ammunition]) + 1 : parseInt(this.ammunition[ammunition]) - 1;
-      newValue = newValue < 0 ? 0 : newValue;
-      this.$emit('update-ammo', [ammunition, newValue.toString()]);
+    emitChange(whichWay, ammunition) {
+      const newValue = Methods.increaseOrDecrease(this.ammunition[ammunition], whichWay)
+      this.$emit('update-sheet', [['attacks', 'ammunition', ammunition], newValue]);
     },
   },
   computed: {

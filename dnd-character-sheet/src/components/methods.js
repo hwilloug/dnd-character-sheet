@@ -33,5 +33,9 @@ export default {
     if (text) {
       return text.split("<br>")
     } else return [""]
+  },
+  increaseOrDecrease(valueStr, whichWay) {
+    let newValue = whichWay == "increase" ? parseInt(valueStr) + 1 : parseInt(valueStr) - 1;
+    return newValue < 0 ? "0" : newValue.toString();
   }
 }
