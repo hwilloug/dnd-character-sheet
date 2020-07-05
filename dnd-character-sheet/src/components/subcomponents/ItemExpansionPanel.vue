@@ -1,8 +1,8 @@
 <template>
   <div>
   <v-expansion-panel
-    v-for="item in getItems"
-    :key="item"
+    v-for="(value, item, idx) in items.adventuring_gear"
+    :key="idx"
   >
     <v-expansion-panel-header
       v-if="checkIfFavorite(item) === favorite"
@@ -26,6 +26,33 @@
       </div>
       Notes:<br>
       <textarea name="note" v-model="items.adventuring_gear[item]['notes']" @keyup="updateNotes(item)"></textarea>
+      <button @click.stop="dialog = true">
+        <v-icon color="black">mdi-calendar-remove</v-icon>Delete Item
+      </button>
+      <v-dialog
+         v-model="dialog"
+         max-width="290"
+       >
+         <v-card>
+           <v-card-title class="headline">Delete Item?</v-card-title>
+           <v-card-text>
+             Are you sure you want to delete this item?
+           </v-card-text>
+           <v-card-actions>
+             <v-spacer></v-spacer>
+             <v-btn
+               color="green darken-1"
+               text
+               @click="dialog = false"
+             >No</v-btn>
+             <v-btn
+               color="red darken-1"
+               text
+               @click="deleteItem(item)"
+             >Yes</v-btn>
+           </v-card-actions>
+         </v-card>
+       </v-dialog>
     </v-expansion-panel-content>
   </v-expansion-panel>
 </div>
@@ -38,9 +65,15 @@ import Methods from '../methods.js'
 export default {
   name: "ItemExpansionPanel",
   props: ["items", "favorite", "headerColor"],
+  data() { return {
+    dialog: false
+  }},
   methods: {
+    updateSheet(route, val) {
+      this.$emit('update-sheet', [route, val])
+    },
     updateNotes(item) {
-      this.$emit('update-notes-inner', [item, this.items.adventuring_gear[item].notes])
+      this.updateSheet(['items', 'adventuring_gear', item, "notes"], this.items.adventuring_gear[item].notes);
     },
     getItemInfo(item) {
       if (this.items.adventuring_gear) {
@@ -54,9 +87,10 @@ export default {
       } else return false
     },
     toggleFavorite(item) {
-      if (this.items.adventuring_gear){
-        this.$emit('toggle-favorite', [item, !this.items.adventuring_gear[item]['favorite']])
-      }
+      this.updateSheet(['items', 'adventuring_gear', item, 'favorite'], !this.items.adventuring_gear[item]['favorite']);
+    },
+    deleteItem(item) {
+      this.$emit('remove-item', item)
     }
   },
   computed: {

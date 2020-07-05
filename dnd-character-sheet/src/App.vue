@@ -42,9 +42,7 @@
         </div>
         <div id="items-container">
           <Items :items="items"
-            @update-notes="updateItemNotes"
-            @toggle-favorite="toggleFavorite"
-            @update-coin-amount="updateCoinAmount"
+            @update-sheet="updateSheetField"
           />
         </div>
       </div>
@@ -143,7 +141,6 @@ export default {
     loadCharacterSheet() {
       api.getCharacterSheet(this.characterName).then(resp => {
         this.fullSheet = resp.data;
-        this.updateCharacterSheet(this.fullSheet);
         this.characterInfo = resp.data.character_info;
         this.stats = resp.data.stats;
         this.proficiencies = resp.data.proficiencies;
@@ -175,7 +172,6 @@ export default {
     },
     updateLevelInfo(exp) {
       // Need to fix for level 20
-      console.log("Updating level info...")
       this.loadingIcon = "mdi-loading mdi-spin";
       const levelUpExp = Object.keys(LevelUpInfo);
       for (let level in levelUpExp) {
@@ -189,12 +185,6 @@ export default {
           break;
         }
       }
-    },
-    updateHp(val) {
-      const updateFields = val[0];
-      const newVal = val[1].toString();
-      this.fullSheet[updateFields[0]][updateFields[1]] = newVal;
-      this.updateCharacterSheet();
     },
     updateDeathSave(val) {
       this.fullSheet.session.death_saves[val[0]][val[1]] = val[2];
@@ -222,24 +212,10 @@ export default {
       }
       this.updateCharacterSheet();
     },
-    updateItemNotes(val) {
-      this.fullSheet.items.adventuring_gear[val[0]]['notes'] = val[1];
-      this.updateCharacterSheet();
-    },
     checkLength(field) {
       if (field) {
         return field.length > 0
       } else return false
-    },
-    toggleFavorite(val) {
-      if (this.fullSheet.items.adventuring_gear) {
-        this.fullSheet.items.adventuring_gear[val[0]]['favorite'] = val[1]
-        this.updateCharacterSheet();
-      }
-    },
-    updateAmmo(val) {
-      this.fullSheet.attacks.ammunition[val[0]] = val[1];
-      this.updateCharacterSheet();
     },
     updateCoinAmount(val) {
       this.fullSheet.items.money[val[0]] = val[1];
@@ -272,7 +248,7 @@ export default {
           this.fullSheet[fieldArray[0]][fieldArray[1]][fieldArray[2]] = newValue;
           break;
         case 4:
-          this.fullSheet[fieldArray[0]][fieldArray[1]][fieldArray[3]][fieldArray[4]] = newValue;
+          this.fullSheet[fieldArray[0]][fieldArray[1]][fieldArray[2]][fieldArray[3]] = newValue;
           break;
       }
       this.updateCharacterSheet();

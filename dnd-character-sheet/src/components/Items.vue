@@ -19,17 +19,30 @@ Items<template>
       :items="items"
       :favorite="true"
       :headerColor="'red darken-4 white--text'"
-      @update-notes-inner="updateNotes"
-      @toggle-favorite="toggleFavorite"
+      :key="`${rerender}-1`"
+      @update-sheet="updateSheet"
+      @remove-item="removeItem"
     ></ItemExpansionPanel>
     <ItemExpansionPanel
       :items="items"
       :favorite="false"
       :headerColor="'white'"
-      @update-notes-inner="updateNotes"
-      @toggle-favorite="toggleFavorite"
+      :key="`${rerender}-2`"
+      @update-sheet="updateSheet"
+      @remove-item="removeItem"
     ></ItemExpansionPanel>
   </v-expansion-panels>
+  <hr>
+  <div class="new-item-button" @click="toggleAddItem">
+    <button><v-icon color="black">{{ addItemButton.logo }}</v-icon>{{ addItemButton.text }}</button>
+  </div>
+  <div v-if="addItem" class="new-item">
+    <label for="item-name">Item Name</label><input v-model="newItem.name" id="item-name"/>
+    <label for="item-favorite">Favorite</label><input v-model="newItem.favorite" id="item-favorite" type="checkbox"/>
+    <label for="item-number">Number</label><input v-model="newItem.number" id="item-number" type="number" size="3" /><br>
+    <label for="item-notes">Notes</label><textarea v-model="newItem.notes" id="item-notes"/><br>
+    <button @click="submitItem">Add Item</button>
+  </div>
 </div>
 </template>
 
@@ -42,15 +55,56 @@ export default {
   components: {
     ItemExpansionPanel
   },
-  methods: {
-    updateNotes(val) {
-      this.$emit('update-notes', val)
+  data() {return {
+    newItem: {
+      name: "",
+      favorite: false,
+      notes: "",
+      number: ""
     },
-    toggleFavorite(val) {
-      this.$emit('toggle-favorite', val)
+    addItem: false,
+    addItemButton: {
+      logo: 'mdi-pen-plus',
+      text: 'Add Item'
+    },
+    rerender: 1
+  }},
+  methods: {
+    updateSheet(val) {
+      this.$emit('update-sheet', val);
     },
     updateCoinAmount(coin) {
-      this.$emit('update-coin-amount', [coin, this.items.money[coin]])
+      this.updateSheet([['items', 'money', coin], this.items.money[coin]])
+    },
+    toggleAddItem() {
+      this.addItem = !this.addItem;
+      this.addItemButton = this.addItem == false ? {logo: 'mdi-pen-plus', text: 'Add Item'} : {logo: 'mdi-format-color-marker-cancel', text: 'Cancel'};
+    },
+    submitItem() {
+      const newItemInfo = {
+        "favorite": this.newItem.favorite,
+        "notes": this.newItem.notes,
+        "number": this.newItem.number
+      };
+
+      this.items.adventuring_gear[this.newItem.name] = newItemInfo;
+
+      this.updateSheet(
+        [['items', 'adventuring_gear'],
+        this.items.adventuring_gear]
+      )
+
+      this.rerender += 1;
+
+      this.newItem.name = "";
+      this.newItem.favorite = false;
+      this.newItem.notes = "";
+      this.newItem.number= "";
+    },
+    removeItem(itemName) {
+      delete this.items.adventuring_gear[itemName]
+      this.updateSheet([['items', 'adventuring_gear'], this.items.adventuring_gear])
+      this.rerender += 1;
     }
   },
   computed: {
@@ -148,6 +202,21 @@ export default {
 .pp {
   border-color: gainsboro;
   color: gainsboro;
+}
+
+.new-item-button {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.new-item-button:hover {
+  cursor: pointer;
+}
+
+#items .new-item input, .new-item textarea {
+  border: 1px ridge lightgrey;
+  border-radius: 2px;
+  margin: 5px;
 }
 
 </style>
