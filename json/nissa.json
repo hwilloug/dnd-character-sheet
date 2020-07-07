@@ -142,58 +142,72 @@
     "adventuring_gear": {
       "Bag of Holding": {
         "notes": "Received from Korintha after we beat the wisp apparitions.\n",
-        "favorite": false
+        "favorite": false,
+        "number": "1"
       },
       "Decanter of Endless Water": {
         "notes": "Received from Korintha after we beat the wisp apparitions.",
-        "favorite": true
+        "favorite": true,
+        "number": "1"
       },
       "Programmable Matter": {
         "notes": "A blob that you can make into stuff.. eventually.\nReceived from Pop before setting out from Stonehearth.\nUse count: 5\n\nCan use minor conjuration when I get proficiency with this use 10",
-        "favorite": true
+        "favorite": true,
+        "number": "1"
       },
       "Dragon Scale": {
         "notes": "Size: Baby\nFound in the Baby Poison Dragon's cave.",
-        "favorite": false
+        "favorite": false,
+        "number": "1"
       },
       "Hunting Trap": {
         "notes": "",
-        "favorite": false
+        "favorite": false,
+        "number": "1"
       },
       "Animal Trophy": {
         "favorite": false,
-        "notes": ""
+        "notes": "",
+        "number": "1"
       },
       "Traveler's Clothes": {
-        "favorite": false
+        "favorite": false,
+        "number": "1"
       },
       "Disguise Kit": {
         "favorite": true,
-        "notes": "Maybe I'll turn myself caramel colored..."
+        "notes": "Maybe I'll turn myself caramel colored...",
+        "number": "1"
       },
       "Waterskin": {
-        "favorite": false
+        "favorite": false,
+        "number": "1"
       },
       "Rations": {
-        "notes": "10 days' worth",
-        "favorite": false
+        "notes": "",
+        "favorite": false,
+        "number": "10"
       },
       "Torches": {
-        "number": "10",
+        "number": "1",
         "favorite": false
       },
       "Tinderbox": {
-        "favorite": false
+        "favorite": false,
+        "number": "1"
       },
       "Mess Kit": {
-        "favorite": false
+        "favorite": false,
+        "number": "1"
       },
       "Bedroll": {
-        "favorite": false
+        "favorite": false,
+        "number": "1"
       },
       "Backpack": {
         "favorite": false,
-        "notes": ""
+        "notes": "",
+        "number": "1"
       },
       "Ruby": {
         "number": "2",
@@ -201,7 +215,8 @@
       },
       "Diamond": {
         "notes": "Bought from a sketchy guy in the Druid part of Artimetros\nWorth 50g",
-        "favorite": false
+        "favorite": false,
+        "number": "1"
       },
       "Jolly Beans": {
         "notes": "These do some crazy random stuff if taken... Could be useful for later",

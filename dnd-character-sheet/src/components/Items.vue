@@ -105,6 +105,9 @@ export default {
       delete this.items.adventuring_gear[itemName]
       this.updateSheet([['items', 'adventuring_gear'], this.items.adventuring_gear])
       this.rerender += 1;
+    },
+    updateItemAmount(val) {
+      this.$emit('update-sheet', [['items', 'adventuring_gear'], val[0], 'number'], val[1]);
     }
   },
   computed: {
@@ -217,6 +220,10 @@ export default {
   border: 1px ridge lightgrey;
   border-radius: 2px;
   margin: 5px;
+}
+
+button.delete-item {
+  margin-left: 75%;
 }
 
 </style>
