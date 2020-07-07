@@ -2,7 +2,7 @@
 <div id="weapons">
   <h2>Weapons</h2>
   <div v-if="getAmmunitionTypes.length" id="allAmmo">
-    <div v-for="ammo in getAmmunitionTypes" :key="ammo" class="ammo">
+    <div v-for="(value, ammo, idx) in ammunition" :key="idx" class="ammo">
       {{ ammo }}
       <IncreaseButton :whichWay="'decrease'" @incremental-change="emitChange('decrease', ammo)" />
       <span class="ammo-amount">{{ ammunition[ammo] }}</span>
@@ -17,8 +17,8 @@
     :hover=true
   >
     <v-expansion-panel
-      v-for="weapon in weapons"
-      :key="weapon"
+      v-for="(weapon, idx) in weapons"
+      :key="idx"
     >
       <v-expansion-panel-header
         class='panel-header'
