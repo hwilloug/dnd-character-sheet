@@ -1,2 +1,3 @@
-# dnd-character-sheet
-A web-app for your character on DND
+An interactable web-app for your DND character sheet.
+
+Currently under construction :)
