@@ -189,7 +189,7 @@
         "number": "10"
       },
       "Torches": {
-        "number": "1",
+        "number": "10",
         "favorite": false
       },
       "Tinderbox": {
@@ -222,6 +222,11 @@
         "notes": "These do some crazy random stuff if taken... Could be useful for later",
         "favorite": false,
         "number": "3"
+      },
+      "Scrying Crystal": {
+        "favorite": true,
+        "notes": "The crystal allows the people at the university to see what we are doing at Korintha's.\nEnchanted with powerful divination magic.",
+        "number": "1"
       }
     }
   },
@@ -262,17 +267,18 @@
     "bonds": "I suffer awful visions of a coming disaster and will do anything to prevent it.",
     "flaws": "There's no room for caution in a life lived to the fullest.",
     "racial_traits": "",
-    "character_history": "I grew up in the forests of \"_____\"\n\nI have a good relationship with my family",
+    "character_history": "I grew up in the forests of \"_____\"\n\nI have a good relationship with my family.",
     "enemies": [],
     "allies_organizations": [],
     "image": "forest_gnome.png"
   },
   "session": {
-    "hp": "10",
-    "temporary_hp": "10",
+    "hp": "0",
+    "temporary_hp": 0,
+    "initiative": "4",
     "death_saves": {
       "success": {
-        "1": false,
+        "1": true,
         "2": false,
         "3": false
       },
@@ -289,7 +295,7 @@
         "3": false
       },
       "Spell Lvl 1": {
-        "1": false,
+        "1": true,
         "2": false,
         "3": false,
         "4": false
@@ -300,12 +306,17 @@
       }
     }
   },
-  "notes": "Korintha is evil, and we need to keep away from Cranston.\n\nRight now we are working with \"___\" to figure out what to do about Korintha being evil.\n\n",
+  "notes": "Korintha asked us \n\nKorintha is evil, and we need to keep away from Cranston.\n\nRight now we are working with Philip to figure out what to do about Korintha being evil.\n\n",
   "session_notes": [
     {
       "date": "2020-06-14",
-      "title": "Looking around Atimetros",
-      "notes": "I bought a diamond from the diamond store"
+      "title": "Party Time",
+      "notes": "We went to a Broadway show and Deagle pretended to be part of the orchestra. We went to the cast party afterwards and it was really awkward. Then we went to the afterparty and did some jollybeans and we almost died! Then we went home and passed out lol"
+    },
+    {
+      "date": "2020-07-07",
+      "title": "Korintha's Wrath",
+      "notes": "We wake up in the college.\nTonight is the new moon, and today is the day we are going back to talk to Philip.\n\nKorintha's weaknesses: \n- vanity\n- Fond of powerful magical artifacts\n\nArchmage Claus\n\nWe walked into Korintha's and she made us tell the truth and attacked us.\nKorintha is immune to poison....\n\nKorintha 1-hit KOs both me and Deagle, Soren stuggles for a little bit but soon follows. \n\nWe are surrounded by blackness. I try to take a deep breath but everything feels heavy. I try to pray to Pan and I can barely move my hands together. I try moving my body little by little, and the light begins to overwhelm me. I remember what I look like and I am brought back into conciousness.\n\nThere is white magic dust whisping everywhere around us. I get crazy energized it and run out of the giant hole we are in.\n\nClaus and Philip transport there and are like WTF"
     }
   ]
 }
