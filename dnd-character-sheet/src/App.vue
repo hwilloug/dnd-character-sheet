@@ -28,6 +28,7 @@
           :proficiencies="proficiencies.armor"
         />
         <Inspiration :stats="stats" @update-sheet="updateSheetField"/>
+        <AbilitySaveDc :abilitySaveDc="stats.ability_save_dc" />
       </div>
       <div id="second-container">
         <div id="attacks-container">
@@ -90,6 +91,7 @@ import Features from './components/Features';
 import OtherCharacterInfo from './components/OtherCharacterInfo';
 import SessionNotes from './components/SessionNotes';
 import Inspiration from './components/Inspiration';
+import AbilitySaveDc from './components/AbilitySaveDC';
 import Footer from './components/Footer';
 // API
 import api from '@/services/CharacterSheet';
@@ -107,6 +109,7 @@ export default {
     Session,
     Armor,
     Inspiration,
+    AbilitySaveDc,
     Cantrips,
     Spells,
     Weapons,
@@ -156,6 +159,7 @@ export default {
       })
     },
     updateCharacterSheet() {
+      this.loadingIcon = "mdi-loading mdi-spin";
       if (Object.keys(this.fullSheet).length) {
         api.updateCharacterSheet( this.characterName, this.fullSheet);
         this.loadingIcon = "mdi-check-bold";
@@ -175,7 +179,7 @@ export default {
       this.loadingIcon = "mdi-loading mdi-spin";
       const levelUpExp = Object.keys(LevelUpInfo);
       for (let level in levelUpExp) {
-        if (exp > parseInt(levelUpExp[level])) {
+        if (exp >= parseInt(levelUpExp[level])) {
           continue
         } else {
           const newLevel = LevelUpInfo[levelUpExp[level-1]][0];

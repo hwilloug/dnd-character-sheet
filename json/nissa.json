@@ -5,25 +5,25 @@
     "clan_name": "Nackle",
     "player_name": "Hannah Willoughby",
     "class": "Sorcerer",
-    "level": "3",
+    "level": "4",
     "background": "Outlander",
     "race": "Gnome",
     "subrace": "Forest Gnome",
-    "experience": "1800"
+    "experience": "2700"
   },
   "stats": {
     "strength": "12",
     "dexterity": "14",
-    "constitution": "6",
+    "constitution": "8",
     "intelligence": "15",
     "wisdom": "12",
     "charisma": "16",
-    "max_hp": "10",
+    "max_hp": "13",
     "proficiency_bonus": "+2",
     "armor_class": "14",
     "speed": "25 ft/turn",
-    "inspiration": "2",
-    "ability_save_dc": ""
+    "inspiration": "1",
+    "ability_save_dc": "13"
   },
   "proficiencies": {
     "armor": {
@@ -128,7 +128,8 @@
       "Shield",
       "Chromatic Orb",
       "Suggestion",
-      "Crown of Madness"
+      "Crown of Madness",
+      "Mirror Image"
     ]
   },
   "items": {
@@ -273,12 +274,12 @@
     "image": "forest_gnome.png"
   },
   "session": {
-    "hp": "0",
+    "hp": "13",
     "temporary_hp": 0,
     "initiative": "4",
     "death_saves": {
       "success": {
-        "1": true,
+        "1": false,
         "2": false,
         "3": false
       },
@@ -292,17 +293,19 @@
       "Sorcery Points": {
         "1": false,
         "2": false,
-        "3": false
+        "3": false,
+        "4": false
       },
       "Spell Lvl 1": {
-        "1": true,
+        "1": false,
         "2": false,
         "3": false,
         "4": false
       },
       "Spell Lvl 2": {
-        "1": false,
-        "2": false
+        "1": true,
+        "2": false,
+        "3": false
       }
     }
   },
@@ -317,6 +320,16 @@
       "date": "2020-07-07",
       "title": "Korintha's Wrath",
       "notes": "We wake up in the college.\nTonight is the new moon, and today is the day we are going back to talk to Philip.\n\nKorintha's weaknesses: \n- vanity\n- Fond of powerful magical artifacts\n\nArchmage Claus\n\nWe walked into Korintha's and she made us tell the truth and attacked us.\nKorintha is immune to poison....\n\nKorintha 1-hit KOs both me and Deagle, Soren stuggles for a little bit but soon follows. \n\nWe are surrounded by blackness. I try to take a deep breath but everything feels heavy. I try to pray to Pan and I can barely move my hands together. I try moving my body little by little, and the light begins to overwhelm me. I remember what I look like and I am brought back into conciousness.\n\nThere is white magic dust whisping everywhere around us. I get crazy energized it and run out of the giant hole we are in.\n\nClaus and Philip transport there and are like WTF"
+    },
+    {
+      "date": "2020-7-19",
+      "title": "Swabbing the Decks",
+      "notes": "We were told to go to Appolis, and we picked to get on the boat. We pretended to be with the Boat Inspection Agency.\nWe tried multiple times but eventually the boat just left, and we were stowaways.\nOur good friend, that guy, showed us how to swab the decks.\nWe swabbed and swabbed the decks and got so tired, but we eventually settled down for the night to recover our exhaustion."
+    },
+    {
+      "date": "2020-8-11",
+      "title": "Rat Falafel Soup",
+      "notes": "Reginald P. Featherbottom III's favorite restaurant there is Berkinshark.\nTime to swab the poop decks. \nExhaustion: 1\nI used Suggestion on Reginald, and it works! We ask for him to let us inspect the rations, and he takes us down to the galley.\nEveryone thinks I'm a boy :(\nFrick takes me to the pantry and asks me what's really going on.\nI tell him the truth and we get high with the goblins Frick and Frack.\nDeagle tries really hard to catch a rat to eat. Soren jumps in and obliterates the rat... Deagle scrapes up the rat junk and makes falafel out of it.\n\n"
     }
   ]
 }
