@@ -59,6 +59,12 @@ api.get('/:characterName', (req, res, next) => {
 })
 
 api.put('/:characterName', (req, res, next) => {
+  res.locals.id = req.body._id;
+  delete req.body._id;
+  next();
+})
+
+api.put('/:characterName', (req, res, next) => {
   MongoMethods.updateDocument(
     res.locals.db,
     collection,
