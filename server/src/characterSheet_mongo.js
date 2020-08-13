@@ -4,61 +4,79 @@ const fs           = require('fs');
 const MongoMethods = require('./mongoMethods.js');
 
 const api = express.Router();
+const collection = 'characterSheets';
 
-api.all('/', function(req, res, next) {
-  MongoMethods.connectToMongo('test').then(response => {
+api.all('/*', function(req, res, next) {
+  MongoMethods.connectToMongo('characterSheetDB').then(response => {
     [res.locals.client, res.locals.db] = response;
-    console.log(`Successfully connected to test database.`)
+    console.log(`Successfully connected to database client.`)
+    next();
+  }).catch(err => {
+    res.status(500).send('Couldnt connect to database client...')
+  })
+})
+
+api.post('/', (req, res, next) => {
+  MongoMethods.insertDocument(res.locals.db, collection, req.body).then(response => {
+    res.send(`Successfully created new character sheet with id: ${response.insertId}`)
+    next();
+  }).catch(err => {
+    res.status(400).send('Something went wrong...');
     next();
   })
+})
+
+// Parse query
+// This needs to be more general
+api.get('/', (req, res, next) => {
+  const characterName = req.query.characterName;
+  if (characterName) {
+    res.locals.query = {'character_info.character_name': characterName};
+  } else {
+    res.locals.query = {};
+  }
+  next();
 })
 
 api.get('/', (req, res, next) => {
-  const characterName = req.query.characterName;
-
-  if (characterName) {
-    // Search for file with character file name
-    const fileName = `../json/${characterName}.json`;
-    fs.exists(fileName, (exists) => {
-      if (exists) {
-        fs.readFile(fileName, (err, data) => {
-          if (err) res.status(400).send(err);
-          res.send(data);
-          next();
-        });
-      } else {
-        res.status(404).send(`That character sheet doesn't exist: ${fileName}`);
-        next();
-      }
-    })
-  } else {
-    res.send('List of characters will go here');
+  MongoMethods.queryCollection(res.locals.db, collection, res.locals.query).then(response => {
+    res.send(response);
     next();
-  }
+  }).catch(err => {
+    res.status(400).send('Something went wrong...');
+    next();
+  });
+})
+
+api.get('/:characterName', (req, res, next) => {
+  MongoMethods.queryCollection(res.locals.db, collection, res.locals.query).then(response => {
+    res.send(response);
+    next();
+  }).catch(err => {
+    res.status(400).send('Something went wrong...');
+    next();
+  });
 })
 
 api.put('/:characterName', (req, res, next) => {
-  const characterName = req.params.characterName;
-  const fileName = `../json/${characterName}.json`;
-  fs.exists(fileName, (exists) => {
-    if (exists) {
-      fs.writeFile(fileName, JSON.stringify(req.body, null, 2), (err) => {
-        if (err) res.status(400).send(err);
-        res.send(req.body);
-        next();
-      });
-    } else {
-      res.status(404).send(`That character sheet doesn't exist: ${charaterName}`);
-      next();
-    }
+  MongoMethods.updateDocument(
+    res.locals.db,
+    collection,
+    {'character_info.character_name': req.params.characterName},
+    req.body
+  ).then(response => {
+    res.send(response);
+    next();
+  }).catch(err => {
+    res.status(400).send('Something went wrong....')
+    next();
   })
-
 })
 
-api.all('/', function(req, res, next) {
+api.all('/*', function(req, res, next) {
   MongoMethods.closeMongo(res.locals.client).then(response => {
     console.log(`Successfully closed client.`)
-  });
+  })
 })
 
 module.exports = api;
