@@ -422,6 +422,10 @@ h2 {
   width: 500px;
 }
 
+.tooltip .tooltipmedium {
+  width: 350px;
+}
+
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
