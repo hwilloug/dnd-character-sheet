@@ -21,20 +21,19 @@ module.exports.closeMongo = async function closeMongo(client) {
   await client.close();
 }
 
-module.exports.insertDocument = async function insertDocument(db, collection, listing) {
+module.exports.insertDocuments = async function insertDocuments(db, collection, listings) {
   try {
-    const result = await db.collection(collection).insertOne(listing);
+    const result = await db.collection(collection).insertMany(listings);
     return result
   } catch (e) {
     console.error(e);
     return e
   }
-
 }
 
 module.exports.queryCollection = async function queryCollection(db, collection, query) {
   try {
-    const result = await db.collection(collection).findOne(query);
+    const result = await db.collection(collection).find(query).toArray();
     return result
   } catch (e) {
     console.error(e);
@@ -48,6 +47,16 @@ module.exports.updateDocument = async function updateDocument(db, collection, qu
       query,
       replacement
     );
+    return result
+  } catch (e) {
+    console.error(e);
+    return e
+  }
+}
+
+module.exports.deleteDocument = async function deleteDocument(db, collection, query) {
+  try {
+    const result = await db.collection(collection).deleteOne(query);
     return result
   } catch (e) {
     console.error(e);

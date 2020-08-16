@@ -3,11 +3,17 @@ const morgan       = require('morgan');
 const MongoMethods = require('./mongoMethods.js');
 
 const api = express.Router();
-const collection = 'characterSheets';
+const collection = 'informational';
+
+/*
+
+Maybe have it so that the info sheets are on a different db? That would kind of make more sense. That way each info sheet could be its own collection. That would be a lot easier for modifying entries.
+
+*/
 
 //**************************************************************************
 api.all('/*', function(req, res, next) {
-  MongoMethods.connectToMongo('characterSheetDB').then(response => {
+  MongoMethods.connectToMongo('informationDB').then(response => {
     [res.locals.client, res.locals.db] = response;
     console.log(`Successfully connected to database client.`)
     next();
@@ -19,9 +25,11 @@ api.all('/*', function(req, res, next) {
 //**************************************************************************
 //  C                                             P      O      S       T
 //**************************************************************************
-api.post('/', (req, res, next) => {
-  MongoMethods.insertDocuments(res.locals.db, collection, req.body).then(response => {
-    res.send(`Successfully created new character sheet with id: ${response.insertId}`)
+// Post a document to a collection
+// document should be in the body of the request, as an array of objects
+api.post('/:collection', (req, res, next) => {
+  MongoMethods.insertDocuments(res.locals.db, req.params.collection, req.body).then(response => {
+    res.send(response)
     next();
   }).catch(err => {
     res.status(400).send('Something went wrong...');
@@ -32,32 +40,36 @@ api.post('/', (req, res, next) => {
 //**************************************************************************
 //  R                                                  G        E       T
 //**************************************************************************
-// Parse query
-// Can only query for character_info fields
+// Get list of info documents
 api.get('/', (req, res, next) => {
+  res.locals.db.listCollections().toArray((err, response) => {
+    if (err) res.status(400).send(err);
+
+    let collections = [];
+    for (let collection in response) {
+      collections.push(response[collection]['name']);
+    }
+    res.send(collections);
+    next();
+  })
+})
+
+api.get('/:collection', (req, res, next) => {
   res.locals.query = {};
   for (var query in req.query) {
-    let key  = `character_info.${query}`;
+    let key  = `${query}`;
     res.locals.query[key] = req.query[query];
   }
   next();
 })
 
-api.get('/', (req, res, next) => {
-  MongoMethods.queryCollection(res.locals.db, collection, res.locals.query).then(response => {
-    const character_info = response.character_info;
-    character_info['_id'] = response._id;
-    res.send(character_info);
-    next();
-  }).catch(err => {
-    res.status(400).send('Something went wrong...');
-    next();
-  });
-})
-
-api.get('/:characterName', (req, res, next) => {
-  MongoMethods.queryCollection(res.locals.db, collection, res.locals.query).then(response => {
-    res.send(response[0]);
+api.get('/:collection', (req, res, next) => {
+  MongoMethods.queryCollection(
+    res.locals.db,
+    req.params.collection,
+    res.locals.query
+  ).then(response => {
+    res.send(response);
     next();
   }).catch(err => {
     res.status(400).send('Something went wrong...');
@@ -68,17 +80,12 @@ api.get('/:characterName', (req, res, next) => {
 //**************************************************************************
 //  U                                                  P        U       T
 //**************************************************************************
-api.put('/:characterName', (req, res, next) => {
-  res.locals.id = req.body._id;
-  delete req.body._id;
-  next();
-})
-
-api.put('/:characterName', (req, res, next) => {
+// todo
+api.put('/:document', (req, res, next) => {
   MongoMethods.updateDocument(
     res.locals.db,
-    collection,
-    {'character_info.character_name': req.params.characterName},
+    res.params.document,
+    {},
     req.body
   ).then(response => {
     res.send(response);
@@ -92,7 +99,6 @@ api.put('/:characterName', (req, res, next) => {
 //**************************************************************************
 //  D                                 D      E      L     E      T      E
 //**************************************************************************
-
 
 
 //**************************************************************************

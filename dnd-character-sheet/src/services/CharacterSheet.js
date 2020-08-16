@@ -6,11 +6,11 @@ import Api from '@/services/Api'
 
 export default {
   getCharacterSheet( characterName ) {
-    let url = `/character-sheet?characterName=${characterName}`;
+    let url = `/characters/${characterName}`;
     return Api().get(url);
   },
   updateCharacterSheet( characterName, updatedSheet ) {
-    let url = `/character-sheet/${characterName}`;
+    let url = `/characters/${characterName}`;
     return Api().put(url, updatedSheet);
   }
 }
