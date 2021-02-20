@@ -13,7 +13,7 @@ api.all('/*', function(req, res, next) {
     console.log(`Successfully connected to database client.`)
     next();
   }).catch(err => {
-    res.status(500).send('Couldnt connect to database client...')
+    next(err)
   })
 })
 
@@ -27,8 +27,7 @@ api.post('/', (req, res, next) => {
     res.send(`Successfully created new character sheet with id: ${response.insertId}`)
     next();
   }).catch(err => {
-    res.status(400).send('Something went wrong...');
-    next();
+    next(err)
   })
 })
 
@@ -44,7 +43,6 @@ api.get('/', (req, res, next) => {
     let key  = `character_info.${query}`;
     res.locals.query[key] = req.query[query];
   }
-  console.log(res.locals.query)
   next();
 })
 
@@ -62,18 +60,22 @@ api.get('/', (req, res, next) => {
     res.send(resp);
     next();
   }).catch(err => {
-    res.status(400).send("Something went wrong...");
-    next();
+    next(err);
   });
 })
 
+
 api.get('/:characterId', (req, res, next) => {
   MongoMethods.queryCollection(res.locals.db, collection, {_id: new ObjectID(req.params.characterId)}).then(response => {
+    if (response.length < 1) {
+      let err = new Error(`Could not find character sheet with id: ${req.params.characterId}`)
+      err.statusCode = 404;
+      throw err;
+    }
     res.send(response[0]);
     next();
   }).catch(err => {
-    res.status(400).send('Something went wrong...');
-    next();
+    next(err);
   });
 })
 
@@ -96,8 +98,7 @@ api.put('/:characterName', (req, res, next) => {
     res.send(response);
     next();
   }).catch(err => {
-    res.status(400).send('Something went wrong....')
-    next();
+    next(err);
   })
 })
 
@@ -108,6 +109,13 @@ api.put('/:characterName', (req, res, next) => {
 
 
 //**************************************************************************
+api.use('*', function(err, req, res, next) {
+  console.error(err.message);
+  if (!err.statusCode) err.statusCode = 500;
+  res.status(err.statusCode).send(err.message);
+  next();
+})
+
 api.all('/*', function(req, res, next) {
   MongoMethods.closeMongo(res.locals.client).then(response => {
     console.log(`Successfully closed client.`)
