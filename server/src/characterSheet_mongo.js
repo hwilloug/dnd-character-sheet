@@ -1,6 +1,7 @@
 const express      = require('express');
 const morgan       = require('morgan');
 const MongoMethods = require('./mongoMethods.js');
+const ObjectID     = require('mongodb').ObjectID;
 
 const api = express.Router();
 const collection = 'characterSheets';
@@ -19,6 +20,8 @@ api.all('/*', function(req, res, next) {
 //**************************************************************************
 //  C                                             P      O      S       T
 //**************************************************************************
+
+// Inserts whole new character sheet
 api.post('/', (req, res, next) => {
   MongoMethods.insertDocuments(res.locals.db, collection, req.body).then(response => {
     res.send(`Successfully created new character sheet with id: ${response.insertId}`)
@@ -33,30 +36,39 @@ api.post('/', (req, res, next) => {
 //  R                                                  G        E       T
 //**************************************************************************
 // Parse query
+// Returns only character_info info and id
 // Can only query for character_info fields
 api.get('/', (req, res, next) => {
   res.locals.query = {};
-  for (var query in req.query) {
+  for (let query in req.query) {
     let key  = `character_info.${query}`;
     res.locals.query[key] = req.query[query];
   }
+  console.log(res.locals.query)
   next();
 })
 
 api.get('/', (req, res, next) => {
   MongoMethods.queryCollection(res.locals.db, collection, res.locals.query).then(response => {
-    const character_info = response.character_info;
-    character_info['_id'] = response._id;
-    res.send(character_info);
+    let resp = []
+    let info;
+    let character;
+    for (var characterIdx in response) {
+      character = response[characterIdx];
+      info = character.character_info;
+      info.id = character._id;
+      resp.push(info);
+    }
+    res.send(resp);
     next();
   }).catch(err => {
-    res.status(400).send('Something went wrong...');
+    res.status(400).send("Something went wrong...");
     next();
   });
 })
 
-api.get('/:characterName', (req, res, next) => {
-  MongoMethods.queryCollection(res.locals.db, collection, res.locals.query).then(response => {
+api.get('/:characterId', (req, res, next) => {
+  MongoMethods.queryCollection(res.locals.db, collection, {_id: new ObjectID(req.params.characterId)}).then(response => {
     res.send(response[0]);
     next();
   }).catch(err => {
