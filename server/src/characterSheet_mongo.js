@@ -64,19 +64,39 @@ api.get('/', (req, res, next) => {
   });
 })
 
-
-api.get('/:characterId', (req, res, next) => {
+//----------------------------------------------------------------
+const getCharacterSheet = function (req, res, next) {
   MongoMethods.queryCollection(res.locals.db, collection, {_id: new ObjectID(req.params.characterId)}).then(response => {
     if (response.length < 1) {
       let err = new Error(`Could not find character sheet with id: ${req.params.characterId}`)
       err.statusCode = 404;
       throw err;
     }
-    res.send(response[0]);
+    res.locals.full_sheet = response[0]
     next();
   }).catch(err => {
     next(err);
-  });
+  })
+}
+
+// Individual sheets
+// Gets one specific character sheet by ID
+api.get('/:characterId', getCharacterSheet, (req, res, next) => {
+    res.send(res.locals.full_sheet);
+    next();
+})
+
+//----------------------------------------------------------------
+// Gets specific details from the character sheet
+api.get('/:characterId/:detail', getCharacterSheet, (req, res, next) => {
+  const detail = res.locals.full_sheet[req.params.detail]
+  if (typeof detail == 'undefined') {
+    let err = new Error(`Could not find information on '${req.params.detail}'`)
+    err.statusCode = 404;
+    next(err)
+  }
+  res.send(detail)
+  next();
 })
 
 //**************************************************************************
