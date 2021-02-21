@@ -1,7 +1,7 @@
 import Api from '@/services/Api'
 
 /*
-	API for the recipes database
+	API for the characterSheet database
 */
 
 export default {

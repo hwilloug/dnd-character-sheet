@@ -65,7 +65,7 @@
       <td class="border"><b>Speed</b><br>{{ stats.speed }}</td>
     </tr>
     <tr>
-      <td class="border"><b>Initiative</b><br>{{ 2 }}</td>
+      <td class="border"><b>Initiative</b><br>{{ session.initiative }}</td>
       <td class="border"><b>Hit Dice</b></td>
       <td><button class="button reset-button" @click="resetSession">RESET</button></td>
     </tr>

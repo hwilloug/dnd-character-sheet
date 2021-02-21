@@ -87,16 +87,12 @@
                  color="green darken-1"
                  text
                  @click="dialog = false"
-               >
-                 No
-               </v-btn>
+               >No</v-btn>
                <v-btn
                  color="red darken-1"
                  text
                  @click="deleteSelectedSession"
-               >
-                 Yes
-               </v-btn>
+               >Yes</v-btn>
              </v-card-actions>
            </v-card>
          </v-dialog>
@@ -266,6 +262,7 @@ export default {
   background-color: white;
   flex: 1;
   resize: none;
+  padding: 10px;
 }
 
 #session-notes .session-footer {

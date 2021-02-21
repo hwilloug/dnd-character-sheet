@@ -20,6 +20,7 @@
 
 <script>
 import ArmorInfo from '@/components/json/armorInfo.json'
+//import Modifiers from '@/components/json/modifiers.json'
 //import Methods from '@/components/methods.js'
 
 export default {
@@ -34,6 +35,7 @@ export default {
     getArmorAC(armorName) {
       if (ArmorInfo.armor && armorName) {
         let ac = parseInt(ArmorInfo.armor[armorName]['ac']['base']);
+        //let modifier = [ArmorInfo.armor[armorName]['ac']['modifier']];
         return ac
       } else return 0
     },
