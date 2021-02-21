@@ -121,7 +121,7 @@ export default {
   },
 
   data: () => ({
-    characterName: 'Nissa',
+    characterName: '5f348010cad326f1563b3ec0',
     fullSheet: {},
     characterInfo: {},
     stats: {},
@@ -269,7 +269,7 @@ export default {
 #sheet-container {
   display: flex;
   flex-flow: column wrap;
-  align-content: flex-start;
+  align-content: space-around;
   align-items: center;
   max-height: 60rem;
 }

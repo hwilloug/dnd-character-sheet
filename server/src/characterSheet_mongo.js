@@ -102,17 +102,17 @@ api.get('/:characterId/:detail', getCharacterSheet, (req, res, next) => {
 //**************************************************************************
 //  U                                                  P        U       T
 //**************************************************************************
-api.put('/:characterName', (req, res, next) => {
+api.put('/:characterId', (req, res, next) => {
   res.locals.id = req.body._id;
   delete req.body._id;
   next();
 })
 
-api.put('/:characterName', (req, res, next) => {
+api.put('/:characterId', getCharacterSheet, (req, res, next) => {
   MongoMethods.updateDocument(
     res.locals.db,
     collection,
-    {'character_info.character_name': req.params.characterName},
+    {_id: new ObjectID(req.params.characterId)},
     req.body
   ).then(response => {
     res.send(response);
