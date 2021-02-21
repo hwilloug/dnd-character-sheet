@@ -3,13 +3,6 @@ const morgan       = require('morgan');
 const MongoMethods = require('./mongoMethods.js');
 
 const api = express.Router();
-const collection = 'informational';
-
-/*
-
-Maybe have it so that the info sheets are on a different db? That would kind of make more sense. That way each info sheet could be its own collection. That would be a lot easier for modifying entries.
-
-*/
 
 //**************************************************************************
 api.all('/*', function(req, res, next) {
@@ -18,7 +11,7 @@ api.all('/*', function(req, res, next) {
     console.log(`Successfully connected to database client.`)
     next();
   }).catch(err => {
-    res.status(500).send('Couldnt connect to database client...')
+    next(err)
   })
 })
 
@@ -32,8 +25,7 @@ api.post('/:collection', (req, res, next) => {
     res.send(response)
     next();
   }).catch(err => {
-    res.status(400).send('Something went wrong...');
-    next();
+    next(err);
   })
 })
 
@@ -56,9 +48,20 @@ api.get('/', (req, res, next) => {
 
 api.get('/:collection', (req, res, next) => {
   res.locals.query = {};
-  for (var query in req.query) {
-    let key  = `${query}`;
-    res.locals.query[key] = req.query[query];
+  if (req.params.collection == "levelUp") {
+    if (req.query.experience) {
+      const experience = parseInt(req.query.experience);
+      res.locals.query = {
+        minimum_experience: { $lt: experience },
+        maximum_experience: { $gt: experience }
+      }
+    }
+    console.log(res.locals.query)
+  } else {
+    for (var query in req.query) {
+      let key  = `${query}`;
+      res.locals.query[key] = req.query[query];
+    }
   }
   next();
 })
@@ -72,15 +75,34 @@ api.get('/:collection', (req, res, next) => {
     res.send(response);
     next();
   }).catch(err => {
-    res.status(400).send('Something went wrong...');
-    next();
+    next(err);
   });
+})
+
+api.get('/levelUp/:level', (req, res, next) => {
+  MongoMethods.queryCollection(
+    res.locals.db,
+    'levelUp',
+    { level: parseInt(req.params.level) }
+  ).then(response => {
+    console.log(response)
+    if (response.length < 1) {
+      let err = new Error(`Could not find information on level ${req.params.level}`);
+      err.statusCode = 404;
+      throw err
+    }
+    res.send(response[0])
+    next();
+  }).catch(err => {
+    next(err);
+  })
 })
 
 //**************************************************************************
 //  U                                                  P        U       T
 //**************************************************************************
 // todo
+/*
 api.put('/:document', (req, res, next) => {
   MongoMethods.updateDocument(
     res.locals.db,
@@ -95,14 +117,22 @@ api.put('/:document', (req, res, next) => {
     next();
   })
 })
+*/
 
 //**************************************************************************
 //  D                                 D      E      L     E      T      E
 //**************************************************************************
-
+// todo maybe
 
 //**************************************************************************
-api.all('/*', function(req, res, next) {
+api.use('*', function(err, req, res, next) {
+  console.error(err.message);
+  if (!err.statusCode) err.statusCode = 500;
+  res.status(err.statusCode).send(err.message);
+  next();
+})
+
+api.all('*', function(req, res, next) {
   MongoMethods.closeMongo(res.locals.client).then(response => {
     console.log(`Successfully closed client.`)
   })
