@@ -1,98 +1,115 @@
 <template>
   <v-app id="app">
-    <v-system-bar fixed dark color="red darken-4 white--text">
-      <span>DND Character Sheet App</span>
+    <v-app-bar app fixed dark dense elevate-on-scroll clipped-left color="red darken-4 white--text">
+      <v-toolbar-title>DND Character Sheet</v-toolbar-title>
       <v-spacer></v-spacer>
-      <span>{{ characterInfo.player_name }}</span>
-      <v-icon style="padding-left: 10px;">{{ loadingIcon }}</v-icon>
-    </v-system-bar>
-    <v-content>
-      <CharacterInfo
-        :characterInfo="characterInfo"
-        @update-text="updateText"
-      />
-      <div id="sheet-container">
-        <Stats :stats="stats"/>
-        <SavingThrows :savingThrows="savingThrows" :stats="stats" />
-        <Skills :stats="stats" :proficiencies="proficiencies.skills" :expertise="proficiencies.expertise" />
-        <Session :session="session" :stats="stats" :armor="armor"
-          @update-sheet="updateSheetField"
-          @update-deathsave="updateDeathSave"
-          @update-limitedfeature="updateLimitedFeature"
-          @reset-session="resetSession"
-        />
-        <Proficiencies :proficiencies="proficiencies" />
-        <Armor
-          :armor="armor"
-          :stats="stats"
-          :proficiencies="proficiencies.armor"
-        />
-        <Inspiration :stats="stats" @update-sheet="updateSheetField"/>
-        <AbilitySaveDc :abilitySaveDc="stats.ability_save_dc" />
-      </div>
-      <div id="second-container">
-        <div id="attacks-container">
-          <Cantrips :cantrips="attacks.cantrips" :level="characterInfo.level" v-if="checkLength(attacks.cantrips)"/>
-          <Spells :spells="attacks.spells" v-if="checkLength(attacks.spells)"/>
-          <Weapons
-            v-if="checkLength(attacks.weapons)"
-            :weapons="attacks.weapons"
-            :ammunition="attacks.ammunition"
-            @update-sheet="updateSheetField"
-          />
-        </div>
-        <div id="items-container">
-          <Items :items="items"
-            @update-sheet="updateSheetField"
-          />
-        </div>
-      </div>
-      <div id="third-container">
-        <div id="left-third">
-          <Features :features="features" />
-        </div>
-        <div id="right-third">
-          <h2>Notes</h2>
-          <textarea
-            id="notes"
-            v-model="notes"
-            @keyup="updateNotes"
-          ></textarea>
-        </div>
-      </div>
-      <OtherCharacterInfo
-        :characterInfo="characterInfo"
-        :otherInfo="otherInfo"
-        @update-character-history="updateCharacterHistory"
-      />
-      <SessionNotes
-        :sessionNotes="sessionNotes"
-        @update-session-notes="updateSessionNotes"
-      />
-      <Footer />
-    </v-content>
-  </v-app>
+      <span><b>{{ characterInfo.character_name }} "{{ characterInfo.character_nickname }}" {{ characterInfo.clan_name }}</b><v-icon>mdi-circle-small</v-icon>{{ characterInfo.race}} {{ characterInfo.class }}<v-icon>mdi-circle-small</v-icon>Level {{ characterInfo.level }}</span><v-app-bar-nav-icon></v-app-bar-nav-icon>
+    </v-app-bar>
+    <v-navigation-drawer
+      :mini-variant="mini"
+      permanent
+      app
+      color="red darken-4"
+      dark
+      clipped
+    >
+    <v-list-item class="px-2">
+      <v-list-item-avatar @click.stop="mini = false">
+        <v-img src="./assets/forest_gnome.png"></v-img>
+      </v-list-item-avatar>
+      <v-list-item-title>{{ characterInfo.character_name }} {{ characterInfo.clan_name }}</v-list-item-title>
+      <v-btn
+      icon
+      @click.stop="mini = true"
+      >
+      <v-icon>mdi-chevron-left</v-icon>
+      </v-btn>
+    </v-list-item>
+    <v-divider></v-divider>
+    <v-list dense>
+      <v-list-item
+        v-for="navi in navigation"
+        :key="navi.title"
+        link
+        @click.stop="tab = navi.title"
+      >
+        <v-list-item-icon>
+          <v-icon>{{ navi.icon }}</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>{{ navi.title }}</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
+  </v-navigation-drawer>
+  <v-content>
+<Combat
+  v-if="tab === 'Combat'"
+  :stats="stats"
+  :savingThrows="savingThrows"
+  :proficiencies="proficiencies"
+  :armor="armor"
+  :attacks="attacks"
+  :characterInfo="characterInfo"
+  :session="session"
+  :features="features"
+  @update-sheet="updateSheetField"
+  @update-deathsave="updateDeathSave"
+  @update-limitedfeature="updateLimitedFeature"
+  @reset-session="resetSession"
+/>
+<div v-if="tab === 'Items'">
+  <div id="items-container">
+    <Items :items="items"
+    @update-sheet="updateSheetField"
+    />
+  </div>
+</div>
+<div v-if="tab === 'Character Info'">
+  <CharacterInfo
+  :characterInfo="characterInfo"
+  @update-text="updateText"
+  />
+  <OtherCharacterInfo
+  :characterInfo="characterInfo"
+  :otherInfo="otherInfo"
+  @update-character-history="updateCharacterHistory"
+  />
+  <div id="third-container">
+    <div id="left-third">
+      <Features :features="features" />
+    </div>
+    <div id="right-third">
+      <h2>Notes</h2>
+      <textarea
+      id="notes"
+      v-model="notes"
+      @keyup="updateNotes"
+      ></textarea>
+    </div>
+  </div>
+</div>
+<div v-if="tab === 'Notes'">
+  <SessionNotes
+  :sessionNotes="sessionNotes"
+  @update-session-notes="updateSessionNotes"
+  />
+</div>
+</v-content>
+<Footer />
+</v-app>
 </template>
 
 <script>
 // COMPONENTS
-import CharacterInfo from './components/CharacterInfo';
-import Stats from './components/Stats';
-import Skills from './components/Skills';
-import SavingThrows from './components/SavingThrows';
-import Proficiencies from './components/Proficiencies';
-import Session from './components/Session';
-import Armor from './components/Armor';
-import Cantrips from './components/Cantrips';
-import Spells from './components/Spells';
-import Weapons from './components/Weapons';
-import Items from './components/Items';
-import Features from './components/Features';
-import OtherCharacterInfo from './components/OtherCharacterInfo';
-import SessionNotes from './components/SessionNotes';
-import Inspiration from './components/Inspiration';
-import AbilitySaveDc from './components/AbilitySaveDC';
-import Footer from './components/Footer';
+import Combat from '@/components/views/Combat.vue';
+
+import CharacterInfo from '@/components/CharacterInfo';
+import Items from '@/components/Items';
+import Features from '@/components/Features';
+import OtherCharacterInfo from '@/components/OtherCharacterInfo';
+import SessionNotes from '@/components/SessionNotes';
+import Footer from '@/components/Footer';
 // API
 import api from '@/services/CharacterSheet';
 // JSON
@@ -101,18 +118,8 @@ import LevelUpInfo from '@/components/json/levelUpInfo.json'
 export default {
   name: 'App',
   components: {
+    Combat,
     CharacterInfo,
-    Stats,
-    Skills,
-    SavingThrows,
-    Proficiencies,
-    Session,
-    Armor,
-    Inspiration,
-    AbilitySaveDc,
-    Cantrips,
-    Spells,
-    Weapons,
     Items,
     Features,
     OtherCharacterInfo,
@@ -135,7 +142,27 @@ export default {
     session: {},
     notes: {},
     sessionNotes: {},
-    loadingIcon: "mdi-check-bold"
+    loadingIcon: "mdi-check-bold",
+    mini: false,
+    tab: "Character Info",
+    navigation: [
+      {
+        "title": "Character Info",
+        "icon": "mdi-wizard-hat"
+      },
+      {
+        "title": "Items",
+        "icon": "mdi-bag-personal"
+      },
+      {
+        "title": "Combat",
+        "icon": "mdi-sword-cross"
+      },
+      {
+        "title": "Notes",
+        "icon": "mdi-notebook"
+      }
+    ]
   }),
   created() {this.loadCharacterSheet()},
   methods: {
@@ -216,11 +243,6 @@ export default {
       }
       this.updateCharacterSheet();
     },
-    checkLength(field) {
-      if (field) {
-        return field.length > 0
-      } else return false
-    },
     updateCoinAmount(val) {
       this.fullSheet.items.money[val[0]] = val[1];
       this.updateCharacterSheet();
@@ -243,17 +265,17 @@ export default {
 
       switch (fieldArray.length) {
         case 1:
-          this.fullSheet[fieldArray[0]] = newValue;
-          break;
+        this.fullSheet[fieldArray[0]] = newValue;
+        break;
         case 2:
-          this.fullSheet[fieldArray[0]][fieldArray[1]] = newValue;
-          break;
+        this.fullSheet[fieldArray[0]][fieldArray[1]] = newValue;
+        break;
         case 3:
-          this.fullSheet[fieldArray[0]][fieldArray[1]][fieldArray[2]] = newValue;
-          break;
+        this.fullSheet[fieldArray[0]][fieldArray[1]][fieldArray[2]] = newValue;
+        break;
         case 4:
-          this.fullSheet[fieldArray[0]][fieldArray[1]][fieldArray[2]][fieldArray[3]] = newValue;
-          break;
+        this.fullSheet[fieldArray[0]][fieldArray[1]][fieldArray[2]][fieldArray[3]] = newValue;
+        break;
       }
       this.updateCharacterSheet();
     }
@@ -264,6 +286,18 @@ export default {
 <style>
 #app {
   background-color: oldlace;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-centered {
+  align-content: space-around;
+}
+
+.flex-50 {
+  flex: 0 0 50%;
 }
 
 #sheet-container {
@@ -282,10 +316,6 @@ export default {
 #third-container {
   display: flex;
   margin: 10px 50px;
-}
-
-#attacks-container {
-  flex: 0 0 50%;
 }
 
 #items-container {
@@ -393,25 +423,25 @@ h2 {
 }
 
 .tooltip .tooltiplong::after {
- content: " ";
- position: absolute;
- bottom: 100%;  /* At the top of the tooltip */
- left: 5%;
- margin-left: -5px;
- border-width: 5px;
- border-style: solid;
- border-color: transparent transparent dimgrey transparent;
+  content: " ";
+  position: absolute;
+  bottom: 100%;  /* At the top of the tooltip */
+  left: 5%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent dimgrey transparent;
 }
 
 .tooltip .tooltipshort::after {
- content: " ";
- position: absolute;
- bottom: 100%;  /* At the top of the tooltip */
- left: 50%;
- margin-left: -5px;
- border-width: 5px;
- border-style: solid;
- border-color: transparent transparent dimgrey transparent;
+  content: " ";
+  position: absolute;
+  bottom: 100%;  /* At the top of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent dimgrey transparent;
 }
 
 .tooltip .tooltipshort{
