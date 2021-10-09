@@ -9,10 +9,12 @@ import {
   import { composeWithDevTools } from 'redux-devtools-extension'
   import { connectRouter } from 'connected-react-router'
   import { History } from 'history'
+import { statsReducer } from './components/stats/state/reducer'
   
   const createReducer = (history: any) =>
     combineReducers({
-      router: connectRouter(history)
+      router: connectRouter(history),
+      stats: statsReducer
     })
   const appReducer = createReducer(window.history)
   

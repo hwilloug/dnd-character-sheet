@@ -26,6 +26,16 @@ export function statsReducer(
                 intelligence: action.payload.stats.intelligence,
                 constitution: action.payload.stats.constitution
             }
+        case StatsActionTypes.SET_STATS_MODIFIERS:
+            return {
+                ...state,
+                strengthModifier: action.payload.stats_modifiers.strengthModifier,
+                charismaModifier: action.payload.stats_modifiers.charismaModifier,
+                dexterityModifier: action.payload.stats_modifiers.dexterityModifier,
+                wisdomModifier: action.payload.stats_modifiers.wisdomModifier,
+                intelligenceModifier: action.payload.stats_modifiers.intelligenceModifier,
+                constitutionModifier: action.payload.stats_modifiers.constitutionModifier,
+            }
         default: 
             return state
     }

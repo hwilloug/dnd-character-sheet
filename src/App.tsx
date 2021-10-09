@@ -6,7 +6,7 @@ import { routerMiddleware } from 'connected-react-router'
 import { createBrowserHistory } from 'history'
 import { createAppStore } from './app-store'
 import { createRootSaga } from './sagas'
-//import { createHomePage } from './pages/HomePage'
+import { HomePageComponent } from './pages/HomePage'
 import { createAPIServices } from './server'
 export function App() {
   const history = createBrowserHistory()
@@ -23,7 +23,7 @@ export function App() {
     <Provider store={store}>
       <ConnectedRouter history={history}>
           {/* <KeycloakProvider> */}
-          {/*<HomePage />*/}
+          <HomePageComponent />
           {/* </KeycloakProvider> */}
       </ConnectedRouter>
     </Provider>
