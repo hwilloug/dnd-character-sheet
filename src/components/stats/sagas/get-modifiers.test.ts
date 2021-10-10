@@ -13,13 +13,15 @@ it('gets and sets stats modifiers', () => {
         .provide([
             [select(), {
                 stats: {
-                    strength: 11,
-                    dexterity: 18,
-                    constitution: 30,
-                    intelligence: 8,
-                    wisdom: 16,
-                    charisma: 1
-                }
+                    abilityScores: {
+                        strength: 11,
+                        dexterity: 18,
+                        constitution: 30,
+                        intelligence: 8,
+                        wisdom: 16,
+                        charisma: 1
+                    }
+                } 
             }]
         ])
         .put(

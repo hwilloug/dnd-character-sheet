@@ -11,12 +11,12 @@ export function createGetStatsSaga(apiServices: APIServices.Services) {
 
             const response: GetStatsAPI.Responses = yield call(
                 apiServices.getStatsAPI,
-                'test',
+                action.payload.character_id,
                 'test-token'
             )
 
             yield put(statsActions.setStats(
-                'test',
+                action.payload.character_id,
                 {
                     strength: response.body.strength,
                     charisma: response.body.charisma,

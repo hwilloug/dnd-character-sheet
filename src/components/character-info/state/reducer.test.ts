@@ -1,5 +1,5 @@
 import { characterInfoReducer, initialState } from "./reducer"
-import { CharacterInfoActions, characterInfoActions } from "./actions"
+import { characterInfoActions } from "./actions"
 import { CharacterInfoState } from "./state"
 
 it('sets character info', () => {

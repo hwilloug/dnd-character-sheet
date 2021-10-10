@@ -11,7 +11,7 @@ export function createGetModifiersSaga() {
 
             const state: AppState = yield select()
 
-            const stats = state.stats
+            const stats = state.stats.abilityScores
 
             if (
                 stats.strength &&

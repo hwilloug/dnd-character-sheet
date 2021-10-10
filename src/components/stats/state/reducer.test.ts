@@ -1,9 +1,9 @@
 import { statsReducer, initialState } from "./reducer"
 import { statsActions } from "./actions"
-import { StatsState } from "./state"
+import { AbilityScoreModifiersObject, AbilityScoresObject, StatsState } from "./state"
 
 it('sets stats', () => {
-    const newStats: StatsState = {
+    const newStats: AbilityScoresObject = {
         strength: 4,
         wisdom: 3,
         charisma: 21,
@@ -15,11 +15,14 @@ it('sets stats', () => {
         initialState,
         statsActions.setStats('asdf', newStats)
     )
-    expect(state).toMatchObject(newStats)
+    expect(state).toMatchObject({
+        ...initialState,
+        abilityScores: newStats
+    })
 })
 
 it('sets stats modifiers', () => {
-    const newStats: StatsState = {
+    const newStats: AbilityScoreModifiersObject = {
         strengthModifier: '+1',
         wisdomModifier: '-3',
         charismaModifier: '+0',
@@ -33,6 +36,36 @@ it('sets stats modifiers', () => {
     )
     expect(state).toMatchObject({
         ...initialState,
-        ...newStats
+        abilityScoresModifiers: newStats
+    })
+})
+
+it('sets experience points', () => {
+    const experiencePoints = 500
+    const state = statsReducer(
+        initialState,
+        statsActions.setExperiencePoints('asdf', experiencePoints)
+    )
+    expect(state).toMatchObject({
+        ...initialState,
+        level: {
+            ...initialState.level,
+            experiencePoints
+        }
+    })
+})
+
+it('sets level', () => {
+    const level = 500
+    const state = statsReducer(
+        initialState,
+        statsActions.setLevel('asdf', level)
+    )
+    expect(state).toMatchObject({
+        ...initialState,
+        level: {
+            ...initialState.level,
+            level
+        }
     })
 })

@@ -19,13 +19,13 @@ const StatsTable = styled.table`
 `
 
 
-export type StatsComponentType = FrameworkComponentProps<
+export type AbilityScoreComponentType = FrameworkComponentProps<
     StatsState,
     typeof statsActions,
     {}
 >
 
-export const StatsComponent: React.FunctionComponent<StatsComponentType> =
+export const AbilityScoreComponent: React.FunctionComponent<AbilityScoreComponentType> =
     ({state, actions}) => {
 
         useEffect(() => {
@@ -37,47 +37,47 @@ export const StatsComponent: React.FunctionComponent<StatsComponentType> =
                 <tbody>
                     <tr>
                         <td>Strength</td>
-                        <td>{state.strength}</td>
-                        <td>{state.strengthModifier}</td>
+                        <td>{state.abilityScores.strength}</td>
+                        <td>{state.abilityScoresModifiers.strengthModifier}</td>
                     </tr>
                     <tr>
                         <td>Dexterity</td>
-                        <td>{state.dexterity}</td>
-                        <td>{state.dexterityModifier}</td>
+                        <td>{state.abilityScores.dexterity}</td>
+                        <td>{state.abilityScoresModifiers.dexterityModifier}</td>
                     </tr>
                     <tr>
                         <td>Constitution</td>
-                        <td>{state.constitution}</td>
-                        <td>{state.constitutionModifier}</td>
+                        <td>{state.abilityScores.constitution}</td>
+                        <td>{state.abilityScoresModifiers.constitutionModifier}</td>
                     </tr>
                     <tr>
                         <td>Intelligence</td>
-                        <td>{state.intelligence}</td>
-                        <td>{state.intelligenceModifier}</td>
+                        <td>{state.abilityScores.intelligence}</td>
+                        <td>{state.abilityScoresModifiers.intelligenceModifier}</td>
                     </tr>
                     <tr>
                         <td>Wisdom</td>
-                        <td>{state.wisdom}</td>
-                        <td>{state.wisdomModifier}</td>
+                        <td>{state.abilityScores.wisdom}</td>
+                        <td>{state.abilityScoresModifiers.wisdomModifier}</td>
                     </tr>
                     <tr>
                         <td>Charisma</td>
-                        <td>{state.charisma}</td>
-                        <td>{state.charismaModifier}</td>
+                        <td>{state.abilityScores.charisma}</td>
+                        <td>{state.abilityScoresModifiers.charismaModifier}</td>
                     </tr>
                 </tbody>
             </StatsTable>
         )
     }
 
-export function createStatsComponent<
+export function createAbilityScoreComponent<
     TState extends { stats: StatsState }
 >() {
     return connectRedux(
-        StatsComponent,
-        (state: TState) => state.stats,
+        AbilityScoreComponent,
+        (state: TState) => state .stats,
         statsActions, 
     )
 }
 
-export type Stats = ReturnType<typeof StatsComponent>
+export type AbilityScore = ReturnType<typeof AbilityScoreComponent>
