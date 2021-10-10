@@ -49,7 +49,5 @@ export type CharacterInfoState = {
     race?: RaceOptionsType,
     alignment?: AlignmentOptionsType,
     background?: string,
-    playerName?: string,
-    experiencePoints?: number,
-    level?: number
+    playerName?: string
 }

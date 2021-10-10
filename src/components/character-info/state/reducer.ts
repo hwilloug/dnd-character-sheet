@@ -18,19 +18,7 @@ export function characterInfoReducer(
                 race: action.payload.character_info.race,
                 alignment: action.payload.character_info.alignment,
                 background: action.payload.character_info.background,
-                playerName: action.payload.character_info.playerName,
-                experiencePoints: action.payload.character_info.experiencePoints,
-                level: action.payload.character_info.level
-            }
-        case CharacterInfoActionsTypes.SET_EXPERIENCE_POINTS:
-            return {
-                ...state,
-                experiencePoints: action.payload.experience_points
-            }
-        case CharacterInfoActionsTypes.SET_LEVEL:
-            return {
-                ...state,
-                level: action.payload.level
+                playerName: action.payload.character_info.playerName
             }
         default: 
             return state
