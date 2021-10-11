@@ -1,5 +1,5 @@
 import { ActionsUnion, createAction } from "../../../state/action"
-import { AbilityScoreModifiersObject, AbilityScoresObject, StatsState } from "./state"
+import { AbilityScoreModifiersObject, AbilityScoresObject, SavingThrowsObject, SavingThrowsProficienciesObject, SkillsObject, SkillsProficienciesObject, StatsState } from "./state"
 
 export enum StatsActionTypes {
     GET_STATS = '[stats] get',
@@ -9,7 +9,15 @@ export enum StatsActionTypes {
     GET_EXPERIENCE_POINTS = '[stats] get experience points',
     SET_EXPERIENCE_POINTS = '[stats] set experience points',
     GET_LEVEL = '[stats] get level',
-    SET_LEVEL = '[stats] set level'
+    SET_LEVEL = '[stats] set level',
+    GET_SKILLS = '[stats] get skills',
+    SET_SKILLS = '[stats] set skills',
+    GET_SKILLS_PROFICIENCIES = '[stats] get skills proficiencies',
+    SET_SKILLS_PROFICIENCIES = '[stats] set skills proficiencies',
+    GET_SAVING_THROWS = '[stats] get saving throws',
+    SET_SAVING_THROWS = '[stats] set saving throws',
+    GET_SAVING_THROW_PROFICIENCIES = '[stats] get saving throw proficiencies',
+    SET_SAVING_THROW_PROFICIENCIES = '[stats] set saving throw proficiencies'
 }
 
 export const statsActions = {
@@ -46,7 +54,31 @@ export const statsActions = {
         createAction(StatsActionTypes.SET_LEVEL, {
             character_id,
             level
-        })
+        }),
+    getSkills: () => 
+        createAction(StatsActionTypes.GET_SKILLS, {}),
+    setSkills: (skills: SkillsObject) => 
+        createAction(StatsActionTypes.SET_SKILLS, {
+            skills
+        }),
+    getSkillsProficiencies: () => 
+        createAction(StatsActionTypes.GET_SKILLS_PROFICIENCIES, {}),
+    setSkillsProficiencies: (skillsProficiencies: SkillsProficienciesObject) => 
+        createAction(StatsActionTypes.SET_SKILLS_PROFICIENCIES, {
+            skillsProficiencies
+        }),
+    getSavingThrows: () => 
+        createAction(StatsActionTypes.GET_SAVING_THROWS, {}),
+    setSavingThrows: (savingThrows: SavingThrowsObject) => 
+        createAction(StatsActionTypes.SET_SAVING_THROWS, {
+            savingThrows
+        }),
+    getSavingThrowProficiencies: () => 
+        createAction(StatsActionTypes.GET_SAVING_THROW_PROFICIENCIES, {}),
+    setSavingThrowProficiencies: (savingThrowProficiencies: SavingThrowsProficienciesObject) => 
+        createAction(StatsActionTypes.SET_SAVING_THROW_PROFICIENCIES, {
+            savingThrowProficiencies
+        }),
 }
 
 export type StatsActions = ActionsUnion<typeof statsActions>

@@ -28,10 +28,6 @@ export type AbilityScoreComponentType = FrameworkComponentProps<
 export const AbilityScoreComponent: React.FunctionComponent<AbilityScoreComponentType> =
     ({state, actions}) => {
 
-        useEffect(() => {
-            actions.getStats('asdf')
-        }, [])
-
         return (
             <StatsTable>
                 <tbody>

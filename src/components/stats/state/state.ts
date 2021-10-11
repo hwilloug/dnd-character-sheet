@@ -1,7 +1,11 @@
 export type StatsState = {
     abilityScores: AbilityScoresObject,
     abilityScoresModifiers: AbilityScoreModifiersObject,
-    level: LevelObject
+    level: LevelObject,
+    skills: SkillsObject,
+    skillsProficiencies: SkillsProficienciesObject,
+    savingThrows: SavingThrowsObject,
+    savingThrowsProficiencies: SavingThrowsProficienciesObject
 }
 
 export type AbilityScoresObject = {
@@ -24,8 +28,68 @@ export type AbilityScoreModifiersObject = {
 
 export type LevelObject = {
     level?: number,
-    experiencePoints: number,
-    proficiencyBonus: ProficiencyBonusType
+    experiencePoints?: number,
+    proficiencyBonus?: ProficiencyBonusType
+}
+
+export type SkillsObject = {
+    acrobatics?: StatModifierType,
+    animalHandling?: StatModifierType,
+    arcana?: StatModifierType,
+    athletics?: StatModifierType,
+    deception?: StatModifierType,
+    history?: StatModifierType,
+    insight?: StatModifierType,
+    intimidation?: StatModifierType,
+    investigation?: StatModifierType,
+    medicine?: StatModifierType,
+    nature?: StatModifierType,
+    perception?: StatModifierType,
+    performance?: StatModifierType,
+    persuasion?: StatModifierType,
+    religion?: StatModifierType,
+    sleightOfHand?: StatModifierType,
+    stealth?: StatModifierType,
+    survival?: StatModifierType
+}
+
+export type SkillsProficienciesObject = {
+    acrobatics?: boolean,
+    animalHandling?: boolean,
+    arcana?: boolean,
+    athletics?: boolean,
+    deception?: boolean,
+    history?: boolean,
+    insight?: boolean,
+    intimidation?: boolean,
+    investigation?: boolean,
+    medicine?: boolean,
+    nature?: boolean,
+    perception?: boolean,
+    performance?: boolean,
+    persuasion?: boolean,
+    religion?: boolean,
+    sleightOfHand?: boolean,
+    stealth?: boolean,
+    survival?: boolean
+}
+
+export type SavingThrowsObject = {
+    strength?: StatModifierType,
+    constitution?: StatModifierType,
+    intelligence?: StatModifierType,
+    charisma?: StatModifierType,
+    dexterity?: StatModifierType,
+    wisdom?: StatModifierType
+}
+
+export type SavingThrowsProficienciesObject = {
+    strength?: boolean,
+    constitution?: boolean,
+    intelligence?: boolean,
+    charisma?: boolean,
+    dexterity?: boolean,
+    wisdom?: boolean
 }
 
 export const statModifierOptions = [

@@ -28,10 +28,6 @@ export type LevelComponentType = FrameworkComponentProps<
 export const LevelComponent: React.FunctionComponent<LevelComponentType> =
     ({state, actions}) => {
 
-        useEffect(() => {
-            actions.getStats('asdf')
-        }, [])
-
         return (
             <StatsTable>
                 <tbody>
