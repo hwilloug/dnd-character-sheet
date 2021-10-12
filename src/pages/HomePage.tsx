@@ -4,7 +4,6 @@ import { createCharacterInfoComponent } from '../components/character-info/Chara
 import { createAbilityScoreComponent } from '../components/stats/AbilityScore'
 import { createLevelComponent } from '../components/stats/Level'
 import { createSkillsComponent } from '../components/stats/Skills'
-import { statsActions } from '../components/stats/state/actions'
 
 export const HomePageComponent: React.FunctionComponent<{}> =
     () => {
@@ -13,10 +12,6 @@ export const HomePageComponent: React.FunctionComponent<{}> =
         const CharacterInfoComponent = createCharacterInfoComponent<AppState>()
         const LevelComponent = createLevelComponent<AppState>()
         const SkillsComponent = createSkillsComponent<AppState>()
-
-        useEffect(() => {
-            statsActions.getStats('asdf')
-        }, [])
 
         return (
             <div>

@@ -1,7 +1,7 @@
 import { put, select } from 'redux-saga/effects'
 import { AppState } from '../../../app-store'
+import { formatModifier } from '../../../utils/format-modifier'
 import { statsActions } from '../state/actions'
-import { statModifierOptions, StatModifierType } from '../state/state'
 
 export function createGetModifiersSaga() {
     return function* getModifiersSaga(
@@ -43,7 +43,5 @@ function calculateModifier<StatModifierType>(value: number) {
 
     const modifier = Math.floor((value - 10)/2)
 
-    return (
-        modifier < 0 ? String(modifier) : '+' + modifier
-    ) as unknown as StatModifierType
+    return formatModifier(modifier) as unknown as StatModifierType
 }

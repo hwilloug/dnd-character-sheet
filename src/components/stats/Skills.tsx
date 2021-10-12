@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import { StatsState } from './state/state'
 import { connectRedux, FrameworkComponentProps } from '../../utils/connect'
 import { statsActions } from './state/actions'
+import { capitalizeFirstLetter } from '../../utils/capitalize-first-letter'
 import { useEffect } from 'react'
 
 const StatsTable = styled.table`
@@ -18,7 +19,6 @@ const StatsTable = styled.table`
     }
 `
 
-
 export type SkillsComponentType = FrameworkComponentProps<
     StatsState,
     typeof statsActions,
@@ -31,78 +31,23 @@ export const SkillsComponent: React.FunctionComponent<SkillsComponentType> =
         return (
             <StatsTable>
                 <tbody>
-                    <tr>
-                        <td>{state.skills.acrobatics}</td>
-                        <td>Acrobatics</td>
-                    </tr>
-                    <tr>
-                        <td>{state.skills.animalHandling}</td>
-                        <td>Animal Handling</td>
-                    </tr>
-                    <tr>
-                        <td>{state.skills.arcana}</td>
-                        <td>Arcana</td>
-                    </tr>
-                    <tr>
-                        <td>{state.skills.athletics}</td>
-                        <td>Athletics</td>
-                    </tr>
-                    <tr>
-                        <td>{state.skills.deception}</td>
-                        <td>Deception</td>
-                    </tr>
-                    <tr>
-                        <td>{state.skills.history}</td>
-                        <td>History</td>
-                    </tr>
-                    <tr>
-                        <td>{state.skills.insight}</td>
-                        <td>Insight</td>
-                    </tr>
-                    <tr>
-                        <td>{state.skills.intimidation}</td>
-                        <td>Intimidation</td>
-                    </tr>
-                    <tr>
-                        <td>{state.skills.investigation}</td>
-                        <td>Investigation</td>
-                    </tr>
-                    <tr>
-                        <td>{state.skills.medicine}</td>
-                        <td>Medicine</td>
-                    </tr>
-                    <tr>
-                        <td>{state.skills.nature}</td>
-                        <td>Nature</td>
-                    </tr>
-                    <tr>
-                        <td>{state.skills.perception}</td>
-                        <td>Perception</td>
-                    </tr>
-                    <tr>
-                        <td>{state.skills.performance}</td>
-                        <td>Performance</td>
-                    </tr>
-                    <tr>
-                        <td>{state.skills.persuasion}</td>
-                        <td>Persuasion</td>
-                    </tr>
-                    <tr>
-                        <td>{state.skills.religion}</td>
-                        <td>Religion</td>
-                    </tr>
-                    <tr>
-                        <td>{state.skills.sleightOfHand}</td>
-                        <td>Sleight of Hand</td>
-                    </tr>
-                    <tr>
-                        <td>{state.skills.stealth}</td>
-                        <td>Stealth</td>
-                    </tr>
-                    <tr>
-                        <td>{state.skills.survival}</td>
-                        <td>Survival</td>
-                    </tr>
+                    {
+                        Object.keys(state.skills).map((skill: string) => {
+
+                            {/* @ts-ignore */}
+                            const weight = state.skillsProficiencies[skill] ? 'bold' : 'normal'
+
+                            return (
+                                <tr 
+                                    style={{fontWeight: weight}}
+                                >
+                                    {/* @ts-ignore */}
+                                    <td>{state.skills[skill]}</td>
+                                    <td>{capitalizeFirstLetter(skill)}</td>
+                                </tr>
+                            )
+                        })
+                    }
                 </tbody>
             </StatsTable>
         )
@@ -113,7 +58,7 @@ export function createSkillsComponent<
 >() {
     return connectRedux(
         SkillsComponent,
-        (state: TState) => state .stats,
+        (state: TState) => state.stats,
         statsActions, 
     )
 }

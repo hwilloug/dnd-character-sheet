@@ -28,6 +28,7 @@ export function createGetStatsSaga(apiServices: APIServices.Services) {
             ))
 
             yield put(statsActions.getStatsModifiers())
+            yield put(statsActions.getSkills())
 
         } catch (e) {
             console.log(e)

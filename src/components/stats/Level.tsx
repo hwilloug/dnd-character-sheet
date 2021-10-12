@@ -53,7 +53,7 @@ export function createLevelComponent<
 >() {
     return connectRedux(
         LevelComponent,
-        (state: TState) => state .stats,
+        (state: TState) => state.stats,
         statsActions, 
     )
 }

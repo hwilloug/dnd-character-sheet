@@ -3,7 +3,7 @@ import * as matchers from 'redux-saga-test-plan/matchers'
 import { createAPIServices } from "../../../server"
 import { GetStatsAPI } from "../../../server/character"
 import { statsActions } from "../state/actions"
-import { StatsState } from "../state/state"
+import { AbilityScoresObject } from "../state/state"
 import { createGetStatsSaga } from "./get-stats"
 
 const apiServices = createAPIServices()
@@ -11,7 +11,7 @@ const getStatsSaga = createGetStatsSaga(apiServices)
 
 it('gets and sets stats modifiers', () => {
 
-    const newStats: StatsState = {
+    const newStats: AbilityScoresObject = {
         strength: 3,
         charisma: 1,
         intelligence: 13,
@@ -42,6 +42,7 @@ it('gets and sets stats modifiers', () => {
             )
         )
         .put(statsActions.getStatsModifiers())
+        .put(statsActions.getSkills())
         .run()
         .then((result) => {
             const { effects } = result

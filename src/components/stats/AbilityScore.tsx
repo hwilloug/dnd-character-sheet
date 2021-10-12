@@ -18,7 +18,6 @@ const StatsTable = styled.table`
     }
 `
 
-
 export type AbilityScoreComponentType = FrameworkComponentProps<
     StatsState,
     typeof statsActions,
@@ -27,6 +26,10 @@ export type AbilityScoreComponentType = FrameworkComponentProps<
 
 export const AbilityScoreComponent: React.FunctionComponent<AbilityScoreComponentType> =
     ({state, actions}) => {
+
+        useEffect(() => {
+            actions.getStats('asdf')
+        }, [])
 
         return (
             <StatsTable>
@@ -71,7 +74,7 @@ export function createAbilityScoreComponent<
 >() {
     return connectRedux(
         AbilityScoreComponent,
-        (state: TState) => state .stats,
+        (state: TState) => state.stats,
         statsActions, 
     )
 }
