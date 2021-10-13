@@ -34,7 +34,7 @@ it('gets and sets skills proficiencies', () => {
 
     return expectSaga(
         getSkillsProficienciesSaga,
-        statsActions.getStats('asdf')
+        statsActions.getSkillsProficiencies('asdf')
     )
         .provide([
             [

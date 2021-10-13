@@ -8,6 +8,7 @@ import { useEffect } from 'react'
 const StatsTable = styled.table`
     border: 1px solid black;
     border-collapse: collapse;
+    margin: 20px;
     & > tbody {    
         & > tr {
             & > td {

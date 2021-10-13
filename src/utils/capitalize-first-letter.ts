@@ -4,6 +4,4 @@ export const capitalizeFirstLetter = (str: string) => {
 
     if (firstLetter) return firstLetter.toUpperCase() + splitString.join('')
     else return str
-
-
 }

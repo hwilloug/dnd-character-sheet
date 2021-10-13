@@ -4,13 +4,11 @@ import {
     ResponseTypes,
     UnknownServiceError
 } from '../../../server/responses'
-import { CharacterInfoState } from '../state/state'
+import { SavingThrowsObject, SavingThrowsProficienciesObject, SkillsProficienciesObject } from '../state/state'
 
 export const SUCCESS = 'success'
 
-const success = (
-    response: CharacterInfoState
-) => createResponse(SUCCESS, response)
+const success = (response: SavingThrowsProficienciesObject) => createResponse(SUCCESS, response)
 
 export const Responses = {
     success
@@ -25,22 +23,20 @@ export function create() {
         try {
 
             /* TODO
-            const result: AxiosResponse<
-                CharacterInfoState
-            > = await axios({
-                url: `/api/${character_id}/info`,
+            const result: AxiosResponse<SavingThrowsProficienciesObject> = await axios({
+                url: `/api/${character_id}/saving-throw-proficiencies`,
                 headers: {}
             })
             */
 
             return {
                 body: {
-                    characterName: "Lia Naïlo",
-                    class: "Monk",
-                    race: 'Elf',
-                    alignment: 'Lawful neutral',
-                    background: 'asdf',
-                    playerName: 'Hannah'
+                    strength: true,
+                    constitution: false,
+                    intelligence: false,
+                    charisma: false,
+                    dexterity: true,
+                    wisdom: false
                 }
             }
 

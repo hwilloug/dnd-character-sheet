@@ -27,8 +27,11 @@ export function createGetStatsSaga(apiServices: APIServices.Services) {
                 }
             ))
 
+            yield put(statsActions.getLevel(action.payload.character_id))
+
             yield put(statsActions.getStatsModifiers())
-            yield put(statsActions.getSkills())
+            yield put(statsActions.getSkills(action.payload.character_id))
+            yield put(statsActions.getSavingThrows(action.payload.character_id))
 
         } catch (e) {
             console.log(e)

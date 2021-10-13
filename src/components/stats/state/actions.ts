@@ -55,26 +55,34 @@ export const statsActions = {
             character_id,
             level
         }),
-    getSkills: () => 
-        createAction(StatsActionTypes.GET_SKILLS, {}),
+    getSkills: (character_id: string) => 
+        createAction(StatsActionTypes.GET_SKILLS, {
+            character_id
+        }),
     setSkills: (skills: SkillsObject) => 
         createAction(StatsActionTypes.SET_SKILLS, {
             skills
         }),
-    getSkillsProficiencies: () => 
-        createAction(StatsActionTypes.GET_SKILLS_PROFICIENCIES, {}),
+    getSkillsProficiencies: (character_id: string) => 
+        createAction(StatsActionTypes.GET_SKILLS_PROFICIENCIES, {
+            character_id
+        }),
     setSkillsProficiencies: (skillsProficiencies: SkillsProficienciesObject) => 
         createAction(StatsActionTypes.SET_SKILLS_PROFICIENCIES, {
             skillsProficiencies
         }),
-    getSavingThrows: () => 
-        createAction(StatsActionTypes.GET_SAVING_THROWS, {}),
+    getSavingThrows: (character_id: string) => 
+        createAction(StatsActionTypes.GET_SAVING_THROWS, {
+            character_id
+        }),
     setSavingThrows: (savingThrows: SavingThrowsObject) => 
         createAction(StatsActionTypes.SET_SAVING_THROWS, {
             savingThrows
         }),
-    getSavingThrowProficiencies: () => 
-        createAction(StatsActionTypes.GET_SAVING_THROW_PROFICIENCIES, {}),
+    getSavingThrowProficiencies: (character_id: string) => 
+        createAction(StatsActionTypes.GET_SAVING_THROW_PROFICIENCIES, {
+            character_id
+        }),
     setSavingThrowProficiencies: (savingThrowProficiencies: SavingThrowsProficienciesObject) => 
         createAction(StatsActionTypes.SET_SAVING_THROW_PROFICIENCIES, {
             savingThrowProficiencies

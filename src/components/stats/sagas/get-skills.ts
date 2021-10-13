@@ -1,16 +1,15 @@
 import { put, select } from 'redux-saga/effects'
 import { AppState } from '../../../app-store'
-import { formatModifier } from '../../../utils/format-modifier'
+import { calculateModifier } from '../../../utils/calculate-modifier-with-proficiency'
 import { statsActions } from '../state/actions'
-import { proficiencyBonusOptions, ProficiencyBonusType, statModifierOptions, StatModifierType } from '../state/state'
 
 export function createGetSkillsSaga() {
     return function* getSkillsSaga(
-        action: ReturnType<typeof statsActions.getStatsModifiers>
+        action: ReturnType<typeof statsActions.getSkills>
     ) {
         try {
 
-            yield put(statsActions.getSkillsProficiencies())
+            yield put(statsActions.getSkillsProficiencies(action.payload.character_id))
 
             const state: AppState = yield select()
 
@@ -53,15 +52,4 @@ export function createGetSkillsSaga() {
             console.log(e)
         }
     }
-}
-
-function calculateModifier<StatModifierType>(baseModifier: StatModifierType, proficiency?: boolean, proficiencyBonus?: ProficiencyBonusType) {
-
-    if (proficiency === false) {
-        return baseModifier
-    }
-    // if proficient:
-    const modifier = parseInt(baseModifier as unknown as string) + parseInt(proficiencyBonus as unknown as string)
-
-    return formatModifier(modifier) as unknown as StatModifierType
 }

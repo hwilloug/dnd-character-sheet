@@ -5,7 +5,7 @@ import { statsActions } from '../state/actions'
 
 export function createGetSkillsProficienciesSaga(apiServices: APIServices.Services) {
     return function* getSkillsProficienciesSaga(
-        action: ReturnType<typeof statsActions.getStats>
+        action: ReturnType<typeof statsActions.getSkillsProficiencies>
     ) {
         try {
 

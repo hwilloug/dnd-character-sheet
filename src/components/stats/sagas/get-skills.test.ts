@@ -8,7 +8,7 @@ const getSkillsSaga = createGetSkillsSaga()
 it('gets and sets skills modifiers', () => {
     return expectSaga(
         getSkillsSaga,
-        statsActions.getStatsModifiers()
+        statsActions.getSkills('asdf')
     )
         .provide([
             [select(), {
@@ -47,7 +47,7 @@ it('gets and sets skills modifiers', () => {
                 } 
             }]
         ])
-        .put(statsActions.getSkillsProficiencies())
+        .put(statsActions.getSkillsProficiencies('asdf'))
         .put(
             statsActions.setSkills(
                 {        

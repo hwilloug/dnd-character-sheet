@@ -41,8 +41,10 @@ it('gets and sets stats modifiers', () => {
                 newStats
             )
         )
+        .put(statsActions.getLevel('asdf'))
         .put(statsActions.getStatsModifiers())
-        .put(statsActions.getSkills())
+        .put(statsActions.getSkills('asdf'))
+        .put(statsActions.getSavingThrows('asdf'))
         .run()
         .then((result) => {
             const { effects } = result
