@@ -56,16 +56,18 @@ it('sets experience points', () => {
 })
 
 it('sets level', () => {
-  const level = 500
+  const level = 15
+  const proficiencyBonus = '+5'
   const state = statsReducer(
     initialState,
-    statsActions.setLevel('asdf', level)
+    statsActions.setLevel('asdf', level, proficiencyBonus)
   )
   expect(state).toMatchObject({
     ...initialState,
     level: {
       ...initialState.level,
-      level
+      level,
+      proficiencyBonus
     }
   })
 })

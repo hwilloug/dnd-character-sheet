@@ -30,7 +30,8 @@ it('gets and sets level (1)', () => {
     .put(
       statsActions.setLevel(
         'asdf',
-        1
+        1, 
+        '+2'
       )
     )
     .run()
@@ -61,7 +62,8 @@ it('gets and sets level (2)', () => {
     .put(
       statsActions.setLevel(
         'asdf',
-        2
+        2,
+        '+2'
       )
     )
     .run()
@@ -92,7 +94,8 @@ it('gets and sets level (3)', () => {
     .put(
       statsActions.setLevel(
         'asdf',
-        3
+        3,
+        '+2'
       )
     )
     .run()
@@ -123,7 +126,8 @@ it('gets and sets level (4)', () => {
     .put(
       statsActions.setLevel(
         'asdf',
-        4
+        4,
+        '+2'
       )
     )
     .run()
@@ -154,7 +158,8 @@ it('gets and sets level (5)', () => {
     .put(
       statsActions.setLevel(
         'asdf',
-        5
+        5,
+        '+3'
       )
     )
     .run()
@@ -185,7 +190,8 @@ it('gets and sets level (6)', () => {
     .put(
       statsActions.setLevel(
         'asdf',
-        6
+        6,
+        '+3'
       )
     )
     .run()
@@ -216,7 +222,8 @@ it('gets and sets level (7)', () => {
     .put(
       statsActions.setLevel(
         'asdf',
-        7
+        7,
+        '+3'
       )
     )
     .run()
@@ -247,7 +254,8 @@ it('gets and sets level (8)', () => {
     .put(
       statsActions.setLevel(
         'asdf',
-        8
+        8,
+        '+3'
       )
     )
     .run()
@@ -278,7 +286,8 @@ it('gets and sets level (8 <2>)', () => {
     .put(
       statsActions.setLevel(
         'asdf',
-        8
+        8,
+        '+3'
       )
     )
     .run()
@@ -309,7 +318,8 @@ it('gets and sets level (9)', () => {
     .put(
       statsActions.setLevel(
         'asdf',
-        9
+        9,
+        '+4'
       )
     )
     .run()
@@ -340,7 +350,8 @@ it('gets and sets level (10)', () => {
     .put(
       statsActions.setLevel(
         'asdf',
-        10
+        10,
+        '+4'
       )
     )
     .run()
@@ -371,7 +382,8 @@ it('gets and sets level (11)', () => {
     .put(
       statsActions.setLevel(
         'asdf',
-        11
+        11,
+        '+4'
       )
     )
     .run()
@@ -402,7 +414,8 @@ it('gets and sets level (12)', () => {
     .put(
       statsActions.setLevel(
         'asdf',
-        12
+        12,
+        '+4'
       )
     )
     .run()
@@ -433,7 +446,8 @@ it('gets and sets level (13)', () => {
     .put(
       statsActions.setLevel(
         'asdf',
-        13
+        13,
+        '+5'
       )
     )
     .run()
@@ -464,7 +478,8 @@ it('gets and sets level (14)', () => {
     .put(
       statsActions.setLevel(
         'asdf',
-        14
+        14,
+        '+5'
       )
     )
     .run()
@@ -495,7 +510,8 @@ it('gets and sets level (15)', () => {
     .put(
       statsActions.setLevel(
         'asdf',
-        15
+        15,
+        '+5'
       )
     )
     .run()
@@ -526,7 +542,8 @@ it('gets and sets level (16)', () => {
     .put(
       statsActions.setLevel(
         'asdf',
-        16
+        16,
+        '+5'
       )
     )
     .run()
@@ -557,7 +574,8 @@ it('gets and sets level (17)', () => {
     .put(
       statsActions.setLevel(
         'asdf',
-        17
+        17,
+        '+6'
       )
     )
     .run()
@@ -588,7 +606,8 @@ it('gets and sets level (18)', () => {
     .put(
       statsActions.setLevel(
         'asdf',
-        18
+        18,
+        '+6'
       )
     )
     .run()
@@ -619,7 +638,8 @@ it('gets and sets level (19)', () => {
     .put(
       statsActions.setLevel(
         'asdf',
-        19
+        19,
+        '+6'
       )
     )
     .run()
@@ -650,7 +670,8 @@ it('gets and sets level (20)', () => {
     .put(
       statsActions.setLevel(
         'asdf',
-        20
+        20,
+        '+6'
       )
     )
     .run()
@@ -681,7 +702,8 @@ it('gets and sets level (20 <2>)', () => {
     .put(
       statsActions.setLevel(
         'asdf',
-        20
+        20,
+        '+6'
       )
     )
     .run()
