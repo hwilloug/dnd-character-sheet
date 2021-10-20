@@ -9,7 +9,7 @@ import { createGetCharacterInfoSaga } from "./get-character-info"
 const apiServices = createAPIServices()
 const getCharacterInfoSaga = createGetCharacterInfoSaga(apiServices)
 
-it('gets and sets stats modifiers', () => {
+it('gets and sets character info', () => {
 
   const newCharacterInfo: CharacterInfoState = {
     characterName: "Lia Naïlo",

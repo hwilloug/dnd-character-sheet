@@ -11,12 +11,14 @@ import { connectRouter } from 'connected-react-router'
 import { History } from 'history'
 import { statsReducer } from './components/stats/state/reducer'
 import { characterInfoReducer } from './components/character-info/state/reducer'
+import { featuresReducer } from './components/features/state/reducer'
   
 const createReducer = (history: any) =>
   combineReducers({
     router: connectRouter(history),
     characterInfo: characterInfoReducer,
-    stats: statsReducer
+    stats: statsReducer,
+    features: featuresReducer
   })
 const appReducer = createReducer(window.history)
   

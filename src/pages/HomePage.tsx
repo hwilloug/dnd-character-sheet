@@ -1,6 +1,7 @@
 import React from 'react'
 import { AppState } from '../app-store'
 import { createCharacterInfoComponent } from '../components/character-info/CharacterInfo'
+import { createFeaturesComponent } from '../components/features/Features'
 import { createAbilityScoreComponent } from '../components/stats/AbilityScore'
 import { createLevelComponent } from '../components/stats/Level'
 import { createSavingThrowComponent } from '../components/stats/SavingThrows'
@@ -14,6 +15,7 @@ export const HomePageComponent: React.FunctionComponent<{}> =
       const LevelComponent = createLevelComponent<AppState>()
       const SkillsComponent = createSkillsComponent<AppState>()
       const SavingThrowsComponent = createSavingThrowComponent<AppState>()
+      const FeaturesComponent = createFeaturesComponent<AppState>()
 
       return (
         <div>
@@ -22,6 +24,7 @@ export const HomePageComponent: React.FunctionComponent<{}> =
           <AbilityScoreComponent />
           <SkillsComponent />
           <SavingThrowsComponent />
+          <FeaturesComponent />
         </div>
       )
     }

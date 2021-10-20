@@ -95,7 +95,7 @@ export function createGetLevelSaga() {
         yield put(statsActions.setLevel(
           action.payload.character_id,
           level,
-                    proficiencyBonus as unknown as ProficiencyBonusType
+          proficiencyBonus as unknown as ProficiencyBonusType
         ))
       }
 
