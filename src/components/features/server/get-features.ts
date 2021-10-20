@@ -60,7 +60,7 @@ export function create() {
           },
           {
             name: 'Martial Arts',
-            description: "At 1st level, your practice of martial arts gives you mastery of combat styles that use unarmed strikes and monk weapons, which are shortswords and any simple melee weapons that don't have the two-handed or heavy property.<br>You gavin the following benefits while you are unarmed or wielding only monk weapons and you aren't wearing armor or wielding a shield: <ul><li>You can use Dexterity instead of Strength for the attack and damage rolls of your unarmed strikes and monk weapons.</li><li>You can roll a d4 in place of the normal damage of your unarmed strike or monk weapon. This die changes as you gain monk levels.</li><li>When you use the Attack action with an unarmed strike or monk weapon on your turn, you can make one unarmed strike as a bonus action.</li></ul>"
+            description: "At 1st level, your practice of martial arts gives you mastery of combat styles that use unarmed strikes and monk weapons, which are shortswords and any simple melee weapons that don't have the two-handed or heavy property.<br>You gain the following benefits while you are unarmed or wielding only monk weapons and you aren't wearing armor or wielding a shield: <ul><li>You can use Dexterity instead of Strength for the attack and damage rolls of your unarmed strikes and monk weapons.</li><li>You can roll a d4 in place of the normal damage of your unarmed strike or monk weapon. This die changes as you gain monk levels.</li><li>When you use the Attack action with an unarmed strike or monk weapon on your turn, you can make one unarmed strike as a bonus action.</li></ul>"
           }
         ]
       }

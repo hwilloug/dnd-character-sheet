@@ -39,7 +39,7 @@ export const FeaturesComponent: React.FunctionComponent<FeaturesComponentType> =
             { state.map((feature) => (
               <tr>
                 <td><b>{feature.name}</b></td>
-                <td>{feature.description}</td>
+                <td dangerouslySetInnerHTML={{__html: feature.description}}></td>
               </tr>
             ))}
           </tbody>

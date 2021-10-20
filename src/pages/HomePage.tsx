@@ -1,3 +1,4 @@
+import styled from '@emotion/styled'
 import React from 'react'
 import { AppState } from '../app-store'
 import { createCharacterInfoComponent } from '../components/character-info/CharacterInfo'
@@ -6,6 +7,13 @@ import { createAbilityScoreComponent } from '../components/stats/AbilityScore'
 import { createLevelComponent } from '../components/stats/Level'
 import { createSavingThrowComponent } from '../components/stats/SavingThrows'
 import { createSkillsComponent } from '../components/stats/Skills'
+
+const SheetContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+`
+
 
 export const HomePageComponent: React.FunctionComponent<{}> =
     () => {
@@ -18,13 +26,13 @@ export const HomePageComponent: React.FunctionComponent<{}> =
       const FeaturesComponent = createFeaturesComponent<AppState>()
 
       return (
-        <div>
+        <SheetContainer>
           <CharacterInfoComponent />
           <LevelComponent />
           <AbilityScoreComponent />
           <SkillsComponent />
           <SavingThrowsComponent />
           <FeaturesComponent />
-        </div>
+        </SheetContainer>
       )
     }
