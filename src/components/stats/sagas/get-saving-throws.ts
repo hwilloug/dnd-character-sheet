@@ -1,20 +1,30 @@
-import { put, select } from 'redux-saga/effects'
+import { call, put, select } from 'redux-saga/effects'
 import { AppState } from '../../../app-store'
+import * as APIServices from '../../../server'
+import { GetSavingThrowProficienciesAPI } from '../../../server/character'
 import { calculateModifier } from '../../../utils/calculate-modifier-with-proficiency'
 import { statsActions } from '../state/actions'
 
-export function createGetSavingThrowsSaga() {
+export function createGetSavingThrowsSaga(apiServices: APIServices.Services) {
   return function* getSavingThrowsSaga(
     action: ReturnType<typeof statsActions.getSavingThrows>
   ) {
     try {
 
-      yield put(statsActions.getSavingThrowProficiencies(action.payload.character_id))
+      const response: GetSavingThrowProficienciesAPI.Responses = yield call(
+        apiServices.getSavingThrowProficienciesAPI,
+        action.payload.character_id,
+        'test-token'
+      )
+
+      yield put(statsActions.setSavingThrowProficiencies(
+        response.body
+      ))
 
       const state: AppState = yield select()
 
       const modifiers = state.stats.abilityScoresModifiers
-      const proficiencies = state.stats.savingThrowsProficiencies
+      const proficiencies = response.body
       const proficiencyBonus = state.stats.level.proficiencyBonus
 
       if (

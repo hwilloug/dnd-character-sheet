@@ -63,7 +63,7 @@
         "warn",
         {
           "vars": "all",
-            "varsIgnorePattern": "^_",
+          "varsIgnorePattern": "^_",
           "args": "after-used",
           "argsIgnorePattern": "^_"
         }

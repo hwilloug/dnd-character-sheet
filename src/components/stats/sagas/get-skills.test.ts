@@ -2,10 +2,37 @@ import { expectSaga } from "redux-saga-test-plan"
 import { select } from "redux-saga/effects"
 import { statsActions } from "../state/actions"
 import { createGetSkillsSaga } from "./get-skills"
+import { createAPIServices } from "../../../server"
+import { SkillsProficienciesObject } from "../state/state"
+import * as matchers from 'redux-saga-test-plan/matchers'
+import { GetSkillsProficienciesAPI } from "../../../server/character"
 
-const getSkillsSaga = createGetSkillsSaga()
+const apiServices = createAPIServices()
+const getSkillsSaga = createGetSkillsSaga(apiServices)
 
 it('gets and sets skills modifiers', () => {
+
+  const newStats: SkillsProficienciesObject = {
+    acrobatics: true,
+    animalHandling: false,
+    arcana: false,
+    athletics: false,
+    deception: false,
+    history: false,
+    insight: false,
+    intimidation: false,
+    investigation: false,
+    medicine: false,
+    nature: false,
+    perception: false,
+    performance: false,
+    persuasion: false,
+    religion: true,
+    sleightOfHand: false,
+    stealth: false,
+    survival: false
+  }
+
   return expectSaga(
     getSkillsSaga,
     statsActions.getSkills('asdf')
@@ -21,33 +48,26 @@ it('gets and sets skills modifiers', () => {
             wisdomModifier: '+3',
             charismaModifier: '+2'
           },
-          skillsProficiencies: {
-            acrobatics: true,
-            animalHandling: false,
-            arcana: false,
-            athletics: false,
-            deception: false,
-            history: false,
-            insight: false,
-            intimidation: false,
-            investigation: false,
-            medicine: false,
-            nature: false,
-            perception: false,
-            performance: false,
-            persuasion: false,
-            religion: true,
-            sleightOfHand: false,
-            stealth: false,
-            survival: false
-          },
           level: {
             proficiencyBonus: '+2'
           }
         } 
-      }]
+      }],
+      [
+        matchers.call.fn(apiServices.getSkillsProficienciesAPI),
+        GetSkillsProficienciesAPI.Responses.success(newStats)
+      ]
     ])
-    .put(statsActions.getSkillsProficiencies('asdf'))
+    .call(
+      apiServices.getSkillsProficienciesAPI,
+      'asdf',
+      'test-token'
+    )
+    .put(
+      statsActions.setSkillsProficiencies(
+        newStats
+      )
+    )
     .put(
       statsActions.setSkills(
         {        

@@ -2,10 +2,25 @@ import { expectSaga } from "redux-saga-test-plan"
 import { select } from "redux-saga/effects"
 import { statsActions } from "../state/actions"
 import { createGetSavingThrowsSaga } from "./get-saving-throws"
+import { createAPIServices } from "../../../server"
+import * as matchers from 'redux-saga-test-plan/matchers'
+import { SavingThrowsProficienciesObject } from "../state/state"
+import { GetSavingThrowProficienciesAPI } from "../../../server/character"
 
-const getSavingThrowsSaga = createGetSavingThrowsSaga()
+const apiServices = createAPIServices()
+const getSavingThrowsSaga = createGetSavingThrowsSaga(apiServices)
 
 it('gets and sets saving throw modifiers', () => {
+
+  const newStats: SavingThrowsProficienciesObject = {
+    strength: true,
+    constitution: false,
+    intelligence: false,
+    charisma: false,
+    dexterity: true,
+    wisdom: false
+  }
+
   return expectSaga(
     getSavingThrowsSaga,
     statsActions.getSavingThrows('asdf')
@@ -21,21 +36,26 @@ it('gets and sets saving throw modifiers', () => {
             wisdomModifier: '+3',
             charismaModifier: '+2'
           },
-          savingThrowsProficiencies: {
-            strength: true,
-            constitution: false,
-            intelligence: false,
-            charisma: false,
-            dexterity: true,
-            wisdom: false
-          },
           level: {
             proficiencyBonus: '+2'
           }
         } 
-      }]
+      }],
+      [
+        matchers.call.fn(apiServices.getSavingThrowProficienciesAPI),
+        GetSavingThrowProficienciesAPI.Responses.success(newStats)
+      ]
     ])
-    .put(statsActions.getSavingThrowProficiencies('asdf'))
+    .call(
+      apiServices.getSavingThrowProficienciesAPI,
+      'asdf',
+      'test-token'
+    )
+    .put(
+      statsActions.setSavingThrowProficiencies(
+        newStats
+      )
+    )
     .put(
       statsActions.setSavingThrows(
         {

@@ -1,20 +1,31 @@
+import { call } from 'redux-saga-test-plan/matchers'
 import { put, select } from 'redux-saga/effects'
 import { AppState } from '../../../app-store'
+import * as APIServices from '../../../server'
+import { GetSkillsProficienciesAPI } from '../../../server/character'
 import { calculateModifier } from '../../../utils/calculate-modifier-with-proficiency'
 import { statsActions } from '../state/actions'
 
-export function createGetSkillsSaga() {
+export function createGetSkillsSaga(apiServices: APIServices.Services) {
   return function* getSkillsSaga(
     action: ReturnType<typeof statsActions.getSkills>
   ) {
     try {
 
-      yield put(statsActions.getSkillsProficiencies(action.payload.character_id))
+      const response: GetSkillsProficienciesAPI.Responses = yield call(
+        apiServices.getSkillsProficienciesAPI,
+        action.payload.character_id,
+        'test-token'
+      )
+
+      yield put(statsActions.setSkillsProficiencies(
+        response.body
+      ))
 
       const state: AppState = yield select()
 
       const modifiers = state.stats.abilityScoresModifiers
-      const proficiencies = state.stats.skillsProficiencies
+      const proficiencies = response.body
       const proficiencyBonus = state.stats.level.proficiencyBonus
 
       if (
