@@ -4,23 +4,23 @@ import { GetSkillsProficienciesAPI } from '../../../server/character'
 import { statsActions } from '../state/actions'
 
 export function createGetSkillsProficienciesSaga(apiServices: APIServices.Services) {
-    return function* getSkillsProficienciesSaga(
-        action: ReturnType<typeof statsActions.getSkillsProficiencies>
-    ) {
-        try {
+  return function* getSkillsProficienciesSaga(
+    action: ReturnType<typeof statsActions.getSkillsProficiencies>
+  ) {
+    try {
 
-            const response: GetSkillsProficienciesAPI.Responses = yield call(
-                apiServices.getSkillsProficienciesAPI,
-                action.payload.character_id,
-                'test-token'
-            )
+      const response: GetSkillsProficienciesAPI.Responses = yield call(
+        apiServices.getSkillsProficienciesAPI,
+        action.payload.character_id,
+        'test-token'
+      )
 
-            yield put(statsActions.setSkillsProficiencies(
-                response.body
-            ))
+      yield put(statsActions.setSkillsProficiencies(
+        response.body
+      ))
 
-        } catch (e) {
-            console.log(e)
-        }
+    } catch (e) {
+      console.log(e)
     }
+  }
 }

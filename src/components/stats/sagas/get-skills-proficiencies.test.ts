@@ -11,52 +11,52 @@ const getSkillsProficienciesSaga = createGetSkillsProficienciesSaga(apiServices)
 
 it('gets and sets skills proficiencies', () => {
 
-    const newStats: SkillsProficienciesObject = {
-        acrobatics: true,
-        animalHandling: false,
-        arcana: false,
-        athletics: false,
-        deception: false,
-        history: false,
-        insight: false,
-        intimidation: false,
-        investigation: false,
-        medicine: false,
-        nature: false,
-        perception: false,
-        performance: false,
-        persuasion: false,
-        religion: true,
-        sleightOfHand: false,
-        stealth: false,
-        survival: false
-    }
+  const newStats: SkillsProficienciesObject = {
+    acrobatics: true,
+    animalHandling: false,
+    arcana: false,
+    athletics: false,
+    deception: false,
+    history: false,
+    insight: false,
+    intimidation: false,
+    investigation: false,
+    medicine: false,
+    nature: false,
+    perception: false,
+    performance: false,
+    persuasion: false,
+    religion: true,
+    sleightOfHand: false,
+    stealth: false,
+    survival: false
+  }
 
-    return expectSaga(
-        getSkillsProficienciesSaga,
-        statsActions.getSkillsProficiencies('asdf')
+  return expectSaga(
+    getSkillsProficienciesSaga,
+    statsActions.getSkillsProficiencies('asdf')
+  )
+    .provide([
+      [
+        matchers.call.fn(apiServices.getSkillsProficienciesAPI),
+        GetSkillsProficienciesAPI.Responses.success(newStats)
+      ]
+    ])
+    .call(
+      apiServices.getSkillsProficienciesAPI,
+      'asdf',
+      'test-token'
     )
-        .provide([
-            [
-                matchers.call.fn(apiServices.getSkillsProficienciesAPI),
-                GetSkillsProficienciesAPI.Responses.success(newStats)
-            ]
-        ])
-        .call(
-            apiServices.getSkillsProficienciesAPI,
-            'asdf',
-            'test-token'
-        )
-        .put(
-            statsActions.setSkillsProficiencies(
-                newStats
-            )
-        )
-        .run()
-        .then((result) => {
-            const { effects } = result
+    .put(
+      statsActions.setSkillsProficiencies(
+        newStats
+      )
+    )
+    .run()
+    .then((result) => {
+      const { effects } = result
       
-            expect(effects.put).toBe(undefined)
-            expect(effects.call).toBe(undefined)
-        })
+      expect(effects.put).toBe(undefined)
+      expect(effects.call).toBe(undefined)
+    })
 })

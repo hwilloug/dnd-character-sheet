@@ -1,14 +1,13 @@
-import axios, { AxiosResponse } from 'axios'
 import {
-    createResponse,
-    ResponseTypes,
-    UnknownServiceError
+  createResponse,
+  ResponseTypes,
+  UnknownServiceError
 } from '../../../server/responses'
 
 export const SUCCESS = 'success'
 
 const success = (
-    response: {
+  response: {
         strength?: number,
         dexterity?: number,
         constitution?: number,
@@ -19,18 +18,18 @@ const success = (
 ) => createResponse(SUCCESS, response)
 
 export const Responses = {
-    success
+  success
 }
 export type Responses = ResponseTypes<typeof Responses>
 
 export function create() {
-    return async function service(
-        character_id: string,
-        token: string
-    ) {
-        try {
+  return async function service(
+    character_id: string,
+    token: string
+  ) {
+    try {
 
-            /* TODO
+      /* TODO
             const result: AxiosResponse<
                 {
                     strength?: number,
@@ -46,20 +45,20 @@ export function create() {
             })
             */
 
-            return {
-                body: {
-                    strength: 11,
-                    dexterity: 18,
-                    constitution: 11,
-                    intelligence: 8,
-                    wisdom: 16,
-                    charisma: 14
-                }
-            }
-
-        } catch (e) {
-            console.log(e)
-            throw new UnknownServiceError()
+      return {
+        body: {
+          strength: 11,
+          dexterity: 18,
+          constitution: 11,
+          intelligence: 8,
+          wisdom: 16,
+          charisma: 14
         }
+      }
+
+    } catch (e) {
+      console.log(e)
+      throw new UnknownServiceError()
     }
+  }
 }

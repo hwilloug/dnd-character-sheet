@@ -11,45 +11,45 @@ const getStatsSaga = createGetStatsSaga(apiServices)
 
 it('gets and sets stats modifiers', () => {
 
-    const newStats: AbilityScoresObject = {
-        strength: 3,
-        charisma: 1,
-        intelligence: 13,
-        wisdom: 14,
-        constitution: 21,
-        dexterity: 19
-    }
+  const newStats: AbilityScoresObject = {
+    strength: 3,
+    charisma: 1,
+    intelligence: 13,
+    wisdom: 14,
+    constitution: 21,
+    dexterity: 19
+  }
 
-    return expectSaga(
-        getStatsSaga,
-        statsActions.getStats('asdf')
+  return expectSaga(
+    getStatsSaga,
+    statsActions.getStats('asdf')
+  )
+    .provide([
+      [
+        matchers.call.fn(apiServices.getStatsAPI),
+        GetStatsAPI.Responses.success(newStats)
+      ]
+    ])
+    .call(
+      apiServices.getStatsAPI,
+      'asdf',
+      'test-token'
     )
-        .provide([
-            [
-                matchers.call.fn(apiServices.getStatsAPI),
-                GetStatsAPI.Responses.success(newStats)
-            ]
-        ])
-        .call(
-            apiServices.getStatsAPI,
-            'asdf',
-            'test-token'
-        )
-        .put(
-            statsActions.setStats(
-                'asdf',
-                newStats
-            )
-        )
-        .put(statsActions.getLevel('asdf'))
-        .put(statsActions.getStatsModifiers())
-        .put(statsActions.getSkills('asdf'))
-        .put(statsActions.getSavingThrows('asdf'))
-        .run()
-        .then((result) => {
-            const { effects } = result
+    .put(
+      statsActions.setStats(
+        'asdf',
+        newStats
+      )
+    )
+    .put(statsActions.getLevel('asdf'))
+    .put(statsActions.getStatsModifiers())
+    .put(statsActions.getSkills('asdf'))
+    .put(statsActions.getSavingThrows('asdf'))
+    .run()
+    .then((result) => {
+      const { effects } = result
       
-            expect(effects.put).toBe(undefined)
-            expect(effects.call).toBe(undefined)
-        })
+      expect(effects.put).toBe(undefined)
+      expect(effects.call).toBe(undefined)
+    })
 })

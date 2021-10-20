@@ -4,8 +4,8 @@ import * as GetSkillsProficienciesAPI from '../../components/stats/server/get-sk
 import * as GetSavingThrowProficienciesAPI from '../../components/stats/server/get-saving-throw-proficiencies'
 
 export {
-    GetStatsAPI,
-    GetCharacterInfoAPI,
-    GetSkillsProficienciesAPI,
-    GetSavingThrowProficienciesAPI
+  GetStatsAPI,
+  GetCharacterInfoAPI,
+  GetSkillsProficienciesAPI,
+  GetSavingThrowProficienciesAPI
 }

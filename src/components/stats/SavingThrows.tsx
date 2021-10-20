@@ -3,7 +3,6 @@ import styled from '@emotion/styled'
 import { StatsState } from './state/state'
 import { connectRedux, FrameworkComponentProps } from '../../utils/connect'
 import { statsActions } from './state/actions'
-import { useEffect } from 'react'
 import { capitalizeFirstLetter } from '../../utils/capitalize-first-letter'
 
 const StatsTable = styled.table`
@@ -29,39 +28,39 @@ export type SavingThrowComponentType = FrameworkComponentProps<
 export const SavingThrowComponent: React.FunctionComponent<SavingThrowComponentType> =
     ({state, actions}) => {
 
-        return (
-            <StatsTable>
-                <tbody>
-                {
-                    Object.keys(state.abilityScores).map((ability: string) => {
+      return (
+        <StatsTable>
+          <tbody>
+            {
+              Object.keys(state.abilityScores).map((ability: string) => {
 
-                        {/* @ts-ignore */}
-                        const weight = state.savingThrowsProficiencies[ability] ? 'bold' : 'normal'
+                {/* @ts-ignore */}
+                const weight = state.savingThrowsProficiencies[ability] ? 'bold' : 'normal'
 
-                        return (
-                            <tr 
-                                style={{fontWeight: weight}}
-                            >
-                                {/* @ts-ignore */}
-                                <td>{state.savingThrows[ability]}</td>
-                                <td>{capitalizeFirstLetter(ability)}</td>
-                            </tr>
-                        )
-                    })
-                }
-                </tbody>
-            </StatsTable>
-        )
+                return (
+                  <tr 
+                    style={{fontWeight: weight}}
+                  >
+                    {/* @ts-ignore */}
+                    <td>{state.savingThrows[ability]}</td>
+                    <td>{capitalizeFirstLetter(ability)}</td>
+                  </tr>
+                )
+              })
+            }
+          </tbody>
+        </StatsTable>
+      )
     }
 
 export function createSavingThrowComponent<
     TState extends { stats: StatsState }
 >() {
-    return connectRedux(
-        SavingThrowComponent,
-        (state: TState) => state.stats,
-        statsActions, 
-    )
+  return connectRedux(
+    SavingThrowComponent,
+    (state: TState) => state.stats,
+    statsActions, 
+  )
 }
 
 export type SavingThrows = ReturnType<typeof SavingThrowComponent>

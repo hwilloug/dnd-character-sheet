@@ -55,23 +55,23 @@ export const connectRedux = <
   TActions extends ActionsObject,
   TProps
 >(
-  component: React.FunctionComponent<
+    component: React.FunctionComponent<
     FrameworkComponentProps<TState, TActions, TProps>
   >,
-  selector: (state: TAppState) => TState,
-  actions?: TActions
-): FunctionComponent<TProps> =>
-  connect(
-    selector,
-    actions,
-    (stateProps, dispatchProps, ownProps: PropsWithChildren<TProps>) => {
-      const { children, ...otherOwnProps } = ownProps
-      return {
-        children,
-        props: otherOwnProps,
-        actions: dispatchProps,
-        state: stateProps
+    selector: (state: TAppState) => TState,
+    actions?: TActions
+  ): FunctionComponent<TProps> =>
+    connect(
+      selector,
+      actions,
+      (stateProps, dispatchProps, ownProps: PropsWithChildren<TProps>) => {
+        const { children, ...otherOwnProps } = ownProps
+        return {
+          children,
+          props: otherOwnProps,
+          actions: dispatchProps,
+          state: stateProps
+        }
       }
-    }
     // @ts-ignore
-  )(component)
+    )(component)

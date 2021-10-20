@@ -22,9 +22,9 @@ export function App() {
   return (
     <Provider store={store}>
       <ConnectedRouter history={history}>
-          {/* <KeycloakProvider> */}
-          <HomePageComponent />
-          {/* </KeycloakProvider> */}
+        {/* <KeycloakProvider> */}
+        <HomePageComponent />
+        {/* </KeycloakProvider> */}
       </ConnectedRouter>
     </Provider>
   )

@@ -5,15 +5,15 @@ import * as APIServices from '../server'
 
 
 export function createRootSaga(apiServices: APIServices.Services) {
-    const statsSaga = createStatsSaga(apiServices)
-    const characterInfoSaga = createCharacterInfoSaga(apiServices)
+  const statsSaga = createStatsSaga(apiServices)
+  const characterInfoSaga = createCharacterInfoSaga(apiServices)
 
-    const sagas = [
-        fork(statsSaga),
-        fork(characterInfoSaga)
-    ]
+  const sagas = [
+    fork(statsSaga),
+    fork(characterInfoSaga)
+  ]
 
-    return function* () {
-        yield all(sagas)
-    }
+  return function* () {
+    yield all(sagas)
+  }
 }
