@@ -9,7 +9,13 @@ it('sets character info', () => {
     race: 'Elf',
     alignment: 'Lawful neutral',
     background: 'asdf',
-    playerName: 'Hannah'
+    playerName: 'Hannah',
+    age: 337,
+    eyes: 'Hazel',
+    height: "5' 10\"",
+    weight: '150 lb',
+    skin: 'Caramel',
+    hair: 'Caramel'
   }
   const state = characterInfoReducer(
     initialState,

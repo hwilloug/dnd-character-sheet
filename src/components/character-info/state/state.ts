@@ -50,4 +50,10 @@ export type CharacterInfoState = {
     alignment?: AlignmentOptionsType,
     background?: string,
     playerName?: string
+    age?: number,
+    height?: string,
+    eyes?: string,
+    skin?: string,
+    weight?: string,
+    hair?: string
 }

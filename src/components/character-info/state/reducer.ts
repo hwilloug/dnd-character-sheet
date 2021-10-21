@@ -18,7 +18,13 @@ export function characterInfoReducer(
       race: action.payload.character_info.race,
       alignment: action.payload.character_info.alignment,
       background: action.payload.character_info.background,
-      playerName: action.payload.character_info.playerName
+      playerName: action.payload.character_info.playerName,
+      age: action.payload.character_info.age,
+      eyes: action.payload.character_info.eyes,
+      height: action.payload.character_info.height,
+      skin: action.payload.character_info.skin,
+      weight: action.payload.character_info.weight,
+      hair: action.payload.character_info.hair,
     }
   default: 
     return state

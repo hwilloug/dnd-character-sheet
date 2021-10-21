@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import React from 'react'
 import { AppState } from '../app-store'
+import { createAppearanceComponent } from '../components/character-info/Appearance'
 import { createCharacterInfoComponent } from '../components/character-info/CharacterInfo'
 import { createFeaturesComponent } from '../components/features/Features'
 import { createAbilityScoreComponent } from '../components/stats/AbilityScore'
@@ -24,6 +25,7 @@ export const HomePageComponent: React.FunctionComponent<{}> =
       const SkillsComponent = createSkillsComponent<AppState>()
       const SavingThrowsComponent = createSavingThrowComponent<AppState>()
       const FeaturesComponent = createFeaturesComponent<AppState>()
+      const AppearanceComponent = createAppearanceComponent<AppState>()
 
       return (
         <SheetContainer>
@@ -33,6 +35,7 @@ export const HomePageComponent: React.FunctionComponent<{}> =
           <SkillsComponent />
           <SavingThrowsComponent />
           <FeaturesComponent />
+          <AppearanceComponent />
         </SheetContainer>
       )
     }
