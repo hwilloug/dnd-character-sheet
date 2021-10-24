@@ -25,6 +25,10 @@ export function characterInfoReducer(
       skin: action.payload.character_info.skin,
       weight: action.payload.character_info.weight,
       hair: action.payload.character_info.hair,
+      personality: action.payload.character_info.personality,
+      ideals: action.payload.character_info.ideals,
+      bonds: action.payload.character_info.bonds,
+      flaws: action.payload.character_info.flaws
     }
   default: 
     return state

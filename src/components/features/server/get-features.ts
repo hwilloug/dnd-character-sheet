@@ -61,6 +61,10 @@ export function create() {
           {
             name: 'Martial Arts',
             description: "At 1st level, your practice of martial arts gives you mastery of combat styles that use unarmed strikes and monk weapons, which are shortswords and any simple melee weapons that don't have the two-handed or heavy property.<br>You gain the following benefits while you are unarmed or wielding only monk weapons and you aren't wearing armor or wielding a shield: <ul><li>You can use Dexterity instead of Strength for the attack and damage rolls of your unarmed strikes and monk weapons.</li><li>You can roll a d4 in place of the normal damage of your unarmed strike or monk weapon. This die changes as you gain monk levels.</li><li>When you use the Attack action with an unarmed strike or monk weapon on your turn, you can make one unarmed strike as a bonus action.</li></ul>"
+          },
+          {
+            name: 'Guild Membership',
+            description: "As an established and respected member of a guild, you can rely on certain benefits that membership provides. Your fellow guild members will provide you with lodging and food if necessary, and pay for your funeral if needed. In some cities and towns, a guildhall offers a central place to meet other members of your profession, which can be a good place to meet potential patrons, allies, or hirelings.<br>Guilds often wield tremendous political power. If you are accused of a crime, your guild will support you if a good case can be made for your innocence or the crime is justifiable. You can also gain access to powerful political figures through the guild, if you are a member in good standing. Such connections might require the donation of money or magic items to the guild's coffers.<br>You must pay dues of 5gp per month to the guild. If you miss payments, you must make up back dues to remain in the guild's good graces."
           }
         ]
       }

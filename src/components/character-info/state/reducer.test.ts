@@ -15,7 +15,11 @@ it('sets character info', () => {
     height: "5' 10\"",
     weight: '150 lb',
     skin: 'Caramel',
-    hair: 'Caramel'
+    hair: 'Caramel',
+    personality: 'dfasdf',
+    ideals: 'fjhgjh',
+    bonds: 'adjkfjlsdkf',
+    flaws: 'ogikjkn'
   }
   const state = characterInfoReducer(
     initialState,

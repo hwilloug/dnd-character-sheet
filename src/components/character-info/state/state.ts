@@ -55,5 +55,9 @@ export type CharacterInfoState = {
     eyes?: string,
     skin?: string,
     weight?: string,
-    hair?: string
+    hair?: string,
+    personality?: string,
+    ideals?: string,
+    bonds?: string,
+    flaws?: string
 }
