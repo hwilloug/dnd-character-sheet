@@ -29,7 +29,11 @@ export function createGetCharacterInfoSaga(apiServices: APIServices.Services) {
           eyes: response.body.eyes,
           hair: response.body.hair,
           height: response.body.height,
-          skin: response.body.skin
+          skin: response.body.skin,
+          ideals: response.body.ideals,
+          bonds: response.body.bonds,
+          personality: response.body.personality,
+          flaws: response.body.flaws
         }
       ))
 

@@ -6,7 +6,8 @@ export const createAPIServices = (token?: string) => {
     getCharacterInfoAPI: Character.GetCharacterInfoAPI.create(),
     getSkillsProficienciesAPI: Character.GetSkillsProficienciesAPI.create(),
     getSavingThrowProficienciesAPI: Character.GetSavingThrowProficienciesAPI.create(),
-    getFeaturesAPI: Character.GetFeaturesAPI.create()
+    getFeaturesAPI: Character.GetFeaturesAPI.create(),
+    GetItemsAPI: Character.GetItemsAPI.create()
   }
 }
 

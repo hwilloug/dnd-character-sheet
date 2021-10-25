@@ -60,7 +60,7 @@ export function createGetLevelSaga() {
           proficiencyBonus = '+4'
         }
         else if (currentExp >= 48000) {
-          level = 9,
+          level = 9
           proficiencyBonus = '+4'
         }
         else if (currentExp >= 34000) {

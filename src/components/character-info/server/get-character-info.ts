@@ -47,9 +47,9 @@ export function create() {
           skin: 'Caramel',
           hair: 'Caramel',
           personality: 'I like to talk at length about my profession.',
-          ideal: 'Beauty: What is beautiful points us beyond itself towards what is true.',
+          ideals: 'Beauty: What is beautiful points us beyond itself towards what is true.',
           bonds: "I created a great work for someone, and then found them unworthy to receive it. I'm still looking for someone worthy.",
-          flaws: ""
+          flaws: "I..."
         }
       }
 
