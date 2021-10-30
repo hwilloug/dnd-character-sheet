@@ -5,7 +5,8 @@ export type StatsState = {
     skills: SkillsObject,
     skillsProficiencies: SkillsProficienciesObject,
     savingThrows: SavingThrowsObject,
-    savingThrowsProficiencies: SavingThrowsProficienciesObject
+    savingThrowsProficiencies: SavingThrowsProficienciesObject,
+    passiveWisdom?: number
 }
 
 export type AbilityScoresObject = {

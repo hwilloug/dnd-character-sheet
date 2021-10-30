@@ -1,3 +1,5 @@
+import { DamageOptionsType } from "../../session/state/state"
+
 export type ItemType = {
   name: string,
   description?: string,
@@ -14,24 +16,11 @@ export type ItemType = {
   duration?: string
 }
 
-export const DamageTypeOptions = [
-  'acid', 
-  'bludgeoning', 
-  'cold', 
-  'fire', 
-  'force', 
-  'lightning', 
-  'necrotic', 
-  'piercing', 
-  'poison', 
-  'psychic', 
-  'radiant', 
-  'slashing',
-  'thunder'
-] as const
-type AllDamageTypeOptions = typeof DamageTypeOptions
-export type DamageOptionsType = AllDamageTypeOptions[number]
-
 export type ItemsState = {
+  items: ItemsObject,
+  toolProficiencies: string[]
+}
+
+export type ItemsObject = {
   [id: string]: ItemType
 }

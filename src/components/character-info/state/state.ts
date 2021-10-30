@@ -59,5 +59,6 @@ export type CharacterInfoState = {
     personality?: string,
     ideals?: string,
     bonds?: string,
-    flaws?: string
+    flaws?: string,
+    languages?: string[]
 }

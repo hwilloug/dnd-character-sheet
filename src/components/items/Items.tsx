@@ -43,12 +43,12 @@ export const ItemsComponent: React.FunctionComponent<ItemsComponentType> =
               <td>Notes</td>
             </tr>
             {console.log(Object.keys(state))}
-            {Object.keys(state).map((item) => 
+            {Object.keys(state.items).map((item) => 
               <tr>
-                <td>{state[item].number}</td>
-                <td>{state[item].name}</td>
-                <td>{state[item].description}</td>
-                <td>{state[item].notes}</td>
+                <td>{state.items[item].number}</td>
+                <td>{state.items[item].name}</td>
+                <td>{state.items[item].description}</td>
+                <td>{state.items[item].notes}</td>
               </tr>
             )}
           </tbody>

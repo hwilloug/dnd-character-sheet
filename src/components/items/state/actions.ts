@@ -1,5 +1,5 @@
 import { ActionsUnion, createAction } from "../../../state/action"
-import { ItemsState } from "./state"
+import { ItemsObject } from "./state"
 
 export enum ItemsActionsType {
     GET_ITEMS = '[items] get',
@@ -12,7 +12,7 @@ export const itemsActions = {
     createAction(ItemsActionsType.GET_ITEMS, {
       character_id
     }),
-  setItems: (items: ItemsState) => 
+  setItems: (items: ItemsObject) => 
     createAction(ItemsActionsType.SET_ITEMS, {
       items
     }),

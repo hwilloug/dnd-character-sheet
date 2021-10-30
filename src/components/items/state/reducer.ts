@@ -1,7 +1,10 @@
 import { ItemsActions, ItemsActionsType } from "./actions";
 import { ItemsState } from "./state";
 
-export const initialState: ItemsState = {}
+export const initialState: ItemsState = {
+  items: {},
+  toolProficiencies: []
+}
 
 export function itemsReducer(
   previousState: ItemsState | undefined,
@@ -13,11 +16,14 @@ export function itemsReducer(
   case ItemsActionsType.SET_ITEMS:
     return {
       ...state,
-      ...action.payload.items
+      items: {
+        ...state.items,
+        ...action.payload.items
+      }
     }
   case ItemsActionsType.DELETE_ITEM:
     let newState = Object.assign({}, state)
-    delete state[action.payload.item]
+    delete state.items[action.payload.item]
     return newState
   default: 
     return state

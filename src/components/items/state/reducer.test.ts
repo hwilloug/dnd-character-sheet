@@ -1,9 +1,9 @@
 import { itemsReducer, initialState } from "./reducer"
 import { itemsActions } from "./actions"
-import { ItemsState } from "./state"
+import { ItemsObject, ItemsState } from "./state"
 
 it('sets items', () => {
-  const newItems: ItemsState = {
+  const newItems: ItemsObject  = {
     dagger: {
       name: 'Dagger',
       number: 1,
@@ -11,7 +11,7 @@ it('sets items', () => {
       notes: '',
       type: 'Simple Melee Weapon',
       unitCost: '2 gp',
-      unitWeight: '1 lb',
+      unitWeight: 1,
       properties: [
         'Finesse', 
         'Light', 
@@ -31,32 +31,35 @@ it('sets items', () => {
     initialState,
     itemsActions.setItems(newItems)
   )
-  expect(state).toMatchObject(newItems)
+  expect(state.items).toMatchObject(newItems)
 })
 
 it('sets items with already existing items', () => {
   const initialStateWithValues: ItemsState = {
-    dagger: {
-      name: 'Dagger',
-      number: 1,
-      description: '',
-      notes: '',
-      type: 'Simple Melee Weapon',
-      unitCost: '2 gp',
-      unitWeight: '1 lb',
-      properties: [
-        'Finesse', 
-        'Light', 
-        'Range', 
-        'Thrown'
-      ],
-      range: '20/60',
-      rarity: 'Standard',
-      damage: '1d4'
-    },
-    darts: {
-      name: 'Darts',
-      number: 10
+    ...initialState,
+    items: {
+      dagger: {
+        name: 'Dagger',
+        number: 1,
+        description: '',
+        notes: '',
+        type: 'Simple Melee Weapon',
+        unitCost: '2 gp',
+        unitWeight: 1,
+        properties: [
+          'Finesse', 
+          'Light', 
+          'Range', 
+          'Thrown'
+        ],
+        range: '20/60',
+        rarity: 'Standard',
+        damage: '1d4'
+      },
+      darts: {
+        name: 'Darts',
+        number: 10
+      }
     }
   }
 
@@ -77,7 +80,7 @@ it('sets items with already existing items', () => {
     initialStateWithValues,
     itemsActions.setItems(newItems)
   )
-  expect(state).toMatchObject({
+  expect(state.items).toMatchObject({
     dagger: {
       name: 'Dagger',
       number: 1,
@@ -85,7 +88,7 @@ it('sets items with already existing items', () => {
       notes: '',
       type: 'Simple Melee Weapon',
       unitCost: '2 gp',
-      unitWeight: '1 lb',
+      unitWeight: 1,
       properties: [
         'Finesse', 
         'Light', 
@@ -111,34 +114,38 @@ it('sets items with already existing items', () => {
 
 it('deletes an item', () => {
   const initialStateWithValues: ItemsState = {
-    dagger: {
-      name: 'Dagger',
-      number: 1,
-      description: '',
-      notes: '',
-      type: 'Simple Melee Weapon',
-      unitCost: '2 gp',
-      unitWeight: '1 lb',
-      properties: [
-        'Finesse', 
-        'Light', 
-        'Range', 
-        'Thrown'
-      ],
-      range: '20/60',
-      rarity: 'Standard',
-      damage: '1d4'
-    },
-    darts: {
-      name: 'Darts',
-      number: 10
+    ...initialState,
+    items: {
+      dagger: {
+        name: 'Dagger',
+        number: 1,
+        description: '',
+        notes: '',
+        type: 'Simple Melee Weapon',
+        unitCost: '2 gp',
+        unitWeight: 1,
+        properties: [
+          'Finesse', 
+          'Light', 
+          'Range', 
+          'Thrown'
+        ],
+        range: '20/60',
+        rarity: 'Standard',
+        damage: '1d4'
+      },
+      darts: {
+        name: 'Darts',
+        number: 10
+      }
     }
   }
+
   const state = itemsReducer(
     initialStateWithValues,
     itemsActions.deleteItem('darts')
   )
-  expect(state).toMatchObject({
+  expect(state.items).toMatchObject({
     dagger: {
       name: 'Dagger',
       number: 1,
@@ -146,7 +153,7 @@ it('deletes an item', () => {
       notes: '',
       type: 'Simple Melee Weapon',
       unitCost: '2 gp',
-      unitWeight: '1 lb',
+      unitWeight: 1,
       properties: [
         'Finesse', 
         'Light', 

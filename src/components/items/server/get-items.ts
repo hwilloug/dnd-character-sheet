@@ -3,12 +3,12 @@ import {
   ResponseTypes,
   UnknownServiceError
 } from '../../../server/responses'
-import { ItemsState } from '../state/state'
+import { ItemsObject } from '../state/state'
 
 export const SUCCESS = 'success'
 
 const success = (
-  response: ItemsState
+  response: ItemsObject
 ) => createResponse(SUCCESS, response)
 
 export const Responses = {
